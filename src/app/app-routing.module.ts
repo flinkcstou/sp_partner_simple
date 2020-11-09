@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then(m => m.QrPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./pages/modal/modal.module').then( m => m.ModalPageModule)
   }
 ];
 @NgModule({

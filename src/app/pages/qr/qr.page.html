@@ -1,9 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>qr</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="back()">Back</ion-button>
+		</ion-buttons>
+		<ion-title>Qr page</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
+	
+	<ion-grid>
+		<ion-row>
+			<ion-item>
+				<ion-title>Qr scanner</ion-title>
+			</ion-item>
+		</ion-row>
+		<ion-button expand="block" (click)="scanner()">Scan me!</ion-button>
+	</ion-grid>
 
 </ion-content>

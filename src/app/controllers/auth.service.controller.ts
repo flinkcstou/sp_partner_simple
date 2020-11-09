@@ -16,7 +16,7 @@ export class AuthServiceController {
     }
 
     login(authRequest: AuthRequest): Observable<AuthResponse> {
-        return this.httpClient.post<AuthResponse>(this.fullUrl + '/login', {authRequest});
+        return this.httpClient.post<AuthResponse>(this.fullUrl + '/login', authRequest);
     }
 
 

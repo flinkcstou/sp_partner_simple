@@ -1,5 +1,7 @@
 {
   "name": "sp-partner",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
