@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QrService } from '../../services/qr.service';
 import { NavController } from '@ionic/angular';
+import {LoadingService} from "../../services/loading.service";
 
 @Component({
     selector: 'app-qr',
@@ -10,7 +11,8 @@ import { NavController } from '@ionic/angular';
 export class QrPage implements OnInit {
 
     constructor(private qrService: QrService,
-                private navController: NavController) {
+                private navController: NavController,
+                private loadingService: LoadingService) {
 
     }
 
@@ -18,7 +20,9 @@ export class QrPage implements OnInit {
     }
 
     scanner() {
+        // this.loadingService.present();
         this.qrService.scanner();
+        // this.loadingService.dismiss();
     }
 
     back() {

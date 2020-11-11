@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonInfiniteScroll, NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  constructor() { }
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  constructor(private navController: NavController) { }
 
   ngOnInit() {
   }
 
+
+  logout() {
+    this.navController.navigateForward(['/login']);
+    localStorage.clear();
+  }
 }
