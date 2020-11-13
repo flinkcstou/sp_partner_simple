@@ -1,8 +1,7 @@
 {
   "name": "sp-partner",
   "integrations": {
-    "cordova": {},
-    "capacitor": {}
+    "cordova": {}
   },
   "type": "angular"
 }

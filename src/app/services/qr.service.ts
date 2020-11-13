@@ -1,74 +1,64 @@
 import { Injectable } from '@angular/core';
 import { QrServiceContrller } from '../controllers/qr.service.contrller';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class QrService {
 
-    isApp = false;
+  isApp = false;
 
-    constructor(private qrScanner: QRScanner,
-                private platform: Platform,
-                public modalController: ModalController,
-                private qrServiceController: QrServiceContrller) {
-        this.isApp = (!document.URL.startsWith('http://localhost:4200'));
-    }
+  constructor(private qrScanner: QRScanner,
+              private barcodeScanner: BarcodeScanner,
+              private platform: Platform,
+              public modalController: ModalController,
+              private qrServiceController: QrServiceContrller) {
+    this.isApp = (!document.URL.startsWith('http://localhost:4200'));
+  }
 
-    qrPost(qrRequest: any) {
-        return this.qrServiceController.qrPost(qrRequest);
-    }
+  qrPost(qrRequest: any) {
+    return this.qrServiceController.qrPost(qrRequest);
+  }
 
-    async presentModal() {
-        const modal = await this.modalController.create({
-            component: ModalPage,
-            cssClass: 'my-custom-class'
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
+  }
+
+  scanner() {
+    console.error('asd');
+    if (this.isApp) {
+      this.barcodeScanner.scan({
+        preferFrontCamera: true,
+        showFlipCameraButton: true,
+        showTorchButton: true,
+        resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+        formats: 'QR_CODE', // default: all but PDF_417 and RSS_EXPANDED
+        prompt: '',
+        disableAnimations: true, // iOS
+        disableSuccessBeep: true// iOS and Android
+      }).then(async (barcodeData) => {
+        console.error('barcodeData', barcodeData);
+        await this.qrPost(barcodeData).toPromise().then();
+      }).catch(err => {
+        console.error('error', err);
+      });
+    } else {
+      this.qrPost('test test test')
+        .toPromise()
+        .then()
+        .finally(() => {
+          this.presentModal();
         });
-        return await modal.present();
     }
+  }
 
-    scanner() {
-        if (this.isApp) {
-            this.qrScanner.prepare()
-                .then(status => {
-                    return this.qrScanner.useFrontCamera();
-                })
-                .then((status: QRScannerStatus) => {
-                    if (status.authorized) {
-                        // camera permission was granted
 
-                        // start scanning
-                        const scanSub = this.qrScanner.scan().subscribe(async (text: string) => {
-
-                            await this.qrPost(text).toPromise().then();
-
-                            console.log('Scanned something', text);
-
-                            this.qrScanner.hide(); // hide camera preview
-                            scanSub.unsubscribe(); // stop scanning
-                        });
-
-                    } else if (status.denied) {
-                        // camera permission was permanently denied
-                        // you must use QRScanner.openSettings() method to guide the user to the settings page
-                        // then they can grant the permission from there
-                    } else {
-                        // permission was denied, but not permanently. You can ask for permission again at a later time.
-                    }
-                })
-                .catch((e: any) => {
-                    console.log('Error is', e);
-                });
-        } else {
-            this.qrPost('test test test')
-                .toPromise()
-                .then()
-                .finally(() => {
-                    this.presentModal();
-                });
-        }
-    }
 }
