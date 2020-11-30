@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable, ViewChild} from '@angular/core';
 import { QrServiceContrller } from '../controllers/qr.service.contrller';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import {QrScannerComponent} from "angular2-qrscanner";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 export class QrService {
 
   isApp = false;
-
+  @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent ;
   constructor(private qrScanner: QRScanner,
               private barcodeScanner: BarcodeScanner,
               private platform: Platform,
@@ -30,10 +31,12 @@ export class QrService {
       cssClass: 'my-custom-class'
     });
     return await modal.present();
+
   }
 
+
+
   scanner() {
-    console.error('asd');
     if (this.isApp) {
       this.barcodeScanner.scan({
         preferFrontCamera: true,
@@ -59,6 +62,5 @@ export class QrService {
         });
     }
   }
-
 
 }

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { QrService } from '../../services/qr.service';
-import { NavController } from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import { LoadingService } from '../../services/loading.service';
+import {QrScannerComponent} from "angular2-qrscanner";
+import {environment} from "../../../environments/environment";
+import {ModalPage} from "../modal/modal.page";
+import {retry} from "rxjs/operators";
 
-declare var Html5QrcodeScanner;
-declare var Html5Qrcode;
-declare var Instascan;
+
 
 @Component({
   selector: 'app-qr',
@@ -13,72 +15,63 @@ declare var Instascan;
   styleUrls: ['./qr.page.scss'],
 })
 export class QrPage implements OnInit {
-
+  @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent ;
+  isStopped: boolean = false;
   constructor(private qrService: QrService,
               private navController: NavController,
+              private modalController: ModalController,
               private loadingService: LoadingService) {
 
   }
 
   ngOnInit() {
-
-    // const scanner = new Instascan.Scanner({video: document.getElementById('preview')});
-    // scanner.addListener('scan', content => {
-    //   console.log(content);
-    // });
-    // Instascan.Camera.getCameras().then(cameras => {
-    //   if (cameras.length > 0) {
-    //     scanner.start(cameras[0]);
-    //   } else {
-    //     console.error('No cameras found.');
-    //   }
-    // }).catch(e => {
-    //   console.error(e);
-    // });
-
-
-//     console.error('asdasdas');
-//     alert('adasd');
-//
-//     let cameraId = null;
-//
-//     /*    function onScanSuccess(qrCodeMessage) {
-//           console.error(qrCodeMessage);
-//           // handle on success condition with the decoded message
-//           html5QrcodeScanner.clear();
-//
-//           // ^ this will stop the scanner (video feed) and clear the scan area.
-//         }
-//
-//         const html5QrcodeScanner = new Html5QrcodeScanner(
-//           'reader', {fps: 10, qrbox: 250});
-//         html5QrcodeScanner.render(onScanSuccess);*/
-//
-//
-//     Html5Qrcode.getCameras().then(devices => {
-//       console.error('getCameras', devices);
-//       /**
-//        * devices would be an array of objects of type:
-//        * { id: "id", label: "label" }
-//        */
-//       if (devices && devices.length) {
-//         alert('adasd');
-//         cameraId = devices[0].id;
-//         const html5QrCode = new Html5Qrcode('#reader');
-//         const qrCodeSuccessCallback = message => { /* handle success */
-//
-//           console.error('message', message);
-//         };
-//         const config = {fps: 10, qrbox: 250};
-// // If you want to prefer back camera
-//         html5QrCode.start(cameraId, config, qrCodeSuccessCallback);
-//       }
-//     }).catch(err => {
-//       // handle err
-//     });
-
-
   }
+  ngAfterViewInit() {
+    this.turnCamera();
+    this.isStopped = true;
+    this.qrScannerComponent.capturedQr.subscribe(result => {
+      console.log(result);
+      this.presentProfileModal(result);
+      this.isStopped = false;
+    });
+  }
+  async presentProfileModal(result) {
+    let profileModal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'my-custom-class',
+      componentProps: result
+    });
+    profileModal.present();
+    const { data } = await profileModal.onDidDismiss();
+    console.log("DATA " + data);
+  }
+  turnCamera() {
+    this.qrScannerComponent.getMediaDevices().then(devices => {
+      const videoDevices: MediaDeviceInfo[] = [];
+      for (const device of devices) {
+        if (device.kind.toString() === 'videoinput') {
+          videoDevices.push(device);
+        }
+      }
+      if (videoDevices.length > 0){
+        let choosenDev;
+        for (const dev of videoDevices){
+          if (dev.label.includes('front')){
+            choosenDev = dev;
+            break;
+          }
+        }
+        if (choosenDev) {
+          console.log(choosenDev);
+          this.qrScannerComponent.chooseCamera.next(choosenDev);
+        } else {
+          this.qrScannerComponent.chooseCamera.next(videoDevices[0]);
+        }
+      }
+    });
+  }
+
+
 
   scanner() {
     // this.loadingService.present();

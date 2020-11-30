@@ -1,32 +1,22 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-title class="">login</ion-title>
-	</ion-toolbar>
-</ion-header>
+<app-content-flex-center>
+    <div class="display-flex-center ion-align-items-center">
+        <img class="logo_img" [src]="logoPath" alt="Smartplaza">
+    </div>
 
-<ion-content>
-	<ion-header collapse="condense">
-		<ion-toolbar>
-			<ion-title size="large">Login</ion-title>
-		</ion-toolbar>
-	</ion-header>
-	<ion-grid>
-		<ion-row>
-			<ion-item>
-				<ion-label position="stacked">Username</ion-label>
-				<ion-input [(ngModel)]="user.username"
-				           type="text"></ion-input>
-			</ion-item>
-		</ion-row>
-		<ion-row>
-			<ion-item>
-				<ion-label position="stacked">Password</ion-label>
-				<ion-input [(ngModel)]="user.password"
-				           type="password"></ion-input>
-			</ion-item>
-		</ion-row>
-		
-		<ion-button (click)="login()" expand="block">Login</ion-button>
-	</ion-grid>
+    <ion-row>
+        <ion-item>
+            <ion-label position="floating">Логин</ion-label>
+            <ion-input [(ngModel)]="user.username"
+                       type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Введите пароль</ion-label>
+            <ion-input [(ngModel)]="user.password"
+                       type="password"></ion-input>
+        </ion-item>
+    <div class="ion-padding"></div>
+        <ion-button style="width: 100%" (click)="login()" expand="block">Вход</ion-button>
+    </ion-row>
 
-</ion-content>
+</app-content-flex-center>
+

@@ -20,5 +20,13 @@
 
     <div id="reader" style="width: 200px" width="200px"></div>
   </ion-grid>
+  <qr-scanner
+          [debug]="false"
+          [canvasWidth]="1080"
+          [canvasHeight]="720"
+          [stopAfterScan]="isStopped"
+          [updateTime]="500">
+  </qr-scanner>
+
 
 </ion-content>

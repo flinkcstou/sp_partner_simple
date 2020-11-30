@@ -40,11 +40,7 @@
               }
             ],
             "scripts": [
-              "node_modules/html5-qrcode/minified/html5-qrcode.min.js",
-              "node_modules/instascan/src/camera.js",
-              "node_modules/instascan/src/scanner.js",
-              "node_modules/instascan/src/zxing.js",
-              "node_modules/instascan/index.js"
+              "node_modules/html5-qrcode/minified/html5-qrcode.min.js"
             ]
           },
           "configurations": {
