@@ -5,6 +5,7 @@ import {AuthRequest} from '../../models/requests/auth-request';
 import {environment} from '../../../environments/environment';
 import {LoadingService} from '../../services/loading.service';
 import {ToastService} from '../../services/controllers/toast.service';
+import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
     selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
     constructor(private authService: AuthService,
                 private loadingService: LoadingService,
                 private navController: NavController,
-                private toastService: ToastService) {
+                private toastService: ToastService,
+                private storageLocalService: StorageLocalService) {
     }
 
     ngOnInit() {
@@ -30,11 +32,13 @@ export class LoginPage implements OnInit {
         await this.authService.login(this.user).toPromise()
             .then(resp => {
                 console.log(resp);
-                localStorage.setItem(environment.token, resp.token);
-                this.navController.navigateForward(['/qr']);
+                this.storageLocalService.setApiToken(resp.token);
+                this.storageLocalService.setRole(resp.role);
+                this.storageLocalService.setBrand(resp.brand);
+                this.navController.navigateForward(['/main']);
             }).catch(async error => {
                 console.log(error);
-                await this.toastService.presentError('Логин или пароль введены не верно!');
+                await this.toastService.present('Логин или пароль введены не верно!','danger');
             })
             .finally(async () => await this.loadingService.dismiss());
     }

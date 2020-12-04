@@ -16,7 +16,7 @@ export class LoadingService {
             return;
         }
         const loading = await this.loadingController.create({
-            message: 'Please wait...',
+            message: 'Пожалуйста подождите ...',
         });
         loading.present();
     }

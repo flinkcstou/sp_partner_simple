@@ -28,7 +28,7 @@ export class QrPage implements OnInit {
   }
   ngAfterViewInit() {
     this.turnCamera();
-    this.isStopped = true;
+    // this.isStopped = true;
     this.qrScannerComponent.capturedQr.subscribe(result => {
       console.log(result);
       this.presentProfileModal(result);

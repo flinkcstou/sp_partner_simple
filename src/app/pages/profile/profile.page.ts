@@ -1,21 +1,24 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll, NavController} from "@ionic/angular";
+import {IonInfiniteScroll, NavController} from '@ionic/angular';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+    selector: 'app-profile',
+    templateUrl: './profile.page.html',
+    styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  constructor(private navController: NavController) { }
+    @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  ngOnInit() {
-  }
+    constructor(
+        private authService: AuthService) {
+    }
+
+    ngOnInit() {
+    }
 
 
-  logout() {
-    this.navController.navigateForward(['/login']);
-    localStorage.clear();
-  }
+    logout() {
+        this.authService.logout();
+    }
 }

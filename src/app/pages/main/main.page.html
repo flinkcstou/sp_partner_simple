@@ -1,10 +1,46 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Main</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header-back title="Транзакции {{brand?.title}}"></app-header-back>
 
-<ion-content fullscreen>
+
+<ion-content fullscreen >
+        <ion-card slot="fixed">
+            <ion-card-header>
+                <ion-card-title>Фильтры</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <form>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="floating">Номер телефона пользователя</ion-label>
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Уникальный код пользователя</ion-label>
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">ФИО пользователя</ion-label>
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <ion-button  (click)="search()" type="submit" >Поиск</ion-button>
+                </form>
+            </ion-card-content>
+        </ion-card>
+    <div class="transactions-list">
+        <div *ngFor="let i of is">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                    <ion-card-title>Card Title</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    Keep close to Nature's heart... and break clear away, once in awhile,
+                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
 
 
 

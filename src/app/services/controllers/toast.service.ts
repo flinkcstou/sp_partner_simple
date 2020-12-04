@@ -21,7 +21,7 @@ export class ToastService extends IonicControllerAbstract {
     return null;
   }
 
-  async presentSuccess(title: string = '',color: string = 'success', position: PositionToast = 'top', duration: number = 3000) {
+  async present(title: string = '',color: string = 'success', position: PositionToast = 'top', duration: number = 3000) {
     if (!!title) {
       title = title.replace(/\s+/g,
         ' ')
@@ -35,21 +35,4 @@ export class ToastService extends IonicControllerAbstract {
     });
     return await super.present();
   }
-
-  async presentError(title: string = '', color:string = 'danger', position: PositionToast = 'top', duration: number = 3000) {
-    console.log(title);
-    if (!!title) {
-      title = title.replace(/\s+/g,
-          ' ')
-          .trim();
-    }
-    this.setOption({
-      message: title,
-      duration,
-      position,
-      color,
-    });
-    return await super.present();
-  }
-
 }
