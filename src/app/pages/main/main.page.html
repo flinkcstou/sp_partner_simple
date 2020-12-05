@@ -1,47 +1,62 @@
 <app-header-back title="Транзакции {{brand?.title}}"></app-header-back>
 
 
-<ion-content fullscreen >
-        <ion-card slot="fixed">
+<ion-content fullscreen>
+    <div slot="fixed" class="filter-fixed">
+        <ion-card class="filter-header-card">
             <ion-card-header>
                 <ion-card-title>Фильтры</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-                <form>
-                    <ion-list>
-                        <ion-item>
-                            <ion-label position="floating">Номер телефона пользователя</ion-label>
-                            <ion-input type="text"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label position="floating">Уникальный код пользователя</ion-label>
-                            <ion-input type="text"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label position="floating">ФИО пользователя</ion-label>
-                            <ion-input type="text"></ion-input>
-                        </ion-item>
-                    </ion-list>
-                    <ion-button  (click)="search()" type="submit" >Поиск</ion-button>
-                </form>
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Номер телефона пользователя</ion-label>
+                        <ion-input clear-input [(ngModel)]="searchFilter.phone" type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Уникальный код пользователя</ion-label>
+                        <ion-input clear-input [(ngModel)]="searchFilter.qr" type="text"></ion-input>
+                    </ion-item>
+                    <!--                        <ion-item>-->
+                    <!--                            <ion-label position="floating">ФИО пользователя</ion-label>-->
+                    <!--                            <ion-input [(ngModel)]="searchFilter.name" type="text"></ion-input>-->
+                    <!--                        </ion-item>-->
+                </ion-list>
+                <div class="display-flex-between ion-margin-top">
+                    <ion-button (click)="searchTransaction()">Поиск</ion-button>
+                    <ion-button (click)="reloadPage()">
+                        <ion-icon name="sync-circle-sharp"></ion-icon>
+                    </ion-button>
+                </div>
             </ion-card-content>
         </ion-card>
+    </div>
     <div class="transactions-list">
-        <div *ngFor="let i of is">
-            <ion-card>
+        <div *ngFor="let transaction of transactions">
+            <ion-card class="transacion-card" (click)="goToModal(transaction)">
                 <ion-card-header>
-                    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-                    <ion-card-title>Card Title</ion-card-title>
+                    <ion-card-subtitle class="display-flex-between">
+                        <div>Номер заказа: {{transaction.id}} <br>
+                            Оплачено бонусами: {{transaction.bonus}}</div>
+                        <div class="ion-text-end">
+                            <ion-icon size="large" class="success-icon" name="checkmark-circle-sharp"></ion-icon>
+                            <br> Дата оплаты: {{transaction.createdAt}}
+                        </div>
+                    </ion-card-subtitle>
                 </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile,
-                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                <ion-card-content class="display-flex-between">
+                    <div>
+                        ФИО: {{transaction.userName}} <br>
+                        Тел: +{{transaction.userPhone}}
+                    </div>
+                    <div class="ion-text-end">
+                        Оплачено: + {{transaction.sum}}тг. <br>
+                        Оплата произведена
+                    </div>
                 </ion-card-content>
             </ion-card>
         </div>
     </div>
-
 
 
 </ion-content>

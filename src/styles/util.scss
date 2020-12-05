@@ -12,6 +12,11 @@
   justify-content: center;
   align-items: center;
 }
+.display-flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
 
 .profile-avatar-image {
   height: 100vw;

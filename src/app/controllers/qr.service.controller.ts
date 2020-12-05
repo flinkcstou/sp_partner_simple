@@ -8,7 +8,7 @@ import { AuthResponse } from '../models/responses/auth-response';
 @Injectable({
     providedIn: 'root'
 })
-export class QrServiceContrller {
+export class QrServiceController {
     fullUrl = environment.apiUrl + '/qr';
 
     constructor(private httpClient: HttpClient) {

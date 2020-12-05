@@ -1,5 +1,5 @@
 import {Injectable, ViewChild} from '@angular/core';
-import { QrServiceContrller } from '../controllers/qr.service.contrller';
+import { QrServiceController } from '../controllers/qr.service.controller';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page';
@@ -17,7 +17,7 @@ export class QrService {
               private barcodeScanner: BarcodeScanner,
               private platform: Platform,
               public modalController: ModalController,
-              private qrServiceController: QrServiceContrller) {
+              private qrServiceController: QrServiceController) {
     this.isApp = (!document.URL.startsWith('http://localhost:4200'));
   }
 

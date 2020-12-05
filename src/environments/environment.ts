@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'https://api.smartplaza.kz',
   token: 'token',
+  tokenPrefix: 'Bearer ',
 };
 
 /*

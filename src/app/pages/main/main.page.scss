@@ -10,7 +10,23 @@ ion-toolbar {
   //position: fixed;
   //z-index: 100;
 }
-.transactions-list {
-  padding-top: 170px;
+.ion-input {
+  width: 100%;
 }
-
+.transactions-list {
+  padding-top: 290px;
+}
+.filter-fixed {
+  background-color: #ffffff;
+  width: 100%;
+}
+.filter-header-card {
+  margin-inline: 0;
+  margin: 0;
+}
+.success-icon {
+  color: #D5482F;
+}
+.transacion-card {
+  background-color: #D6FBDC;
+}
