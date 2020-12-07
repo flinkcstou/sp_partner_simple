@@ -13,7 +13,7 @@
   align-items: center;
 }
 .display-flex-between {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   align-content: center;
 }
@@ -34,6 +34,12 @@
     --backdrop-opacity: 0;
   }
 }
+.small-modal-component {
+  align-items: center;
+  --height: 30%;
+  --backdrop-opacity: 0;
+
+}
 
 ion-toolbar .sc-ion-searchbar-ios-h {
   padding: 0 !important;
@@ -41,15 +47,15 @@ ion-toolbar .sc-ion-searchbar-ios-h {
 
 }
 
-app-delivery-tab {
-  ion-card {
-    --background: black;
-
-    ion-card-subtitle {
-      --color: white;
-    }
-  }
-}
+//app-delivery-tab {
+//  ion-card {
+//    --background: black;
+//
+//    ion-card-subtitle {
+//      --color: white;
+//    }
+//  }
+//}
 
 .qrcode {
   position: relative;

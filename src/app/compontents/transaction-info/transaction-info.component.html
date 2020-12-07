@@ -1,0 +1,45 @@
+<ion-content scrollY="false">
+    <ion-grid>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>{{brand.title}}</ion-card-subtitle>
+                <ion-card-title>Детали транзакции {{data.id}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Дата оплаты: {{data.createdAt}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Номер заказа: {{data.id}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar slot="start">
+                            <ion-icon size="large" name="person-circle-outline"></ion-icon>
+                        </ion-avatar>
+                        <ion-label>
+                            <h2>{{data.userName}}</h2>
+                            <h3>{{data.userPhone}}</h3>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Оплачено бонусами: {{data.bonus}}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Начислено бонусов: {{data.bonusGained}}</ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+        <ion-row class="display-flex-center">
+            <h1 class="payed-h1">
+                Оплачено +{{data.sum}} тг
+            </h1>
+        </ion-row>
+        <ion-row class="display-flex-center bottom-buttons">
+<!--            <ion-button color="danger" (click)="return()">Возврат</ion-button>-->
+            <ion-button (click)="goBack()">Закрыть</ion-button>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>

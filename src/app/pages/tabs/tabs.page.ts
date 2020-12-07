@@ -1,12 +1,44 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {IonicTab} from '../../models/commons/IonicTab';
+import {IonTabs} from '@ionic/angular';
+import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss']
+    selector: 'app-tabs',
+    templateUrl: 'tabs.page.html',
+    styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage {
+    @ViewChild('ionTabs') ionTabs: IonTabs;
 
-  constructor() {}
+    tabs: IonicTab[] = [{
+        identity: '1',
+        title: 'Main',
+        selectedIcon: false,
+        icon: 'home-outline',
+        route: 'main',
+    }, {
+        identity: '2',
+        title: 'QR',
+        selectedIcon: false,
+        icon: 'qr-code-outline',
+        route: 'qr',
+    }, {
+        identity: '3',
+        title: 'Profile',
+        selectedIcon: false,
+        icon: 'person-outline',
+        route: 'profile',
+        // click: this.goToQr.bind(this)
+    },
+    ];
 
+    constructor() {
+    }
+
+    ionTabsWillChange(event: any) {
+        this.tabs.forEach((tab: IonicTab) => {
+            tab.selectedIcon = tab.route === event?.tab;
+        });
+    }
 }

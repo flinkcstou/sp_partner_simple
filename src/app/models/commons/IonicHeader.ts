@@ -4,7 +4,7 @@ export class IonicHeader {
   identity: string;
   title: IonicHeaderTitle;
   backButton: string;
-  basket: string;
+  basket: boolean;
   search: boolean;
   route: string;
 }

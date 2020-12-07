@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {ThrottleClickDirective} from '../directives/throttle-click.directive';
 import {ClickClassDecoratorDirective} from '../directives/click-class-decorator.directive';
-import {PhoneMaskDirective} from '../directives/phone-mask.directive';
 
 @NgModule({
     declarations: [

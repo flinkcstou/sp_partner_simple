@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
 
     constructor(private authService: AuthService,
                 private loadingService: LoadingService,
-                private navController: NavController,
+                private navCtrl: NavController,
                 private toastService: ToastService,
                 private storageLocalService: StorageLocalService) {
     }
@@ -35,7 +35,10 @@ export class LoginPage implements OnInit {
                 this.storageLocalService.setApiToken(resp.token);
                 this.storageLocalService.setRole(resp.role);
                 this.storageLocalService.setBrand(resp.brand);
-                this.navController.navigateForward(['/main']);
+                this.navCtrl.navigateForward(['/tabs/main']);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
             }).catch(async error => {
                 console.log(error);
                 await this.toastService.present('Логин или пароль введены не верно!','danger');

@@ -5,14 +5,17 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './header-back.component.html',
   styleUrls: ['./header-back.component.scss'],
 })
-export class HeaderBackComponent implements OnInit {
+export class HeaderBackComponent{
 
   @Input() title: string = '';
+  // @Input() hasBackButton: string = 'false';
 
   constructor() {
   }
 
-  ngOnInit() {
-  }
+  // ngOnInit() {
+  //   console.log(this.title);
+  //   // console.log(this.hasBackButton);
+  // }
 
 }

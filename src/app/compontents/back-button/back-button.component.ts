@@ -15,7 +15,9 @@ export class BackButtonComponent {
   }
 
   goBack() {
+    console.log(this.route);
     if (!!this.route) {
+      console.log('ya tut');
       this.navCtrl.navigateBack([this.route]);
       return;
     }

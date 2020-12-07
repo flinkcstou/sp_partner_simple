@@ -11,7 +11,7 @@ export class AuthService {
 
     constructor(private authController: AuthServiceController,
                 private storageLocalService: StorageLocalService,
-                private navController: NavController) {
+                private navCtrl: NavController) {
     }
 
     login(authRequest: AuthRequest) {
@@ -19,6 +19,6 @@ export class AuthService {
     }
     logout() {
         this.storageLocalService.removeAll();
-        this.navController.navigateForward(['/login']);
+        this.navCtrl.navigateForward(['/login']);
     }
 }

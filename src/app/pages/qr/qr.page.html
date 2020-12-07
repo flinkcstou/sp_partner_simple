@@ -1,24 +1,21 @@
-<app-header-back title="Qr Scanner"></app-header-back>
+<!--<app-header-back title="Qr Scanner"></app-header-back>-->
 <ion-content>
-
   <ion-grid>
-    <ion-row>
-      <ion-item>
-        <ion-title>Qr scanner</ion-title>
-      </ion-item>
-    </ion-row>
-    <br>
     <ion-button expand="block" (click)="scanner()">Scan me!</ion-button>
 
-    <div id="reader" style="width: 200px" width="200px"></div>
   </ion-grid>
-  <qr-scanner
-          [debug]="false"
-          [canvasWidth]="1080"
-          [canvasHeight]="720"
-          [stopAfterScan]="isStopped"
-          [updateTime]="500">
-  </qr-scanner>
+  <div class="qr-scanner-div">
+    <qr-scanner
+            [debug]="false"
+            [canvasWidth]="1080"
+            [canvasHeight]="720"
+            [stopAfterScan]="false"
+            [updateTime]="500">
+    </qr-scanner>
+  </div>
+
+
+  <ion-button (click)="startScan()">ГО СКАН</ion-button>
 
 
 </ion-content>

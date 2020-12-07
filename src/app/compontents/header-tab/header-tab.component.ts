@@ -3,6 +3,7 @@ import {IonRouterOutlet, NavController} from '@ionic/angular';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {IonicHeader} from '../../models/commons/IonicHeader';
+import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
     selector: 'app-header-tab',
@@ -10,7 +11,7 @@ import {IonicHeader} from '../../models/commons/IonicHeader';
     styleUrls: ['./header-tab.component.scss'],
 })
 export class HeaderTabComponent {
-
+    brand: any;
     ionicHeaders: IonicHeader[] = [{
         identity: '1',
         title: {
@@ -19,9 +20,9 @@ export class HeaderTabComponent {
             title: `Транзакции`,
         },
         backButton: null,
-        basket: 'false',
-        search: true,
-        route: '/main',
+        basket: false,
+        search: false,
+        route: '/tabs/main',
     }, {
         identity: '2',
         title: {
@@ -30,9 +31,9 @@ export class HeaderTabComponent {
             title: 'QR Scanner',
         },
         backButton: 'true',
-        basket: 'false',
+        basket: true,
         search: false,
-        route: '/qr',
+        route: '/tabs/qr',
     }, {
         identity: '3',
         title: {
@@ -41,33 +42,10 @@ export class HeaderTabComponent {
             title: 'Профиль',
         },
         backButton: null,
-        basket: 'true',
+        basket: true,
         search: null,
-        route: '/tabs/news-tab',
+        route: '/tabs/profile',
     }
-    // }, {
-    //     identity: '4',
-    //     title: {
-    //         position: 'left',
-    //         additionalTitle: '',
-    //         title: 'Places',
-    //     },
-    //     backButton: null,
-    //     basket: 'true',
-    //     search: null,
-    //     route: '/tabs/place-tab',
-    // }, {
-    //     identity: '5',
-    //     title: {
-    //         position: 'left',
-    //         additionalTitle: '',
-    //         title: 'Profile',
-    //     },
-    //     backButton: null,
-    //     basket: 'true',
-    //     search: null,
-    //     route: '/tabs/profile-tab',
-    // }
     ];
 
     ionicHeader: IonicHeader = null;
@@ -78,7 +56,10 @@ export class HeaderTabComponent {
     constructor(private navCtrl: NavController,
                 private route: ActivatedRoute,
                 private ionRouterOutlet: IonRouterOutlet,
-                private router: Router) {
+                private router: Router,
+                private storageLocalService: StorageLocalService) {
+        this.brand = this.storageLocalService.getBrand();
+        this.ionicHeaders[0].title.title = `Транзакции ${this.brand.title}`;
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
@@ -109,6 +90,6 @@ export class HeaderTabComponent {
     }
 
     goToOrderPage() {
-        this.navCtrl.navigateForward(['order'], {animated: false});
+        this.navCtrl.navigateForward(['/tabs/main'], {animated: false});
     }
 }

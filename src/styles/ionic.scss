@@ -1,0 +1,4 @@
+// For FIX of freezing scroll in safari
+.ios ion-content {
+  pointer-events: auto;
+}

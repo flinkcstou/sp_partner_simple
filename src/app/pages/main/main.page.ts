@@ -4,6 +4,9 @@ import {OrderService} from '../../services/order.service';
 import {ToastService} from '../../services/controllers/toast.service';
 import {LoadingService} from '../../services/loading.service';
 import {UserService} from '../../services/user.service';
+import {Route} from '@angular/router';
+import {NavController} from '@ionic/angular';
+import {ModalService} from '../../services/controllers/modal.service';
 
 @Component({
     selector: 'app-main',
@@ -21,7 +24,9 @@ export class MainPage implements OnInit {
                 private orderService: OrderService,
                 private toastService: ToastService,
                 private loadingService: LoadingService,
-                private userService: UserService) {
+                private userService: UserService,
+                private navCtrl: NavController,
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -32,21 +37,19 @@ export class MainPage implements OnInit {
 
     async getTransactions() {
         await this.loadingService.present();
-        this.orderService.getOrders(0,100, '',this.search).toPromise()
+        this.orderService.getOrders(0, 100, '', this.search).toPromise()
             .then(resp => {
                 console.log(resp);
                 this.transactions = resp.content;
-            }).catch( error => {
-                console.error(error);
+            }).catch(error => {
+            console.error(error);
             this.toastService.present((error) ? error.message : 'Ошибка!', 'danger');
         }).finally(async () => await this.loadingService.dismiss());
-
-
     }
 
     readySearch() {
         this.searchFilter = {
-            phone: '', qr: ''
+            phone: '', qr: '',
         }
     }
 
@@ -79,10 +82,17 @@ export class MainPage implements OnInit {
 
     reloadPage() {
         this.search = '';
+        // this.readySearch();
         this.getTransactions();
     }
 
     goToModal(transaction: any) {
-        console.log(transaction);
+        if (this.modalService.isPresent) {
+            this.modalService.dismiss();
+        } else {
+            this.modalService.setTransactionInfoOption(transaction);
+            this.modalService.present();
+        }
     }
+
 }

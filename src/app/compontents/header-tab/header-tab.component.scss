@@ -1,3 +1,13 @@
 :host {
   display: contents;
 }
+ion-toolbar {
+  --background: #2D3E50;
+  --opacity: 1;
+}
+ion-title {
+  --color: #FFFFFF;
+}
+ion-button {
+  --color: #FFFFFF;
+}

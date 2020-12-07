@@ -39,7 +39,7 @@ export class QrService {
   scanner() {
     if (this.isApp) {
       this.barcodeScanner.scan({
-        preferFrontCamera: true,
+        preferFrontCamera: false,
         showFlipCameraButton: true,
         showTorchButton: true,
         resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500

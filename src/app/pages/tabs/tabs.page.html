@@ -1,19 +1,17 @@
-<ion-tabs>
-
+<ion-tabs #ionTabs (ionTabsWillChange)="ionTabsWillChange($event)">
+  <app-header-tab></app-header-tab>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="main">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Main</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="qr">
-      <ion-icon name="qr-code-outline"></ion-icon>
-      <ion-label>Qr</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="profile">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Profile</ion-label>
-    </ion-tab-button>
+    <ng-container *ngFor="let tab of tabs">
+      <ng-container *ngIf="tab?.route; else routeClick">
+        <ion-tab-button [tab]="tab?.route">
+          <ion-icon [name]="tab?.icon"></ion-icon>
+        </ion-tab-button>
+      </ng-container>
+      <ng-template #routeClick>
+        <ion-tab-button (click)="tab.click()">
+          <ion-icon [color]="tab?.selectedIcon?'danger': ''" [name]="tab?.icon"></ion-icon>
+        </ion-tab-button>
+      </ng-template>
+    </ng-container>
   </ion-tab-bar>
 </ion-tabs>
