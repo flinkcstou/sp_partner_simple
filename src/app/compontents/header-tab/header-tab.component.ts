@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IonRouterOutlet, NavController} from '@ionic/angular';
+import {AlertController, IonRouterOutlet, NavController} from '@ionic/angular';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {IonicHeader} from '../../models/commons/IonicHeader';
 import {StorageLocalService} from '../../services/storage-local.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-header-tab',
@@ -31,7 +32,7 @@ export class HeaderTabComponent {
             title: 'QR Scanner',
         },
         backButton: 'true',
-        basket: true,
+        basket: false,
         search: false,
         route: '/tabs/qr',
     }, {
@@ -45,7 +46,7 @@ export class HeaderTabComponent {
         basket: true,
         search: null,
         route: '/tabs/profile',
-    }
+    },
     ];
 
     ionicHeader: IonicHeader = null;
@@ -57,7 +58,9 @@ export class HeaderTabComponent {
                 private route: ActivatedRoute,
                 private ionRouterOutlet: IonRouterOutlet,
                 private router: Router,
-                private storageLocalService: StorageLocalService) {
+                private storageLocalService: StorageLocalService,
+                private authService: AuthService,
+                private alertController: AlertController) {
         this.brand = this.storageLocalService.getBrand();
         this.ionicHeaders[0].title.title = `Транзакции ${this.brand.title}`;
         this.router.events
@@ -89,7 +92,29 @@ export class HeaderTabComponent {
         // clear data
     }
 
-    goToOrderPage() {
-        this.navCtrl.navigateForward(['/tabs/main'], {animated: false});
+    async goToOrderPage() {
+        const alert = await this.alertController.create({
+            cssClass: 'my-custom-class',
+            header: 'Выход',
+            // subHeader: 'Выход',
+            message: 'Хотите выйти из аккаунта',
+            buttons: [
+                {
+                    text: 'Нет',
+                    role: 'cancel',
+                    handler: () => {
+                    },
+                }, {
+                    text: 'Да',
+                    handler: () => {
+                        console.log('Confirm Ok');
+                        this.authService.logout();
+                    },
+                }],
+        });
+        await alert.present();
+
+        // this.authService.logout();
+        // this.navCtrl.navigateForward(['/tabs/main'], {animated: false});
     }
 }
