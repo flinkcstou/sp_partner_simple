@@ -1,5 +1,5 @@
 <div class="display-flex-center ion-align-items-center" style="margin-bottom: 13%; margin-top:3%">
-    <img class="logo_img" [src]="logoPath" alt="Smartplaza">
+    <img class="logo_img" [src]="logoPath" alt="logo">
 </div>
 <!--<app-content-flex-center>-->
 <ion-content>
@@ -7,22 +7,22 @@
         <ion-list class="list-totals">
             <ion-item>
                 <ion-label class="display-flex-between">Транзакции сегодня
-                    <span>10</span>
+                    <span>{{transactionsObject?.dayTotal}}</span>
                 </ion-label>
             </ion-item>
             <ion-item>
                 <ion-label class="display-flex-between">Кол-во транзакций за месяц
-                    <span>10</span>
+                    <span>{{transactionsObject?.monthTotal}}</span>
                 </ion-label>
             </ion-item>
             <ion-item>
                 <ion-label class="display-flex-between">Общее кол-во транзакций
-                    <span>199851</span>
+                    <span>{{transactionsObject?.total}}</span>
                 </ion-label>
             </ion-item>
             <ion-item>
                 <ion-label class="display-flex-between">Количество сертификатов
-                    <span>0</span>
+                    <span>{{transactionsObject?.certificateCount}}</span>
                 </ion-label>
             </ion-item>
         </ion-list>

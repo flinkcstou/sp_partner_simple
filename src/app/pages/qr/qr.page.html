@@ -1,21 +1,41 @@
-<!--<app-header-back title="Qr Scanner"></app-header-back>-->
-<ion-content>
-  <ion-grid>
-    <ion-button expand="block" (click)="scanner()">Scan me!</ion-button>
+<ion-content fullscreen>
+    <ion-card class="page-card-content">
+        <ion-card-header>
+            <ion-card-title>Категории</ion-card-title>
+            <ion-input [(ngModel)]="test"></ion-input>
+            <ion-button (click)="testss()">TEST</ion-button>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-card *ngFor="let category of categories" class="category-card" (click)="goToQr(category)">
+                <img [src]="imageUrl + category.imageName" />
+                <ion-card-header>
+                    <ion-card-subtitle>Процент: {{ category.percentage}}%</ion-card-subtitle>
+                    <ion-card-title>{{category.name}}</ion-card-title>
+                </ion-card-header>
+            </ion-card>
+        </ion-card-content>
 
-  </ion-grid>
-  <div class="qr-scanner-div">
-    <qr-scanner
-            [debug]="false"
-            [canvasWidth]="1080"
-            [canvasHeight]="720"
-            [stopAfterScan]="false"
-            [updateTime]="500">
-    </qr-scanner>
-  </div>
+    </ion-card>
+    <ion-grid>
+<!--        <ion-button expand="block" (click)="scanner()">Scan me!</ion-button>-->
 
-
-  <ion-button (click)="startScan()">ГО СКАН</ion-button>
-
-
+    </ion-grid>
 </ion-content>
+
+<!--<ion-content>-->
+
+    <!--  <div class="qr-scanner-div">-->
+    <!--    <qr-scanner-->
+    <!--            [debug]="false"-->
+    <!--            [canvasWidth]="1080"-->
+    <!--            [canvasHeight]="720"-->
+    <!--            [stopAfterScan]="false"-->
+    <!--            [updateTime]="500">-->
+    <!--    </qr-scanner>-->
+    <!--  </div>-->
+
+
+    <!--  <ion-button (click)="startScan()">ГО СКАН</ion-button>-->
+
+
+<!--</ion-content>-->

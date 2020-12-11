@@ -9,5 +9,8 @@ ion-title {
   --color: #FFFFFF;
 }
 ion-button {
-  --color: #FFFFFF;
+  --color: #FFFFFF !important;
+}
+ion-icon {
+  --color: #FFFFFF !important;
 }

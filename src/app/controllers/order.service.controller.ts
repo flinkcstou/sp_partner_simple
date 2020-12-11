@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { AuthRequest } from '../models/requests/auth-request';
 import { Observable } from 'rxjs';
-import { AuthResponse } from '../models/responses/auth-response';
-import {HeadersService} from '../services/headers.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +9,7 @@ import {HeadersService} from '../services/headers.service';
 export class OrderServiceController {
     fullUrl = environment.apiUrl + '/orders/api/v1/order';
 
-    constructor(private httpClient: HttpClient,
-                private headersService: HeadersService) {
+    constructor(private httpClient: HttpClient) {
     }
 
     getAllOrders(page, size, sortBy, search): Observable<any> {
@@ -36,7 +32,10 @@ export class OrderServiceController {
                 sortBy,
                 search,
             },
-            headers: this.headersService.headers
         });
+    }
+
+    getTotalBrandTransactions(): Observable<any> {
+        return this.httpClient.get<any>( this.fullUrl + '/module/count');
     }
 }

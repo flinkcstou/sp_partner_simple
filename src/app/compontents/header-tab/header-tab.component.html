@@ -14,6 +14,11 @@
                   (throttleClick)="goToOrderPage()">
         <ion-icon name="cart-outline"></ion-icon>
       </ion-button>
+      <ion-button *ngIf="ionicHeader?.exit"
+                  appThrottleClick
+                  (throttleClick)="logout()">
+        <ion-icon name="exit-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

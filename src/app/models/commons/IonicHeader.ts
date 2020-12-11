@@ -5,6 +5,7 @@ export class IonicHeader {
   title: IonicHeaderTitle;
   backButton: string;
   basket: boolean;
+  exit: boolean;
   search: boolean;
   route: string;
 }

@@ -4,6 +4,7 @@ import {IonicControllerAbstract} from '../../models/abstracts/IonicControllerAbs
 import {VersionComponent} from '../../compontents/version/version.component';
 import {TransactionInfoComponent} from '../../compontents/transaction-info/transaction-info.component';
 import {FeedbackChatComponent} from '../../compontents/feedback-chat/feedback-chat.component';
+import {UserIdentifyComponent} from '../../compontents/user-identify/user-identify.component';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,17 @@ export class ModalService extends IonicControllerAbstract {
       component: TransactionInfoComponent,
       // cssClass: 'tabs-modal-component',
       swipeToClose: true,
+      componentProps: {
+        data
+      }
+    }
+    this.setOption(this.extraOption);
+  }
+
+  setUserIdentifyOption(data: any) {
+    this.extraOption = {
+      component: UserIdentifyComponent,
+      swipeToClose: false,
       componentProps: {
         data
       }

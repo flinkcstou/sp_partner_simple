@@ -11,4 +11,9 @@ export class OrderService {
   getOrders(page, size, sortBy, search) {
     return this.orderServiceController.getAllOrders(page, size, sortBy, search);
   }
+
+
+  getTotalBrandTransactions() {
+    return this.orderServiceController.getTotalBrandTransactions();
+  }
 }

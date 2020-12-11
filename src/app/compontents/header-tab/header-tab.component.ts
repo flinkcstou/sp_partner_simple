@@ -22,6 +22,7 @@ export class HeaderTabComponent {
         },
         backButton: null,
         basket: false,
+        exit: false,
         search: false,
         route: '/tabs/main',
     }, {
@@ -33,6 +34,7 @@ export class HeaderTabComponent {
         },
         backButton: 'true',
         basket: false,
+        exit: false,
         search: false,
         route: '/tabs/qr',
     }, {
@@ -43,7 +45,8 @@ export class HeaderTabComponent {
             title: 'Профиль',
         },
         backButton: null,
-        basket: true,
+        basket: false,
+        exit: true,
         search: null,
         route: '/tabs/profile',
     },
@@ -92,7 +95,7 @@ export class HeaderTabComponent {
         // clear data
     }
 
-    async goToOrderPage() {
+    async logout() {
         const alert = await this.alertController.create({
             cssClass: 'my-custom-class',
             header: 'Выход',
@@ -116,5 +119,9 @@ export class HeaderTabComponent {
 
         // this.authService.logout();
         // this.navCtrl.navigateForward(['/tabs/main'], {animated: false});
+    }
+
+    async goToOrderPage() {
+
     }
 }

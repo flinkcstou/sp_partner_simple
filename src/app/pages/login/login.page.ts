@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit() {
+        this.storageLocalService.removeAll();
     }
 
     async login() {

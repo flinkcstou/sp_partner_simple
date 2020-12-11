@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FeedbackChatComponent} from './feedback-chat.component';
 import {IonicModule} from '@ionic/angular';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import {IonicModule} from '@ionic/angular';
     imports: [
         CommonModule,
         IonicModule,
+        FormsModule,
     ],
 })
 export class FeedbackChatModule {

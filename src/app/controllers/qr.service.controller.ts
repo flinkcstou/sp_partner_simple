@@ -16,6 +16,6 @@ export class QrServiceController {
 
     qrPost(qrRequest: any): Observable<any> {
         //todo set request and response model
-        return this.httpClient.post<AuthResponse>(this.fullUrl, qrRequest);
+        return this.httpClient.post<any>(this.fullUrl, qrRequest);
     }
 }

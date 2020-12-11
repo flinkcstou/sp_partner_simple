@@ -5,6 +5,9 @@ import { ModalController, Platform } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import {QrScannerComponent} from "angular2-qrscanner";
+import {UserService} from './user.service';
+import {ModalService} from './controllers/modal.service';
+import {ToastService} from './controllers/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,26 +20,24 @@ export class QrService {
               private barcodeScanner: BarcodeScanner,
               private platform: Platform,
               public modalController: ModalController,
-              private qrServiceController: QrServiceController) {
-    this.isApp = (!document.URL.startsWith('http://localhost:4200'));
+              private qrServiceController: QrServiceController,
+              private userService: UserService,
+              private modalService: ModalService,
+              private toastService: ToastService) {
+    this.isApp = (!document.URL.startsWith('http://localhost:4201'));
   }
 
   qrPost(qrRequest: any) {
     return this.qrServiceController.qrPost(qrRequest);
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: ModalPage,
-      cssClass: 'my-custom-class'
-    });
-    return await modal.present();
 
+  identify(qrCode: any) {
+    return this.userService.getUserByQr(qrCode);
   }
 
 
-
-  scanner() {
+  scanner(category: any) {
     if (this.isApp) {
       this.barcodeScanner.scan({
         preferFrontCamera: false,
@@ -49,17 +50,25 @@ export class QrService {
         disableSuccessBeep: true// iOS and Android
       }).then(async (barcodeData) => {
         console.error('barcodeData', barcodeData);
-        await this.qrPost(barcodeData).toPromise().then();
+        await this.identify(barcodeData);
+        // await this.qrPost(barcodeData).toPromise().then();
       }).catch(err => {
         console.error('error', err);
       });
     } else {
-      this.qrPost('test test test')
+      this.identify('69139238')
         .toPromise()
-        .then()
-        .finally(() => {
-          this.presentModal();
-        });
+        .then( response => {
+          const data = {
+            category: category,
+            user: response,
+          }
+          this.modalService.setUserIdentifyOption(data);
+          this.modalService.present();
+        }).catch( error => {
+          console.error(error);
+          this.toastService.present(error, 'danger');
+      });
     }
   }
 

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class UserServiceController {
-    fullUrl = environment.apiUrl + '/users/api/v1';
+export class CategoryServiceController {
+    fullUrl = environment.apiUrl + '/partners/api/brand/categories';
 
     constructor(private httpClient: HttpClient) {
     }
@@ -21,12 +21,8 @@ export class UserServiceController {
         })
     }
 
-    getUserByQr(qr: string): Observable<any> {
-        return this.httpClient.get<any>(this.fullUrl + '/find', {
-            params: {
-                qr
-            }
-        })
+    getBrandCategories(): Observable<any> {
+        return this.httpClient.get<any> (this.fullUrl + '/module');
     }
 
     // qrPost(qrRequest: any): Observable<any> {

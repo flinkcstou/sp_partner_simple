@@ -13,6 +13,9 @@ export class AuthService {
                 private storageLocalService: StorageLocalService,
                 private navCtrl: NavController) {
     }
+    getToken() {
+        return this.storageLocalService.getApiToken();
+    }
 
     login(authRequest: AuthRequest) {
         return this.authController.login(authRequest);
@@ -20,5 +23,9 @@ export class AuthService {
     logout() {
         this.storageLocalService.removeAll();
         this.navCtrl.navigateForward(['/login']);
+    }
+
+    checkAvailability() {
+        return !!this.storageLocalService.getApiToken();
     }
 }

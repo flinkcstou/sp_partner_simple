@@ -7,6 +7,7 @@ import {ModalController} from '@ionic/angular';
   styleUrls: ['./feedback-chat.component.scss'],
 })
 export class FeedbackChatComponent implements OnInit {
+    testss: any;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -15,5 +16,9 @@ export class FeedbackChatComponent implements OnInit {
   test() {
     this.modalCtrl
         .dismiss();
+  }
+
+  adasad() {
+    console.log(this.testss);
   }
 }

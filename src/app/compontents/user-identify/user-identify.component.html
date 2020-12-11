@@ -1,0 +1,39 @@
+<ion-content scrollY="true">
+    <ion-grid>
+        <ion-card class="user-info-card">
+            <img [src]="logoPath" alt="logo">
+            <ion-card-header>
+                <ion-card-subtitle>+{{data.user.phone}}</ion-card-subtitle>
+                <ion-card-title>{{data.user.surname + ' ' + data.user.name}}</ion-card-title>
+                <ion-card-subtitle>Доступно бонусов: {{data.user.activeBonuses}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+        <!--    <img alt="{{this.data.user.name}}" [src]="this.imageUrl +">-->
+        <ion-row>
+                            <ion-item class="display-flex-between">
+                                <div>
+                                    <ion-label position="floating">Сумма транзакции</ion-label>
+                                    <ion-input clear-input value="{{totals.sum}}"></ion-input>
+                                </div>
+                                <div>
+                                    <ion-label>Потратить бонусы</ion-label>
+                                    <ion-toggle slot="start" name="blueberry" (ionChange)="spendBonusChange()" value="{{spendBonuses}}"></ion-toggle>
+                                </div>
+                            </ion-item>
+            <ion-item>
+                <ion-label>Hello {{totals.sum}}!</ion-label>
+
+            </ion-item>
+        </ion-row>
+        <ion-row class="display-flex-center">
+            <h1 class="payed-h1">
+                Оплатить {{totals.cash}} тг
+            </h1>
+        </ion-row>
+        <ion-row class="display-flex-center bottom-buttons">
+                        <ion-button color="danger" (click)="pay()">Оплатить</ion-button>
+            <ion-button (click)="goBack()">Закрыть</ion-button>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>

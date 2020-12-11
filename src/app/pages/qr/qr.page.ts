@@ -3,9 +3,8 @@ import {QrService} from '../../services/qr.service';
 import {ModalController, NavController} from '@ionic/angular';
 import {LoadingService} from '../../services/loading.service';
 import {QrScannerComponent} from 'angular2-qrscanner';
+import {CategoryService} from '../../services/category.service';
 import {environment} from '../../../environments/environment';
-import {ModalPage} from '../modal/modal.page';
-import {retry} from 'rxjs/operators';
 
 
 @Component({
@@ -15,65 +14,83 @@ import {retry} from 'rxjs/operators';
 })
 export class QrPage implements OnInit {
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
+    categories: any = [];
+    imageUrl: any = environment.apiUrl + '/partners/api/file/category/';
+
 
     constructor(private qrService: QrService,
                 private navController: NavController,
+                private categoryService: CategoryService,
                 private modalController: ModalController,
                 private loadingService: LoadingService) {
 
     }
 
     ngOnInit() {
+        this.getAllBrandCategoreis();
     }
 
-    ngAfterViewInit() {
-
-    }
-
-    turnCamera() {
-        this.qrScannerComponent.getMediaDevices().then(devices => {
-            const videoDevices: MediaDeviceInfo[] = [];
-            for (const device of devices) {
-                if (device.kind.toString() === 'videoinput') {
-                    videoDevices.push(device);
-                }
-            }
-            if (videoDevices.length > 0) {
-                let choosenDev;
-                for (const dev of videoDevices) {
-                    if (dev.label.includes('front')) {
-                        choosenDev = dev;
-                        break;
-                    }
-                }
-                if (choosenDev) {
-                    console.log(choosenDev);
-                    this.qrScannerComponent.chooseCamera.next(choosenDev);
-                } else {
-                    this.qrScannerComponent.chooseCamera.next(videoDevices[0]);
-                }
-            }
+    getAllBrandCategoreis() {
+        this.categoryService.getAllCategories().subscribe( data => {
+            console.log(data);
+            this.categories = data;
+        },error => {
+            console.error(error);
         });
     }
 
+    // turnCamera() {
+    //     this.qrScannerComponent.getMediaDevices().then(devices => {
+    //         const videoDevices: MediaDeviceInfo[] = [];
+    //         for (const device of devices) {
+    //             if (device.kind.toString() === 'videoinput') {
+    //                 videoDevices.push(device);
+    //             }
+    //         }
+    //         if (videoDevices.length > 0) {
+    //             let choosenDev;
+    //             for (const dev of videoDevices) {
+    //                 if (dev.label.includes('front')) {
+    //                     choosenDev = dev;
+    //                     break;
+    //                 }
+    //             }
+    //             if (choosenDev) {
+    //                 console.log(choosenDev);
+    //                 this.qrScannerComponent.chooseCamera.next(choosenDev);
+    //             } else {
+    //                 this.qrScannerComponent.chooseCamera.next(videoDevices[0]);
+    //             }
+    //         }
+    //     });
+    // }
 
-    scanner() {
-        // this.loadingService.present();
-        this.qrService.scanner();
-        // this.loadingService.dismiss();
-    }
+
+    // scanner() {
+    //     // this.loadingService.present();
+    //     this.qrService.scanner();
+    //     // this.loadingService.dismiss();
+    // }
 
     back() {
         this.navController.back();
     }
 
-    startScan() {
-        this.turnCamera();
-        this.qrScannerComponent.capturedQr.subscribe(result => {
-            console.log(result);
-            //TODO
-            // this.presentProfileModal(result);
-            // this.isStopped = false;
-        });
+    // startScan() {
+    //     this.turnCamera();
+    //     this.qrScannerComponent.capturedQr.subscribe(result => {
+    //         console.log(result);
+    //         //TODO
+    //         // this.presentProfileModal(result);
+    //         // this.isStopped = false;
+    //     });
+    // }
+    test: any = '123';
+    goToQr(category: any) {
+        this.qrService.scanner(category);
+    }
+
+    testss() {
+        console.log(this.test);
     }
 }
