@@ -16,4 +16,8 @@ export class OrderService {
   getTotalBrandTransactions() {
     return this.orderServiceController.getTotalBrandTransactions();
   }
+
+  saveOrderModule(orderRequest: any) {
+    return this.orderServiceController.makeOrderModule(orderRequest);
+  }
 }

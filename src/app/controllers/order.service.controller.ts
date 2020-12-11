@@ -38,4 +38,8 @@ export class OrderServiceController {
     getTotalBrandTransactions(): Observable<any> {
         return this.httpClient.get<any>( this.fullUrl + '/module/count');
     }
+
+    makeOrderModule(orderRequest): Observable<any> {
+        return this.httpClient.post<any>( this.fullUrl + '/module/save',orderRequest );
+    }
 }

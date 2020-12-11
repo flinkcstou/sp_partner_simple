@@ -2,8 +2,6 @@
     <ion-card class="page-card-content">
         <ion-card-header>
             <ion-card-title>Категории</ion-card-title>
-            <ion-input [(ngModel)]="test"></ion-input>
-            <ion-button (click)="testss()">TEST</ion-button>
         </ion-card-header>
         <ion-card-content>
             <ion-card *ngFor="let category of categories" class="category-card" (click)="goToQr(category)">

@@ -8,6 +8,7 @@ import {QrScannerComponent} from "angular2-qrscanner";
 import {UserService} from './user.service';
 import {ModalService} from './controllers/modal.service';
 import {ToastService} from './controllers/toast.service';
+import {error} from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +50,9 @@ export class QrService {
         disableAnimations: true, // iOS
         disableSuccessBeep: true// iOS and Android
       }).then(async (barcodeData) => {
-        console.error('barcodeData', barcodeData);
-        await this.identify(barcodeData);
+        await this.identify(barcodeData).toPromise().then(response => {
+          this.openIdentifyModal(category, response);
+        })
         // await this.qrPost(barcodeData).toPromise().then();
       }).catch(err => {
         console.error('error', err);
@@ -59,17 +61,25 @@ export class QrService {
       this.identify('69139238')
         .toPromise()
         .then( response => {
-          const data = {
-            category: category,
-            user: response,
-          }
-          this.modalService.setUserIdentifyOption(data);
-          this.modalService.present();
+          this.openIdentifyModal(category, response);
         }).catch( error => {
           console.error(error);
           this.toastService.present(error, 'danger');
       });
     }
+  }
+
+  openIdentifyModal(category, response) {
+    const data = {
+      category: category,
+      user: response,
+    }
+    this.modalService.setUserIdentifyOption(data);
+    this.modalService.present().then( response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
   }
 
 }

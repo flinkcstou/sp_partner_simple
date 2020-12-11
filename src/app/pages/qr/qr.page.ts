@@ -85,12 +85,8 @@ export class QrPage implements OnInit {
     //         // this.isStopped = false;
     //     });
     // }
-    test: any = '123';
     goToQr(category: any) {
         this.qrService.scanner(category);
     }
 
-    testss() {
-        console.log(this.test);
-    }
 }

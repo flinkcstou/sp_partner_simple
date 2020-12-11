@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserIdentifyComponent} from './user-identify.component';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import {UserIdentifyComponent} from './user-identify.component';
         IonicModule,
         FormsModule,
         ReactiveFormsModule,
+        CommonModule,
     ],
 })
 export class UserIdentifyModule {
