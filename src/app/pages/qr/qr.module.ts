@@ -7,8 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { QrPageRoutingModule } from './qr-routing.module';
 
 import { QrPage } from './qr.page';
-import {NgQrScannerModule} from "angular2-qrscanner";
-import {HeaderBackModule} from '../../compontents/header-back/header-back.module';
+import { NgQrScannerModule } from 'angular2-qrscanner';
+import { HeaderBackModule } from '../../compontents/header-back/header-back.module';
+import { UserIdentifyModule } from 'src/app/compontents/user-identify/user-identify.module';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import {HeaderBackModule} from '../../compontents/header-back/header-back.module
         NgQrScannerModule,
         QrPageRoutingModule,
         HeaderBackModule,
+        UserIdentifyModule,
     ],
   declarations: [QrPage]
 })
