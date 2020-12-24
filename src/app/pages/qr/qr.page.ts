@@ -16,6 +16,7 @@ export class QrPage implements OnInit {
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
     categories: any = [];
     imageUrl: any = environment.apiUrl + '/partners/api/file/category/';
+    promoUrl: any = 'assets/promo-image.png';
 
 
     constructor(private qrService: QrService,
@@ -31,12 +32,24 @@ export class QrPage implements OnInit {
     }
 
     getAllBrandCategoreis() {
-        this.categoryService.getAllCategories().subscribe( data => {
+        this.categoryService.getAllCategories().subscribe(data => {
             console.log(data);
             this.categories = data;
-        },error => {
+        }, error => {
             console.error(error);
         });
+    }
+
+    back() {
+        this.navController.back();
+    }
+
+    goToQr(category: any) {
+        this.qrService.scanner(category);
+    }
+
+    test() {
+        this.qrService.testScan();
     }
 
     // turnCamera() {
@@ -65,17 +78,6 @@ export class QrPage implements OnInit {
     //     });
     // }
 
-
-    // scanner() {
-    //     // this.loadingService.present();
-    //     this.qrService.scanner();
-    //     // this.loadingService.dismiss();
-    // }
-
-    back() {
-        this.navController.back();
-    }
-
     // startScan() {
     //     this.turnCamera();
     //     this.qrScannerComponent.capturedQr.subscribe(result => {
@@ -85,8 +87,5 @@ export class QrPage implements OnInit {
     //         // this.isStopped = false;
     //     });
     // }
-    goToQr(category: any) {
-        this.qrService.scanner(category);
-    }
 
 }

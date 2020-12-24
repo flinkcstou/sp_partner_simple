@@ -19,6 +19,10 @@ export class MainPage implements OnInit {
     transactions: any;
     searchFilter: any;
     search: string = '';
+    page: number = 0;
+    size: number = 100;
+    loadMore: boolean = false;
+    pageResponse: any;
 
     constructor(private storageLocalService: StorageLocalService,
                 private orderService: OrderService,
@@ -36,14 +40,16 @@ export class MainPage implements OnInit {
     }
 
     async getTransactions() {
+        this.page = 0;
         await this.loadingService.present();
-        this.orderService.getOrders(0, 100, '', this.search).toPromise()
+        this.orderService.getOrders(this.page, this.size, null, this.search).toPromise()
             .then(resp => {
                 console.log(resp);
+                this.pageResponse = resp;
                 this.transactions = resp.content;
             }).catch(error => {
             console.error(error);
-            this.toastService.present((error) ? error.message : 'Ошибка!', 'danger');
+            this.toastService.present((error) ? error : 'Ошибка!', 'danger');
         }).finally(async () => await this.loadingService.dismiss());
     }
 
@@ -63,7 +69,8 @@ export class MainPage implements OnInit {
                     this.search = 'userId:' + response.id;
                     this.getTransactions();
                 }).catch(async error => {
-                this.toastService.present(error.error ? error.error.message : 'Ошибка!', 'danger');
+                console.log(error);
+                this.toastService.present(error ? error : 'Ошибка!', 'danger');
             }).finally(async () => await this.loadingService.dismiss());
         } else {
             this.getTransactions();
@@ -95,4 +102,20 @@ export class MainPage implements OnInit {
         }
     }
 
+    loadMorePage() {
+        this.loadMore = true;
+        this.page ++;
+        this.orderService.getOrders(this.page, this.size, null, this.search).toPromise()
+            .then(resp => {
+                this.loadMore = false;
+                this.pageResponse = resp;
+                resp.content.forEach(element => {
+                    this.transactions.push(element);
+                })
+            }).catch(err => {
+            console.error(err);
+            this.toastService.present(err, 'danger');
+        })
+
+    }
 }

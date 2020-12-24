@@ -3,10 +3,10 @@
 <ion-content fullscreen>
     <div slot="fixed" class="filter-fixed">
         <ion-card class="filter-header-card">
-            <ion-card-header>
+            <ion-card-header class="filter-header">
                 <ion-card-title>Фильтры</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
+            <ion-card-content style="padding: 0 15px;">
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Номер телефона пользователя</ion-label>
@@ -21,7 +21,7 @@
                     <!--                            <ion-input [(ngModel)]="searchFilter.name" type="text"></ion-input>-->
                     <!--                        </ion-item>-->
                 </ion-list>
-                <div class="display-flex-between ion-margin-top">
+                <div class="display-flex-between" style="margin-top: 5px">
                     <ion-button (click)="searchTransaction()">Поиск</ion-button>
                     <ion-button (click)="reloadPage()">
                         <ion-icon name="sync-circle-sharp"></ion-icon>
@@ -55,6 +55,13 @@
                 </ion-card-content>
             </ion-card>
         </div>
+    </div>
+    <div class="display-flex-center">
+        <ion-button (click)="loadMorePage()" *ngIf="!loadMore && !pageResponse?.last">
+            <ion-icon name="download-outline"></ion-icon>
+            Загрузить еще
+        </ion-button>
+        <ion-spinner *ngIf="loadMore " name="lines"></ion-spinner>
     </div>
 
 

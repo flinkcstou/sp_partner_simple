@@ -14,7 +14,7 @@ ion-toolbar {
   width: 100%;
 }
 .transactions-list {
-  padding-top: 290px;
+  padding-top: 235px;
 }
 .filter-fixed {
   background-color: #ffffff;
@@ -29,4 +29,7 @@ ion-toolbar {
 }
 .transacion-card {
   background-color: #D6FBDC;
+}
+.filter-header {
+  padding: 4px 15px 0;
 }
