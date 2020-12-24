@@ -5,6 +5,7 @@ import {VersionComponent} from '../../compontents/version/version.component';
 import {TransactionInfoComponent} from '../../compontents/transaction-info/transaction-info.component';
 import {FeedbackChatComponent} from '../../compontents/feedback-chat/feedback-chat.component';
 import {UserIdentifyComponent} from '../../compontents/user-identify/user-identify.component';
+import {ActivatePromoComponent} from '../../compontents/activate-promo/activate-promo.component';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,16 @@ export class ModalService extends IonicControllerAbstract {
       }
     }
     this.setOption(this.extraOption);
+  }
+
+  setActivateUserOption(data: any) {
+    this.extraOption = {
+      component: ActivatePromoComponent,
+      swipeToClose: true,
+      componentProps: {
+        data
+      }
+    }
   }
 
   setFeedbackMessageOption() {
