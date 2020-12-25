@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-activate-promo',
@@ -6,11 +6,13 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./activate-promo.component.scss'],
 })
 export class ActivatePromoComponent implements OnInit {
+    @Input() data: any;
 
     constructor() {
     }
 
     ngOnInit() {
+        console.log(this.data);
     }
 
 }
