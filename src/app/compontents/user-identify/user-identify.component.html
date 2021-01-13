@@ -1,11 +1,10 @@
-<!--<ion-content fullscreen>-->
-<!--    <ion-input [(ngModel)]="test"></ion-input>-->
-<!--    <ion-button (click)="testss()">TEST</ion-button>-->
-<!--</ion-content>-->
-
 <ion-content scrollY="true">
     <ion-grid>
         <ion-card class="{{!data?.user?.banned ? 'user-info-card': 'user-banned-card'}}">
+            <ion-item>
+                <ion-label>Категория: {{data.category.name}}</ion-label>
+                <ion-badge slot="end" color="success">{{data.category.percentage}}%</ion-badge>
+            </ion-item>
             <img [src]="logoPath" alt="logo">
             <ion-card-header>
                 <ion-card-subtitle>+{{data.user.phone}}</ion-card-subtitle>
@@ -14,7 +13,6 @@
                 <ion-card-title *ngIf="data?.user?.banned">Пользователь заблокирован!</ion-card-title>
             </ion-card-header>
         </ion-card>
-        <!--    <img alt="{{this.data.user.name}}" [src]="this.imageUrl +">-->
         <ion-row>
             <ion-item>
                 <ion-label position="floating">Сумма транзакции</ion-label>

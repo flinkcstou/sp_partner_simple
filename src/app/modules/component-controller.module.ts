@@ -3,11 +3,13 @@ import {VersionModule} from '../compontents/version/version.module';
 import {NetworkStatusModule} from '../compontents/network-status/network-status.module';
 import {throwIfAlreadyLoaded} from './module-import-guard';
 import { UserIdentifyModule } from 'src/app/compontents/user-identify/user-identify.module';
+import {ActivatePromoModule} from '../compontents/activate-promo/activate-promo.module';
 
 const MODULES = [
   NetworkStatusModule,
   VersionModule,
   UserIdentifyModule,
+  ActivatePromoModule,
 ];
 
 @NgModule({
