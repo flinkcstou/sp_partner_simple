@@ -48,7 +48,7 @@ export class ModalService extends IonicControllerAbstract {
     this.setOption(this.extraOption);
   }
 
-  setActivateUserOption(data: any) {
+  setUserPromoOption(data: any) {
     this.extraOption = {
       component: ActivatePromoComponent,
       swipeToClose: true,
@@ -56,6 +56,7 @@ export class ModalService extends IonicControllerAbstract {
         data
       }
     }
+    this.setOption(this.extraOption);
   }
 
   setFeedbackMessageOption() {

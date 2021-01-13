@@ -45,11 +45,11 @@ export class QrPage implements OnInit {
     }
 
     goToQr(category: any) {
-        this.qrService.scanner(category);
+        this.qrService.scanner('purchase', category);
     }
 
-    test() {
-        this.qrService.testScan();
+    activatePromo() {
+        this.qrService.scanner('promo');
     }
 
     // turnCamera() {

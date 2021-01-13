@@ -1,3 +1,40 @@
-<p>
-  activate-promo works!
-</p>
+<ion-content scrollY="true">
+    <ion-grid>
+        <ion-card class="{{!data?.banned ? 'user-info-card': 'user-banned-card'}}">
+            <img [src]="logoPath" alt="logo">
+            <ion-card-header>
+                <ion-card-subtitle>+{{data.phone}}</ion-card-subtitle>
+                <ion-card-title>{{data.surname + ' ' + data.name}}</ion-card-title>
+                <ion-card-title *ngIf="data?.banned">Пользователь заблокирован!</ion-card-title>
+            </ion-card-header>
+        </ion-card>
+        <ion-row>
+            <ion-item>
+                <ion-label>Промокоды</ion-label>
+                <ion-select [(ngModel)]="selectedPromo" placeholder="Выберите промокод">
+                    <ion-select-option class="display-flex-between" *ngFor="let promo of promoCodes" [value]="promo">
+                        {{promo.reward.name}}:
+                        <span>{{promo.reward_amount}} {{(promo.reward.id === 1) ? '%' : 'бонусов'}}</span>
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <!--      <ion-item>-->
+            <!--        <ion-label>Потратить бонусы</ion-label>-->
+            <!--        <ion-toggle slot="start" name="blueberry" (ionChange)="spendBonusChange()"-->
+            <!--                    [(ngModel)]="spendBonuses"></ion-toggle>-->
+            <!--      </ion-item>-->
+        </ion-row>
+        <!--    <ion-row class="display-flex-center">-->
+        <!--      <h1 class="payed-h1">-->
+        <!--        Оплатить {{totals.cash}} тг-->
+        <!--      </h1>-->
+        <!--    </ion-row>-->
+        <ion-row class="display-flex-center bottom-buttons">
+            <ion-button [disabled]="data?.banned || noPromo || !selectedPromo" color="success"
+                        (click)="activatePromo()">Активировать промокод
+            </ion-button>
+            <ion-button (click)="goBack()">Закрыть</ion-button>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -24,6 +24,12 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+.bottom-buttons {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 30px;
+}
 
 .tabs-modal-component {
   align-items: baseline;

@@ -10,6 +10,7 @@ import { QrPage } from './qr.page';
 import {NgQrScannerModule} from "angular2-qrscanner";
 import {HeaderBackModule} from '../../compontents/header-back/header-back.module';
 import {UserIdentifyModule} from '../../compontents/user-identify/user-identify.module';
+import {ActivatePromoModule} from '../../compontents/activate-promo/activate-promo.module';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import {UserIdentifyModule} from '../../compontents/user-identify/user-identify.
         QrPageRoutingModule,
         HeaderBackModule,
         UserIdentifyModule,
+        ActivatePromoModule,
     ],
   declarations: [QrPage]
 })
