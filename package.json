@@ -83,8 +83,8 @@
       "cordova-plugin-market": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

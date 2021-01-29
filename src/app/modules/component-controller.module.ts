@@ -4,11 +4,13 @@ import {NetworkStatusModule} from '../compontents/network-status/network-status.
 import {throwIfAlreadyLoaded} from './module-import-guard';
 import { UserIdentifyModule } from 'src/app/compontents/user-identify/user-identify.module';
 import {ActivatePromoModule} from '../compontents/activate-promo/activate-promo.module';
+import {QrImageModule} from '../compontents/qr-image/qr-image.module';
 
 const MODULES = [
   NetworkStatusModule,
   VersionModule,
   UserIdentifyModule,
+  QrImageModule,
   ActivatePromoModule,
 ];
 

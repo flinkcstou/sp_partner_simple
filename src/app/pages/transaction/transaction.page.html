@@ -1,0 +1,39 @@
+<ion-header translucent="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>
+            Оплата {{this.category?.name}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="main-content">
+        <div class="display-flex-center total-money">
+            <h1>{{totalValue | number: '1.0'}}
+            </h1>
+            <img src="assets/tenge.png" class="tenge-icon" alt="">
+        </div>
+        <div class="wrapper-numbers">
+            <button class="number-button" *ngFor="let number of numbers"
+                    (click)="addNumber(number.value)">{{number.value}}</button>
+            <button class="number-button clear-all" (click)="clearValue()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <button class="number-button" (click)="addNumber('0')">0</button>
+            <button class="number-button remove-number" (click)="removeNumber()">
+                <ion-icon name="backspace-outline"></ion-icon>
+            </button>
+        </div>
+        <div>
+            <button class="generate-qr-btn" (click)="generateQr()" [disabled]="totalValue === '0'">
+                <ion-icon name="qr-code-outline"></ion-icon>
+                Создать QR
+            </button>
+        </div>
+    </div>
+</ion-content>

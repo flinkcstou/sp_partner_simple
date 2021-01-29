@@ -15,7 +15,7 @@ import {StorageLocalService} from '../../services/storage-local.service';
 export class LoginPage implements OnInit {
 
     user: AuthRequest = {} as AuthRequest;
-    logoPath: string = 'assets/sp_logo.jpg';
+    logoPath: string = 'assets/spp_logo.png';
 
     constructor(private authService: AuthService,
                 private loadingService: LoadingService,

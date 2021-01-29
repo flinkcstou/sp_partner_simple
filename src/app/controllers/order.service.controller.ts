@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {OrderMobileRequest} from '../models/requests/order-mobile-request';
 
 @Injectable({
     providedIn: 'root'
@@ -41,5 +42,9 @@ export class OrderServiceController {
 
     makeOrderModule(orderRequest): Observable<any> {
         return this.httpClient.post<any>( this.fullUrl + '/module/save',orderRequest );
+    }
+
+    makeTransactionFromMobile(orderMobileRequest: OrderMobileRequest): Observable<any> {
+        return  this.httpClient.post<any>(this.fullUrl + '/mobile/save', orderMobileRequest);
     }
 }

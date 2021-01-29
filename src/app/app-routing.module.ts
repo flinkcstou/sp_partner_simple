@@ -29,6 +29,10 @@ const routes: Routes = [
     redirectTo: '/tabs/main',
     pathMatch: 'full'
   },
+  {
+    path: 'transaction',
+    loadChildren: () => import('./pages/transaction/transaction.module').then( m => m.TransactionPageModule)
+  },
   // {
   //   path: 'main',
   //   loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)

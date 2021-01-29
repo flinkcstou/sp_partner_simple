@@ -13,43 +13,46 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HeaderTabComponent {
     brand: any;
-    ionicHeaders: IonicHeader[] = [{
-        identity: '1',
-        title: {
-            position: 'center',
-            additionalTitle: '',
-            title: `Транзакции`,
+    ionicHeaders: IonicHeader[] = [
+        {
+            identity: '1',
+            title: {
+                position: 'center',
+                additionalTitle: '',
+                title: `Транзакции`,
+            },
+            backButton: null,
+            basket: false,
+            exit: false,
+            search: false,
+            route: '/tabs/main',
         },
-        backButton: null,
-        basket: false,
-        exit: false,
-        search: false,
-        route: '/tabs/main',
-    }, {
-        identity: '2',
-        title: {
-            position: 'center',
-            additionalTitle: '',
-            title: 'QR Scanner',
+        {
+            identity: '2',
+            title: {
+                position: 'center',
+                additionalTitle: '',
+                title: 'Оплата',
+            },
+            backButton: null,
+            basket: false,
+            exit: false,
+            search: false,
+            route: '/tabs/qr',
         },
-        backButton: 'true',
-        basket: false,
-        exit: false,
-        search: false,
-        route: '/tabs/qr',
-    }, {
-        identity: '3',
-        title: {
-            position: 'center',
-            additionalTitle: '',
-            title: 'Профиль',
+        {
+            identity: '3',
+            title: {
+                position: 'center',
+                additionalTitle: '',
+                title: 'Профиль',
+            },
+            backButton: null,
+            basket: false,
+            exit: true,
+            search: null,
+            route: '/tabs/profile',
         },
-        backButton: null,
-        basket: false,
-        exit: true,
-        search: null,
-        route: '/tabs/profile',
-    },
     ];
 
     ionicHeader: IonicHeader = null;

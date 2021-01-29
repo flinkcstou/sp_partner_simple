@@ -181,6 +181,15 @@ export class StorageLocalService {
             value);
     }
 
+    setCategory(value: any): void {
+        this.set(StorageLocalKeyEnum.CATEGORY, value);
+    }
+
+
+
+
+
+
 
     getSecondCodeCountDownStartDate(): any {
         return this.get(StorageLocalKeyEnum.SECOND_CODE_COUNTDOWN_START_DATE);
@@ -293,6 +302,12 @@ export class StorageLocalService {
         return this.get(StorageLocalKeyEnum.FIRST_INIT);
     }
 
+    getCategory(): any {
+        return this.get(StorageLocalKeyEnum.CATEGORY);
+    }
+
+
+
     removeOnboardingEnd() {
         this.remove(StorageLocalKeyEnum.ONBOARDING_END);
     }
@@ -324,6 +339,10 @@ export class StorageLocalService {
     removeIsNeedToClearNewsCount() {
         this.remove(StorageLocalKeyEnum.IS_NEED_TO_CLEAR_NEWS_COUNT);
 
+    }
+
+    removeCategory() {
+        this.remove(StorageLocalKeyEnum.CATEGORY);
     }
 
 

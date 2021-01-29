@@ -36,42 +36,6 @@ export class QrService {
         return this.userService.getUserByQr(qrCode);
     }
 
-    // testScan() {
-    //     if (this.isApp) {
-    //         this.barcodeScanner.scan({
-    //             preferFrontCamera: false,
-    //             showFlipCameraButton: true,
-    //             showTorchButton: true,
-    //             resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-    //             formats: 'QR_CODE', // default: all but PDF_417 and RSS_EXPANDED
-    //             prompt: '',
-    //             disableAnimations: true, // iOS
-    //             disableSuccessBeep: true,// iOS and Android
-    //         }).then(async (barcodeData) => {
-    //             await this.identify(barcodeData.text).toPromise().then(response => {
-    //                 this.openPromoActivateModal(response);
-    //             }).catch(error => {
-    //                 console.error(error);
-    //                 this.toastService.present(error, 'danger');
-    //             });
-    //             // await this.qrPost(barcodeData).toPromise().then();
-    //         }).catch(err => {
-    //             console.error('error', err);
-    //         });
-    //     } else {
-    //         console.log('this is web');
-    //         this.identify('12345678')
-    //             .toPromise()
-    //             .then(response => {
-    //                 this.openPromoActivateModal(response);
-    //             }).catch(error => {
-    //             console.error(error);
-    //             this.toastService.present(error, 'danger');
-    //         });
-    //     }
-    //
-    // }
-
     scanner(type: string, category?: any) {
             if (this.isApp) {
                 this.barcodeScanner.scan({

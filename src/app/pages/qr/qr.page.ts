@@ -5,6 +5,7 @@ import {LoadingService} from '../../services/loading.service';
 import {QrScannerComponent} from 'angular2-qrscanner';
 import {CategoryService} from '../../services/category.service';
 import {environment} from '../../../environments/environment';
+import {StorageLocalService} from '../../services/storage-local.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class QrPage implements OnInit {
                 private navController: NavController,
                 private categoryService: CategoryService,
                 private modalController: ModalController,
-                private loadingService: LoadingService) {
+                private loadingService: LoadingService,
+                private storageLocalService: StorageLocalService) {
 
     }
 
@@ -45,7 +47,9 @@ export class QrPage implements OnInit {
     }
 
     goToQr(category: any) {
-        this.qrService.scanner('purchase', category);
+        this.storageLocalService.setCategory(category);
+        this.navController.navigateForward(['/transaction'])
+        // this.qrService.scanner('purchase', category);
     }
 
     activatePromo() {

@@ -11,26 +11,29 @@ import {StorageLocalService} from '../../services/storage-local.service';
 export class TabsPage {
     @ViewChild('ionTabs') ionTabs: IonTabs;
 
-    tabs: IonicTab[] = [{
-        identity: '1',
-        title: 'Main',
-        selectedIcon: false,
-        icon: 'home-outline',
-        route: 'main',
-    }, {
-        identity: '2',
-        title: 'QR',
-        selectedIcon: false,
-        icon: 'qr-code-outline',
-        route: 'qr',
-    }, {
-        identity: '3',
-        title: 'Profile',
-        selectedIcon: false,
-        icon: 'person-outline',
-        route: 'profile',
-        // click: this.goToQr.bind(this)
-    },
+    tabs: IonicTab[] = [
+        {
+            identity: '1',
+            title: 'Main',
+            selectedIcon: false,
+            icon: 'home-outline',
+            route: 'main',
+        },
+        {
+            identity: '2',
+            title: 'QR',
+            selectedIcon: false,
+            icon: 'qr-code-outline',
+            route: 'qr',
+        },
+        {
+            identity: '3',
+            title: 'Profile',
+            selectedIcon: false,
+            icon: 'person-outline',
+            route: 'profile',
+            // click: this.goToQr.bind(this)
+        },
     ];
 
     constructor() {

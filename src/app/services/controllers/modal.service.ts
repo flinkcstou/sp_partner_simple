@@ -6,6 +6,7 @@ import {TransactionInfoComponent} from '../../compontents/transaction-info/trans
 import {FeedbackChatComponent} from '../../compontents/feedback-chat/feedback-chat.component';
 import {UserIdentifyComponent} from '../../compontents/user-identify/user-identify.component';
 import {ActivatePromoComponent} from '../../compontents/activate-promo/activate-promo.component';
+import {QrImageComponent} from '../../compontents/qr-image/qr-image.component';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,17 @@ export class ModalService extends IonicControllerAbstract {
     this.extraOption = {
       component: UserIdentifyComponent,
       swipeToClose: false,
+      componentProps: {
+        data
+      }
+    }
+    this.setOption(this.extraOption);
+  }
+
+  setQrPhotoOption(data: any) {
+    this.extraOption = {
+      component: QrImageComponent,
+      swipeToClose: true,
       componentProps: {
         data
       }
