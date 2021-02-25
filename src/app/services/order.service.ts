@@ -36,4 +36,8 @@ export class OrderService {
         console.error(error);
       });
   }
+
+  openSocket() {
+
+  }
 }

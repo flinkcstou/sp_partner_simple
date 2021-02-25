@@ -1,6 +1,18 @@
-<img [src]="qrSource" alt="">
+<ion-content scrollY="true">
+    <ion-grid>
+        <ion-card class="{{!data?.user?.banned ? 'user-info-card': 'user-banned-card'}}">
+            <ion-item>
+                <ion-label>СУММААА</ion-label>
+                <ion-badge slot="end" color="success">10%</ion-badge>
+            </ion-item>
+            <img [src]="qrSource" alt="">
+            <ion-card-header>
+                <ion-card-title>ПППФЫВЫВ</ion-card-title>
+            </ion-card-header>
+        </ion-card>
+    </ion-grid>
 <ion-row class="display-flex-center bottom-buttons">
 <!--    <ion-button color="success" (click)="pay()">Оплатить</ion-button>-->
     <ion-button (click)="goBack()">Закрыть</ion-button>
-
 </ion-row>
+</ion-content>

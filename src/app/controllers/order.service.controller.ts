@@ -47,4 +47,5 @@ export class OrderServiceController {
     makeTransactionFromMobile(orderMobileRequest: OrderMobileRequest): Observable<any> {
         return  this.httpClient.post<any>(this.fullUrl + '/mobile/save', orderMobileRequest);
     }
+
 }
