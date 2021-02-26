@@ -1,0 +1,24 @@
+:host {
+  .success-page {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-text {
+    display: grid;
+
+    & h1 {
+      text-align: center;
+    }
+  }
+  .success-img {
+    width: 50vw;
+    justify-self: center;
+  }
+  .close-btn {
+    align-self: start;
+    justify-self: center;
+  }
+}

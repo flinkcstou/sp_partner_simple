@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../qr/qr.module').then(m => m.QrPageModule)
       },
       {
+        path: 'certificates',
+        loadChildren: () => import('../certificates/certificates.module').then( m => m.CertificatesPageModule)
+      },
+      {
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },

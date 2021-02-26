@@ -8,8 +8,7 @@ import {ModalService} from './controllers/modal.service';
 })
 export class OrderService {
 
-  constructor(private orderServiceController: OrderServiceController,
-              private modalService: ModalService) { }
+  constructor(private orderServiceController: OrderServiceController) { }
 
   getOrders(page, size, sortBy, search) {
     return this.orderServiceController.getAllOrders(page, size, sortBy, search);
@@ -28,14 +27,7 @@ export class OrderService {
     return this.orderServiceController.makeTransactionFromMobile(orderMobileRequest);
   }
 
-  openTransactionQr(qr: any) {
-      this.modalService.setQrPhotoOption(qr);
-      this.modalService.present().then(response => {
-        console.log(response);
-      }, error => {
-        console.error(error);
-      });
-  }
+
 
   openSocket() {
 

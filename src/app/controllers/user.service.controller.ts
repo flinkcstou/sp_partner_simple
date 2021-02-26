@@ -29,6 +29,14 @@ export class UserServiceController {
         })
     }
 
+    activateCertificateByQr(qr: string): Observable<any> {
+        return this.httpClient.post<any>(this.fullUrl + '/certificate/activate', null,{
+            params: {
+                qr
+            }
+        })
+    }
+
     // qrPost(qrRequest: any): Observable<any> {
     //     //todo set request and response model
     //     return this.httpClient.post<AuthResponse>(this.fullUrl, qrRequest);

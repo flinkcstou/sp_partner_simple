@@ -4,6 +4,7 @@ import {StorageLocalService} from '../../services/storage-local.service';
 import {ToastService} from '../../services/controllers/toast.service';
 import {OrderService} from '../../services/order.service';
 import {OrderMobileRequest} from '../../models/requests/order-mobile-request';
+import {ModalService} from '../../services/controllers/modal.service';
 
 @Component({
   selector: 'app-transaction',
@@ -27,7 +28,8 @@ export class TransactionPage implements OnInit, OnDestroy {
   constructor(private navCtrl: NavController,
               private storageLocalService: StorageLocalService,
               private toastService: ToastService,
-              private orderService: OrderService) { }
+              private orderService: OrderService,
+              private modalService: ModalService) { }
 
   ngOnInit() {
     this.category = this.storageLocalService.getCategory();
@@ -69,8 +71,16 @@ export class TransactionPage implements OnInit, OnDestroy {
     }
     this.orderService.initTransaction(orderMobileRequest).subscribe(data => {
       console.log(data);
-      this.orderService.openTransactionQr(data);
+      this.openTransactionQr(data);
     },error => {
+      console.error(error);
+    });
+  }
+  openTransactionQr(qr: any) {
+    this.modalService.setQrPhotoOption(qr);
+    this.modalService.present().then(response => {
+      console.log(response);
+    }, error => {
       console.error(error);
     });
   }

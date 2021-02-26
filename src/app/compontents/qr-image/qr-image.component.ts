@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {ModalController} from '@ionic/angular';
-import {OrderService} from '../../services/order.service';
 import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class QrImageComponent implements OnInit {
     qrSource: string = `${environment.apiUrl}/orders/api/v1/file/mobileTransaction/`;
     SERVER_URL: string =  `wss://api.smartplaza.kz/orders/chat`;
     ws: WebSocket;
-    brandId: number;
+    brand: any;
 
 
     constructor(private modalCtrl: ModalController,
@@ -25,7 +24,7 @@ export class QrImageComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.storageLocalService.getBrand());
-        this.brandId = this.storageLocalService.getBrand().id;
+        this.brand = this.storageLocalService.getBrand();
         console.log(this.data);
         this.qrSource += this.data.qrUrl;
         this.ws = new WebSocket(this.SERVER_URL);

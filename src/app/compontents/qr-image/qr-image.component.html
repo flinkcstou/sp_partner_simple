@@ -2,12 +2,11 @@
     <ion-grid>
         <ion-card class="{{!data?.user?.banned ? 'user-info-card': 'user-banned-card'}}">
             <ion-item>
-                <ion-label>СУММААА</ion-label>
-                <ion-badge slot="end" color="success">10%</ion-badge>
+                <ion-label>{{brand?.title}}</ion-label>
             </ion-item>
             <img [src]="qrSource" alt="">
             <ion-card-header>
-                <ion-card-title>ПППФЫВЫВ</ion-card-title>
+                <ion-card-title>Отсканируйте QR для оплаты покупки</ion-card-title>
             </ion-card-header>
         </ion-card>
     </ion-grid>

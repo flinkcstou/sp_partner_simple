@@ -36,6 +36,10 @@ export class QrService {
         return this.userService.getUserByQr(qrCode);
     }
 
+    activateCertificateByQr(qrCode: any) {
+        return this.userService.activateCertificateByQr(qrCode);
+    }
+
     scanner(type: string, category?: any) {
             if (this.isApp) {
                 this.barcodeScanner.scan({
@@ -48,33 +52,51 @@ export class QrService {
                     disableAnimations: true, // iOS
                     disableSuccessBeep: true,// iOS and Android
                 }).then(async (barcodeData) => {
-                    await this.identify(barcodeData.text).toPromise().then(response => {
-                        if (type === 'purchase') {
-                            this.openTransactionModal(category, response);
-                        } else if (type === 'promo') {
-                            this.openPromoActivateModal(response);
-                        }
-                    }).catch(error => {
-                        console.error(error);
-                        this.toastService.present(error, 'danger');
-                    });
-                    // await this.qrPost(barcodeData).toPromise().then();
+                    if (type === 'certificate') {
+                        await this.activateCertificateByQr(barcodeData.text).toPromise().then(response => {
+                            console.log(response);
+                            this.openCertificateActivateModal(response);
+                        }).catch( error => {
+                            console.error(error);
+                            this.toastService.present(error, 'danger');
+                        })
+                    } else {
+                        await this.identify(barcodeData.text).toPromise().then(response => {
+                            if (type === 'purchase') {
+                                this.openTransactionModal(category, response);
+                            } else if (type === 'promo') {
+                                this.openPromoActivateModal(response);
+                            }
+                        }).catch(error => {
+                            console.error(error);
+                            this.toastService.present(error, 'danger');
+                        });
+                    }
                 }).catch(err => {
                     console.error('error', err);
                 });
             } else {
-                this.identify('12345678')
-                    .toPromise()
-                    .then(response => {
-                        if (type === 'purchase') {
-                            this.openTransactionModal(category, response);
-                        } else if (type === 'promo') {
-                            this.openPromoActivateModal(response);
-                        }
-                    }).catch(error => {
-                    console.error(error);
-                    this.toastService.present(error, 'danger');
-                });
+                if (type === 'certificate') {
+                    this.activateCertificateByQr('63726860').toPromise()
+                        .then(response => {
+                            this.openCertificateActivateModal(response);
+                        }).catch(err => {
+                        this.toastService.present(err, 'danger');
+                    })
+                } else {
+                    this.identify('12345678')
+                        .toPromise()
+                        .then(response => {
+                            if (type === 'purchase') {
+                                this.openTransactionModal(category, response);
+                            } else if (type === 'promo') {
+                                this.openPromoActivateModal(response);
+                            }
+                        }).catch(error => {
+                        console.error(error);
+                        this.toastService.present(error, 'danger');
+                    });
+                }
             }
     }
 
@@ -99,5 +121,14 @@ export class QrService {
             console.error(error);
         });
     }
+    openCertificateActivateModal(response) {
+        this.modalService.setUserCertificateOption(response);
+        this.modalService.present().then(resp => {
+            console.log(resp);
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
 
 }

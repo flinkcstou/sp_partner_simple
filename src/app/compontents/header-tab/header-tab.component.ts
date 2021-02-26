@@ -45,6 +45,19 @@ export class HeaderTabComponent {
             title: {
                 position: 'center',
                 additionalTitle: '',
+                title: 'Сертификаты',
+            },
+            backButton: null,
+            basket: false,
+            exit: false,
+            search: false,
+            route: '/tabs/certificates',
+        },
+        {
+            identity: '4',
+            title: {
+                position: 'center',
+                additionalTitle: '',
                 title: 'Профиль',
             },
             backButton: null,

@@ -28,6 +28,13 @@ export class TabsPage {
         },
         {
             identity: '3',
+            title: 'Certificates',
+            selectedIcon: false,
+            icon: 'ticket-outline',
+            route: 'certificates',
+        },
+        {
+            identity: '4',
             title: 'Profile',
             selectedIcon: false,
             icon: 'person-outline',
