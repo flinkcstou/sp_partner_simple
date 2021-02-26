@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class QrImageComponent implements OnInit {
 
 
     constructor(private modalCtrl: ModalController,
-                private storageLocalService: StorageLocalService
+                private storageLocalService: StorageLocalService,
+                private navCtrl: NavController,
     ) {
         // this.qrSource;
     }
@@ -37,6 +38,7 @@ export class QrImageComponent implements OnInit {
     goBack() {
         this.modalCtrl
             .dismiss('close');
+        this.navCtrl.navigateRoot(['/tabs/qr']);
     }
 
     testSocket() {

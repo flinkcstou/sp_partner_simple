@@ -15,7 +15,7 @@ import {StorageLocalService} from '../../services/storage-local.service';
 })
 export class QrPage implements OnInit {
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
-    categories: any = [];
+    categories: any[] = [];
     imageUrl: any = environment.apiUrl + '/partners/api/file/category/';
     promoUrl: any = 'assets/promo-image.png';
 
@@ -35,8 +35,12 @@ export class QrPage implements OnInit {
 
     getAllBrandCategoreis() {
         this.categoryService.getAllCategories().subscribe(data => {
-            console.log(data);
-            this.categories = data;
+            this.categories = [];
+            data.forEach(category => {
+                if (category.id !== 15) {
+                    this.categories.push(category);
+                }
+            })
         }, error => {
             console.error(error);
         });
@@ -50,10 +54,6 @@ export class QrPage implements OnInit {
         this.storageLocalService.setCategory(category);
         this.navController.navigateForward(['/transaction'])
         // this.qrService.scanner('purchase', category);
-    }
-
-    activatePromo() {
-        this.qrService.scanner('promo');
     }
 
     // turnCamera() {

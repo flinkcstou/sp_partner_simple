@@ -77,7 +77,7 @@ export class QrService {
                 });
             } else {
                 if (type === 'certificate') {
-                    this.activateCertificateByQr('63726860').toPromise()
+                    this.activateCertificateByQr('27253009').toPromise()
                         .then(response => {
                             this.openCertificateActivateModal(response);
                         }).catch(err => {
