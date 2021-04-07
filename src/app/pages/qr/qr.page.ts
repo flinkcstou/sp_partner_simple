@@ -37,7 +37,7 @@ export class QrPage implements OnInit {
         this.categoryService.getAllCategories().subscribe(data => {
             this.categories = [];
             data.forEach(category => {
-                if (category.id !== 15) {
+                if (category.id !== 15 && category.id !== 16) {
                     this.categories.push(category);
                 }
             })

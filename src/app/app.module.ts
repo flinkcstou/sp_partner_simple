@@ -13,6 +13,7 @@ import {QRScanner} from '@ionic-native/qr-scanner/ngx';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 import {ErrorInterceptor} from './interceptors/error';
 import {TokenInterceptor} from './interceptors/token';
+import {ComponentControllerModule} from './modules/component-controller.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -20,6 +21,7 @@ import {TokenInterceptor} from './interceptors/token';
     imports: [BrowserModule,
         IonicModule.forRoot(),
         HttpClientModule,
+        ComponentControllerModule.forRoot(),
         AppRoutingModule],
     providers: [
         StatusBar,
