@@ -7,6 +7,7 @@ export const MAX_VALUE_AMOUNT = 100000000000000;
 export const CONNECTION_NONE = (window[`Connection`] && window[`Connection`].NONE) || 'none';
 
 export const JPEG_FORMAT = 'data:image/jpeg;base64,';
+export type side = 'start' | 'end';
 
 
 export enum StorageSecureEnumStatus {

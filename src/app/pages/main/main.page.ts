@@ -7,6 +7,7 @@ import {UserService} from '../../services/user.service';
 import {Route} from '@angular/router';
 import {NavController} from '@ionic/angular';
 import {ModalService} from '../../services/controllers/modal.service';
+import {SpPartnerHeader} from "../../models/commons/SpPartnerHeader";
 
 @Component({
     selector: 'app-main',
@@ -15,7 +16,8 @@ import {ModalService} from '../../services/controllers/modal.service';
 
 })
 export class MainPage implements OnInit {
-    brand: any
+    brand: any;
+    spPartnerHeader: SpPartnerHeader = SpPartnerHeader.HOME();
     transactions: any;
     searchFilter: any;
     search: string = '';

@@ -1,24 +1,30 @@
-<ion-header translucent="true">
-  <ion-toolbar>
-    <app-back-button *ngIf="ionicHeader?.backButton"></app-back-button>
-    <ion-title *ngIf="ionicHeader?.title">
-      {{ionicHeader?.title?.additionalTitle || ionicHeader?.title?.title}}
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button *ngIf="ionicHeader?.search"
-                  (click)="switchSearch()">
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-button>
-      <ion-button *ngIf="ionicHeader?.basket"
-                  appThrottleClick
-                  (throttleClick)="goToOrderPage()">
-        <ion-icon name="cart-outline"></ion-icon>
-      </ion-button>
-      <ion-button *ngIf="ionicHeader?.exit"
-                  appThrottleClick
-                  (throttleClick)="logout()">
-        <ion-icon name="exit-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<div class="page-padding">
+  <div class="grid-header">
+    <div class="block-1">
+      <ng-container *ngIf="spPartnerHeader?.backButton">
+        <img src="assets/icon/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
+      </ng-container>
+      <ng-container *ngIf="spPartnerHeader?.title">
+        <div class="title">
+          {{spPartnerHeader?.title}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="spPartnerHeader?.exit">
+      </ng-container>
+    </div>
+    <div class="block-2">
+      <div class="icon-with-badge" *ngIf="spPartnerHeader?.orders" (click)="goToOrders()">
+        <img src="assets/icon/order-icon.svg" alt="">
+        <div class="badge">3</div>
+      </div>
+      <div class="icon-with-badge" *ngIf="spPartnerHeader?.marketplace" (click)="goToMarketplace()">
+        <img src="assets/icon/marcetplace-icon.svg" alt="">
+        <div class="badge">3</div>
+      </div>
+      <div class="icon-with-badge" *ngIf="spPartnerHeader?.notifications" (click)="goToNotifications()">
+        <img src="assets/icon/notification-icon.svg" alt="">
+        <div class="badge">3</div>
+      </div>
+    </div>
+  </div>
+</div>

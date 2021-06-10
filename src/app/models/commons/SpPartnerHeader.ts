@@ -1,35 +1,38 @@
-import {HeaderTitle} from './HeaderTitle';
-
 export class SpPartnerHeader {
-    identity?: number;
-    title?: HeaderTitle;
+    title?: string;
     backButton?: boolean;
-    basket?: boolean;
+    orders?: boolean;
+    marketplace?: boolean;
+    notifications?: boolean;
     exit?: boolean;
-    search?: boolean;
-    route?: string;
+    logo?: boolean;
 
 
-    constructor(identity?: number, title?: HeaderTitle, backButton?: boolean, basket?: boolean, exit?: boolean,
-                search?: boolean, route?: string) {
-        this.identity = identity;
+    constructor(title?: string, backButton?: boolean, orders?: boolean, marketplace?: boolean, notifications?: boolean,
+                exit?: boolean, logo?: boolean) {
         this.title = title;
         this.backButton = backButton;
-        this.basket = basket;
+        this.orders = orders;
+        this.marketplace = marketplace;
+        this.notifications = notifications;
         this.exit = exit;
-        this.search = search;
-        this.route = route;
+        this.logo = logo;
     }
 
     static HOME(): SpPartnerHeader {
-        const homeTitle: HeaderTitle = {additionalTitle: '', position: 'left', title: 'Home'};
-        return new SpPartnerHeader(1,
-            homeTitle,
-            null,
+        return new SpPartnerHeader(null,
             null,
             true,
-            null,
-            'asd');
+            true,
+            true);
+    }
+
+    static WITH_TITLE_BACK(title: string): SpPartnerHeader {
+        return new SpPartnerHeader(title,
+            true,
+            true,
+            true,
+            true);
     }
 
 

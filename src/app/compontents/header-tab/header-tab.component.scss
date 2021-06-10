@@ -1,17 +1,70 @@
 :host {
-  display: contents;
-}
-ion-toolbar {
-  --background: #2D3E50;
-  --opacity: 1;
-}
-ion-title {
-  --color: #FFFFFF;
-  padding: 0;
-}
-ion-button {
-  --color: #FFFFFF !important;
-}
-ion-icon {
-  --color: #FFFFFF !important;
+  display: block;
+  .header {
+    background: transparent;
+    color: var(--custom-text-color-black);
+  }
+
+  .grid-header {
+    position: relative;
+    height: 7vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    place-content: center;
+  }
+
+  .flex-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .block-1 {
+    justify-self: start;
+    display: flex;
+    align-content: center;
+    .back-btn {
+      margin-right: 3vw;
+    }
+  }
+
+  .block-2 {
+    justify-self: end;
+    display: flex;
+    align-content: center;
+  }
+
+  .back-btn {
+    width: 100%;
+  }
+  .title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.32px;
+    color: #000000;
+  }
+  .icon-with-badge {
+    display: flex;
+    position: relative;
+    margin-left: 4vw;
+  }
+  .badge {
+    position: absolute;
+    left: 5vw;
+    top: -3vw;
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;
+    text-align: center;
+    background-color: #FFCA00;
+    font-size: 11px;
+    color: #FFFFFF;
+  }
+
 }

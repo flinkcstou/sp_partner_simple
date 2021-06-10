@@ -6,6 +6,7 @@ import {QrScannerComponent} from 'angular2-qrscanner';
 import {CategoryService} from '../../services/category.service';
 import {environment} from '../../../environments/environment';
 import {StorageLocalService} from '../../services/storage-local.service';
+import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {StorageLocalService} from '../../services/storage-local.service';
 })
 export class QrPage implements OnInit {
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
+    spPartnerHeader: SpPartnerHeader = SpPartnerHeader.HOME();
     categories: any[] = [];
     imageUrl: any = environment.apiUrl + '/partners/api/file/category/';
     promoUrl: any = 'assets/promo-image.png';
@@ -40,7 +42,7 @@ export class QrPage implements OnInit {
                 if (category.id !== 15 && category.id !== 16) {
                     this.categories.push(category);
                 }
-            })
+            });
         }, error => {
             console.error(error);
         });
@@ -52,7 +54,7 @@ export class QrPage implements OnInit {
 
     goToQr(category: any) {
         this.storageLocalService.setCategory(category);
-        this.navController.navigateForward(['/transaction'])
+        this.navController.navigateForward(['/transaction']);
         // this.qrService.scanner('purchase', category);
     }
 

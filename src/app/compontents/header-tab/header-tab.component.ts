@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AlertController, IonRouterOutlet, NavController} from '@ionic/angular';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
@@ -15,108 +15,23 @@ import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 export class HeaderTabComponent {
     brand: any;
     spPartnerHeader: SpPartnerHeader = {};
-    ionicHeaders: IonicHeader[] = [
-        {
-            identity: '1',
-            title: {
-                position: 'center',
-                additionalTitle: '',
-                title: `Транзакции`,
-            },
-            backButton: true,
-            basket: true,
-            exit: true,
-            search: true,
-            route: '/tabs/main',
-        },
-        {
-            identity: '2',
-            title: {
-                position: 'center',
-                additionalTitle: '',
-                title: 'Оплата',
-            },
-            backButton: null,
-            basket: false,
-            exit: false,
-            search: false,
-            route: '/tabs/qr',
-        },
-        {
-            identity: '3',
-            title: {
-                position: 'center',
-                additionalTitle: '',
-                title: 'Сертификаты',
-            },
-            backButton: null,
-            basket: false,
-            exit: false,
-            search: false,
-            route: '/tabs/certificates',
-        },
-        {
-            identity: '4',
-            title: {
-                position: 'center',
-                additionalTitle: '',
-                title: 'Профиль',
-            },
-            backButton: null,
-            basket: false,
-            exit: true,
-            search: null,
-            route: '/tabs/profile',
-        },
-    ];
-
-    ionicHeader: IonicHeader = null;
+    @Input() route: string = undefined;
 
     @Input()
     public set header(value: SpPartnerHeader) {
         this.spPartnerHeader = value;
     }
 
-    slapSearch: boolean = true;
-    canGoBack: boolean = false;
+    @Output() onFinishAction: EventEmitter<any> = new EventEmitter<any>();
+
 
     constructor(private navCtrl: NavController,
-                private route: ActivatedRoute,
                 private ionRouterOutlet: IonRouterOutlet,
                 private router: Router,
-                private storageLocalService: StorageLocalService,
                 private authService: AuthService,
                 private alertController: AlertController) {
-        this.brand = this.storageLocalService.getBrand();
-        this.ionicHeaders[0].title.title = `Транзакции ${this.brand.title}`;
-        this.router.events
-            .pipe(
-                filter(event => event instanceof NavigationEnd),
-            ).subscribe(
-            (event: NavigationEnd) => {
-                this.ionicHeaders.forEach((ionicHeader) => {
-                    ionicHeader.title.additionalTitle = null;
-                    if (ionicHeader.route === window.location.pathname) {
-                        ionicHeader.title.additionalTitle = this.getTitleQueryParams();
-                        this.ionicHeader = ionicHeader;
-                    }
-                });
-            },
-        );
     }
 
-    getTitleQueryParams() {
-        return new URLSearchParams(window.location.search).get('title');
-    }
-
-    switchSearch() {
-        this.slapSearch = !this.slapSearch;
-    }
-
-    cancelSearch() {
-        this.slapSearch = true;
-        // clear data
-    }
 
     async logout() {
         const alert = await this.alertController.create({
@@ -144,7 +59,27 @@ export class HeaderTabComponent {
         // this.navCtrl.navigateForward(['/tabs/main'], {animated: false});
     }
 
-    async goToOrderPage() {
+    goBack() {
+        if (!!this.route) {
+            this.navCtrl.navigateBack([this.route]);
+            return;
+        }
+        this.navCtrl.back({animated: true});
+    }
 
+    goToNotifications() {
+        console.log('go to notif');
+    }
+
+    goToMarketplace() {
+        console.log('go to marcetplace');
+    }
+
+    finishAction() {
+        this.onFinishAction.emit();
+    }
+
+    goToOrders() {
+        console.log('go to goToOrders');
     }
 }
