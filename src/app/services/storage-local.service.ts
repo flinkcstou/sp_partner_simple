@@ -37,6 +37,7 @@ export class StorageLocalService {
         this.cache.delete(key);
         localStorage.removeItem(key);
     }
+
     removeAll() {
         localStorage.clear();
         this.cache.clear();
@@ -117,6 +118,10 @@ export class StorageLocalService {
             value);
     }
 
+    setCityId(value: any): void {
+        this.set(StorageLocalKeyEnum.CITY_ID, value);
+    }
+
     setBrand(value: any): void {
         this.set(StorageLocalKeyEnum.BRAND, value);
     }
@@ -186,11 +191,6 @@ export class StorageLocalService {
     }
 
 
-
-
-
-
-
     getSecondCodeCountDownStartDate(): any {
         return this.get(StorageLocalKeyEnum.SECOND_CODE_COUNTDOWN_START_DATE);
     }
@@ -246,6 +246,11 @@ export class StorageLocalService {
     getRole(): any {
         return this.get(StorageLocalKeyEnum.ROLE);
     }
+
+    getCityId(): any {
+        return this.get(StorageLocalKeyEnum.CITY_ID);
+    }
+
     getBrand(): any {
         return this.get(StorageLocalKeyEnum.BRAND);
     }
@@ -305,7 +310,6 @@ export class StorageLocalService {
     getCategory(): any {
         return this.get(StorageLocalKeyEnum.CATEGORY);
     }
-
 
 
     removeOnboardingEnd() {

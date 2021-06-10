@@ -2,7 +2,7 @@
   <div class="grid-header">
     <div class="block-1">
       <ng-container *ngIf="spPartnerHeader?.backButton">
-        <img src="assets/icon/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
+        <img src="../../../assets/icons/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
       </ng-container>
       <ng-container *ngIf="spPartnerHeader?.title">
         <div class="title">
@@ -14,15 +14,15 @@
     </div>
     <div class="block-2">
       <div class="icon-with-badge" *ngIf="spPartnerHeader?.orders" (click)="goToOrders()">
-        <img src="assets/icon/order-icon.svg" alt="">
+        <img src="../../../assets/icons/order-icon.svg" alt="">
         <div class="badge">3</div>
       </div>
       <div class="icon-with-badge" *ngIf="spPartnerHeader?.marketplace" (click)="goToMarketplace()">
-        <img src="assets/icon/marcetplace-icon.svg" alt="">
+        <img src="../../../assets/icons/marketplace-icon.svg" alt="">
         <div class="badge">3</div>
       </div>
       <div class="icon-with-badge" *ngIf="spPartnerHeader?.notifications" (click)="goToNotifications()">
-        <img src="assets/icon/notification-icon.svg" alt="">
+        <img src="../../../assets/icons/notification-icon.svg" alt="">
         <div class="badge">3</div>
       </div>
     </div>

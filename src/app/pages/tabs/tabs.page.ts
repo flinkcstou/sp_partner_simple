@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicTab} from '../../models/commons/IonicTab';
 import {IonTabs} from '@ionic/angular';
-import {StorageLocalService} from '../../services/storage-local.service';
 
 @Component({
     selector: 'app-tabs',
@@ -11,15 +10,17 @@ import {StorageLocalService} from '../../services/storage-local.service';
 export class TabsPage {
     @ViewChild('ionTabs') ionTabs: IonTabs;
 
-    HOME_TAB = 'main';
-    QR_TAB = 'qr';
-    HISTORY_TAB = 'history-tab';
+    HOME_TAB = 'home-tab';
+    STATISTICS_TAB = 'statistics-tab';
+    SCANNER_TAB = 'scanner-tab';
+    CHAT_TAB = 'chat-tab';
     PROFILE_TAB = 'profile-tab';
     tabs: IonicTab[] = [];
     list: string[] = [
         this.HOME_TAB,
-        this.QR_TAB,
-        this.HISTORY_TAB,
+        this.STATISTICS_TAB,
+        this.SCANNER_TAB,
+        this.CHAT_TAB,
         this.PROFILE_TAB,
     ];
     selected: string = '';

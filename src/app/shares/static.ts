@@ -76,5 +76,6 @@ export enum StorageLocalKeyEnum {
     ROLE = 'role',
     API_TOKEN = 'API_TOKE',
     BRAND = 'BRAND',
+    CITY_ID = 'CITY_ID',
     CATEGORY = 'CATEGORY',
 }

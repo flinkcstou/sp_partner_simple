@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll, NavController} from '@ionic/angular';
-import {AuthService} from '../../services/auth.service';
-import {environment} from '../../../environments/environment';
-import {StorageLocalService} from '../../services/storage-local.service';
-import {ModalService} from '../../services/controllers/modal.service';
-import {OrderService} from '../../services/order.service';
+import {AuthService} from '../../../../services/auth.service';
+import {environment} from '../../../../../environments/environment';
+import {StorageLocalService} from '../../../../services/storage-local.service';
+import {ModalService} from '../../../../services/controllers/modal.service';
+import {OrderService} from '../../../../services/order.service';
 
 @Component({
     selector: 'app-profile',

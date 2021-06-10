@@ -1,9 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AlertController, IonRouterOutlet, NavController} from '@ionic/angular';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
-import {IonicHeader} from '../../models/commons/IonicHeader';
-import {StorageLocalService} from '../../services/storage-local.service';
+import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 

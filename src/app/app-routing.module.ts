@@ -12,6 +12,18 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
+  {
+    path: 'main',
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainPageModule)
+  },
+  {
+    path: 'qr',
+    loadChildren: () => import('./pages/qr/qr.module').then(m => m.QrPageModule)
+  },
+  {
+    path: 'certificates',
+    loadChildren: () => import('./pages/certificates/certificates.module').then(m => m.CertificatesPageModule)
+  },
   // {
   //   path: 'profile',
   //   loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
@@ -33,6 +45,7 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./pages/transaction/transaction.module').then( m => m.TransactionPageModule)
   },
+
 
   // {
   //   path: 'main',

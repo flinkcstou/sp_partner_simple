@@ -1,0 +1,12 @@
+<app-header-tab [header]="spPartnerHeader"></app-header-tab>
+<ion-content>
+    <img src="assets/cities/{{sketchImg}}" alt="" class="sketch-img">
+    <div class="page-padding">
+        <div class="home-tabs">
+            <div class="tab-button" (click)="goToPage(button.link)" *ngFor="let button of buttons">
+                <img src="assets/icons/{{button.icon}}" alt="" class="tab-button-img">
+                <div class="tab-button-text">{{button.text}}</div>
+            </div>
+        </div>
+    </div>
+</ion-content>

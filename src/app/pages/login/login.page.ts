@@ -36,13 +36,14 @@ export class LoginPage implements OnInit {
                 this.storageLocalService.setApiToken(resp.token);
                 this.storageLocalService.setRole(resp.role);
                 this.storageLocalService.setBrand(resp.brand);
-                this.navCtrl.navigateForward(['/tabs/main']);
+                this.storageLocalService.setCityId(resp.brand.cities[0].id);
+                this.navCtrl.navigateForward(['/tabs/home-tab']);
                 setTimeout(() => {
                     window.location.reload();
                 }, 200);
             }).catch(async error => {
                 console.log(error);
-                await this.toastService.present('Логин или пароль введены не верно!','danger');
+                await this.toastService.present('Логин или пароль введены не верно!', 'danger');
             })
             .finally(async () => await this.loadingService.dismiss());
     }

@@ -35,7 +35,7 @@ export class TransactionPage implements OnInit, OnDestroy {
     this.category = this.storageLocalService.getCategory();
     if (!this.category) {
       this.toastService.present('Не выбран категорий', 'warning');
-      this.navCtrl.navigateRoot(['/tabs/qr'])
+      this.navCtrl.navigateRoot(['/tabs/qr']);
     }
   }
 

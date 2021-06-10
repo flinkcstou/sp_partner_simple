@@ -8,31 +8,35 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'main',
-        loadChildren: () => import('../main/main.module').then(m => m.MainPageModule)
+        path: 'home-tab',
+        loadChildren: () => import('../tab/home-tab/home-tab.module').then(m => m.HomeTabPageModule)
       },
       {
-        path: 'qr',
-        loadChildren: () => import('../qr/qr.module').then(m => m.QrPageModule)
+        path: 'statistics-tab',
+        loadChildren: () => import('../tab/statistics-tab/statistics-tab.module').then(m => m.StatisticsTabPageModule)
       },
       {
-        path: 'certificates',
-        loadChildren: () => import('../certificates/certificates.module').then( m => m.CertificatesPageModule)
+        path: 'scanner-tab',
+        loadChildren: () => import('../tab/scanner-tab/scanner-tab.module').then(m => m.ScannerTabPageModule)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+        path: 'chat-tab',
+        loadChildren: () => import('../inner-tabs/chat/chat/chat.module').then(m => m.ChatPageModule)
+      },
+      {
+        path: 'profile-tab',
+        loadChildren: () => import('../inner-tabs/profile/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/main',
+        redirectTo: '/tabs/home-tab',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/main',
+    redirectTo: '/tabs/home-tab',
     pathMatch: 'full'
   }
 ];
