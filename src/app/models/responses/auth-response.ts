@@ -5,5 +5,4 @@ export class AuthResponse {
     brand: any;
     renterTypeId: number;
     marketplace: boolean;
-
 }

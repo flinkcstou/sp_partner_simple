@@ -3,6 +3,7 @@ export class IonicTab {
   title: string;
   selectedIcon: boolean;
   icon: string;
+  // tabIcon: string;
   route: string;
   click?: Function;
   search?: boolean;

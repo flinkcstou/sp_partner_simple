@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AlertController, IonRouterOutlet, NavController} from '@ionic/angular';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {IonicHeader} from '../../models/commons/IonicHeader';
 import {StorageLocalService} from '../../services/storage-local.service';
 import {AuthService} from '../../services/auth.service';
+import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 
 @Component({
     selector: 'app-header-tab',
@@ -13,6 +14,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HeaderTabComponent {
     brand: any;
+    spPartnerHeader: SpPartnerHeader = {};
     ionicHeaders: IonicHeader[] = [
         {
             identity: '1',
@@ -21,10 +23,10 @@ export class HeaderTabComponent {
                 additionalTitle: '',
                 title: `Транзакции`,
             },
-            backButton: null,
-            basket: false,
-            exit: false,
-            search: false,
+            backButton: true,
+            basket: true,
+            exit: true,
+            search: true,
             route: '/tabs/main',
         },
         {
@@ -69,6 +71,11 @@ export class HeaderTabComponent {
     ];
 
     ionicHeader: IonicHeader = null;
+
+    @Input()
+    public set header(value: SpPartnerHeader) {
+        this.spPartnerHeader = value;
+    }
 
     slapSearch: boolean = true;
     canGoBack: boolean = false;
