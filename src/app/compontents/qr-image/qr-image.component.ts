@@ -11,7 +11,7 @@ import {StorageLocalService} from '../../services/storage-local.service';
 export class QrImageComponent implements OnInit {
     @Input() data: any;
     qrSource: string = `${environment.apiUrl}/orders/api/v1/file/mobileTransaction/`;
-    SERVER_URL: string =  `wss://api.smartplaza.kz/orders/chat`;
+    SERVER_URL: string = `wss://api.smartplaza.kz/orders/chat`;
     ws: WebSocket;
     brand: any;
 
@@ -38,7 +38,7 @@ export class QrImageComponent implements OnInit {
     goBack() {
         this.modalCtrl
             .dismiss('close');
-        this.navCtrl.navigateRoot(['/tabs/qr']);
+        this.navCtrl.navigateRoot(['/tabs/scanner-tab/qr']);
     }
 
     testSocket() {

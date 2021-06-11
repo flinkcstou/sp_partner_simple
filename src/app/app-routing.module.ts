@@ -16,10 +16,10 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainPageModule)
   },
-  {
-    path: 'qr',
-    loadChildren: () => import('./pages/qr/qr.module').then(m => m.QrPageModule)
-  },
+  // {
+  //   path: 'qr',
+  //   loadChildren: () => import('./pages/inner-tabs/scanner/qr/qr.module').then(m => m.QrPageModule)
+  // },
   {
     path: 'certificates',
     loadChildren: () => import('./pages/certificates/certificates.module').then(m => m.CertificatesPageModule)
@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/main',
+    redirectTo: '/tabs/home-tab',
     pathMatch: 'full'
   },
   {

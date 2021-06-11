@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { StatisticsPageRoutingModule } from './statistics-routing.module';
 
 import { StatisticsPage } from './statistics.page';
+import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    StatisticsPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        StatisticsPageRoutingModule,
+        HeaderTabModule
+    ],
   declarations: [StatisticsPage]
 })
 export class StatisticsPageModule {}

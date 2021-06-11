@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ScannerPageRoutingModule } from './scanner-routing.module';
 
 import { ScannerPage } from './scanner.page';
+import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ScannerPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ScannerPageRoutingModule,
+        HeaderTabModule
+    ],
   declarations: [ScannerPage]
 })
 export class ScannerPageModule {}

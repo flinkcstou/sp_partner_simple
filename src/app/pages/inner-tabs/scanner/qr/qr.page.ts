@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {QrService} from '../../services/qr.service';
+import {QrService} from '../../../../services/qr.service';
 import {ModalController, NavController} from '@ionic/angular';
-import {LoadingService} from '../../services/loading.service';
+import {LoadingService} from '../../../../services/loading.service';
 import {QrScannerComponent} from 'angular2-qrscanner';
-import {CategoryService} from '../../services/category.service';
-import {environment} from '../../../environments/environment';
-import {StorageLocalService} from '../../services/storage-local.service';
-import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
+import {CategoryService} from '../../../../services/category.service';
+import {environment} from '../../../../../environments/environment';
+import {StorageLocalService} from '../../../../services/storage-local.service';
+import {SpPartnerHeader} from '../../../../models/commons/SpPartnerHeader';
 
 
 @Component({
@@ -16,7 +16,7 @@ import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 })
 export class QrPage implements OnInit {
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
-    spPartnerHeader: SpPartnerHeader = SpPartnerHeader.HOME();
+    spPartnerHeader: SpPartnerHeader = SpPartnerHeader.WITH_TITLE_BACK('Лояльность');
     categories: any[] = [];
     imageUrl: any = environment.apiUrl + '/partners/api/file/category/';
     promoUrl: any = 'assets/promo-image.png';

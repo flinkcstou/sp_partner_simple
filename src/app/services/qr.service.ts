@@ -40,64 +40,68 @@ export class QrService {
         return this.userService.activateCertificateByQr(qrCode);
     }
 
+    getCertificateByQr(qrCode: any) {
+        return this.userService.getCertificateByQr(qrCode);
+    }
+
     scanner(type: string, category?: any) {
-            if (this.isApp) {
-                this.barcodeScanner.scan({
-                    preferFrontCamera: false,
-                    showFlipCameraButton: true,
-                    showTorchButton: true,
-                    resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                    formats: 'QR_CODE', // default: all but PDF_417 and RSS_EXPANDED
-                    prompt: '',
-                    disableAnimations: true, // iOS
-                    disableSuccessBeep: true,// iOS and Android
-                }).then(async (barcodeData) => {
-                    if (type === 'certificate') {
-                        await this.activateCertificateByQr(barcodeData.text).toPromise().then(response => {
-                            console.log(response);
-                            this.openCertificateActivateModal(response);
-                        }).catch( error => {
-                            console.error(error);
-                            this.toastService.present(error, 'danger');
-                        })
-                    } else {
-                        await this.identify(barcodeData.text).toPromise().then(response => {
-                            if (type === 'purchase') {
-                                this.openTransactionModal(category, response);
-                            } else if (type === 'promo') {
-                                this.openPromoActivateModal(response);
-                            }
-                        }).catch(error => {
-                            console.error(error);
-                            this.toastService.present(error, 'danger');
-                        });
-                    }
-                }).catch(err => {
-                    console.error('error', err);
-                });
-            } else {
+        if (this.isApp) {
+            this.barcodeScanner.scan({
+                preferFrontCamera: false,
+                showFlipCameraButton: true,
+                showTorchButton: true,
+                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                formats: 'QR_CODE', // default: all but PDF_417 and RSS_EXPANDED
+                prompt: '',
+                disableAnimations: true, // iOS
+                disableSuccessBeep: true,// iOS and Android
+            }).then(async (barcodeData) => {
                 if (type === 'certificate') {
-                    this.activateCertificateByQr('27253009').toPromise()
-                        .then(response => {
-                            this.openCertificateActivateModal(response);
-                        }).catch(err => {
-                        this.toastService.present(err, 'danger');
-                    })
+                    await this.activateCertificateByQr(barcodeData.text).toPromise().then(response => {
+                        console.log(response);
+                        this.openCertificateActivateModal(response);
+                    }).catch(error => {
+                        console.error(error);
+                        this.toastService.present(error, 'danger');
+                    });
                 } else {
-                    this.identify('12345678')
-                        .toPromise()
-                        .then(response => {
-                            if (type === 'purchase') {
-                                this.openTransactionModal(category, response);
-                            } else if (type === 'promo') {
-                                this.openPromoActivateModal(response);
-                            }
-                        }).catch(error => {
+                    await this.identify(barcodeData.text).toPromise().then(response => {
+                        if (type === 'purchase') {
+                            this.openTransactionModal(category, response);
+                        } else if (type === 'promo') {
+                            this.openPromoActivateModal(response);
+                        }
+                    }).catch(error => {
                         console.error(error);
                         this.toastService.present(error, 'danger');
                     });
                 }
+            }).catch(err => {
+                console.error('error', err);
+            });
+        } else {
+            if (type === 'certificate') {
+                this.activateCertificateByQr('90820208').toPromise()
+                    .then(response => {
+                        this.openCertificateActivateModal(response);
+                    }).catch(err => {
+                    this.toastService.present(err, 'danger');
+                });
+            } else {
+                this.identify('12345678')
+                    .toPromise()
+                    .then(response => {
+                        if (type === 'purchase') {
+                            this.openTransactionModal(category, response);
+                        } else if (type === 'promo') {
+                            this.openPromoActivateModal(response);
+                        }
+                    }).catch(error => {
+                    console.error(error);
+                    this.toastService.present(error, 'danger');
+                });
             }
+        }
     }
 
     openTransactionModal(category, response) {
@@ -121,6 +125,7 @@ export class QrService {
             console.error(error);
         });
     }
+
     openCertificateActivateModal(response) {
         this.modalService.setUserCertificateOption(response);
         this.modalService.present().then(resp => {

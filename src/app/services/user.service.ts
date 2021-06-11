@@ -22,4 +22,8 @@ export class UserService {
   activateCertificateByQr(qr: string) {
     return this.userServiceController.activateCertificateByQr(qr);
   }
+
+  getCertificateByQr(qr: string) {
+    return this.userServiceController.getCertificateByQr(qr);
+  }
 }

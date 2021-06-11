@@ -8,11 +8,11 @@ import {QrPageRoutingModule} from './qr-routing.module';
 
 import {QrPage} from './qr.page';
 import {NgQrScannerModule} from 'angular2-qrscanner';
-import {HeaderBackModule} from '../../compontents/header-back/header-back.module';
-import {UserIdentifyModule} from '../../compontents/user-identify/user-identify.module';
-import {ActivatePromoModule} from '../../compontents/activate-promo/activate-promo.module';
-import {ActivateCertificateModule} from '../../compontents/activate-certificate/activate-certificate.module';
-import {HeaderTabModule} from "../../compontents/header-tab/header-tab.module";
+import {HeaderBackModule} from '../../../../compontents/header-back/header-back.module';
+import {UserIdentifyModule} from '../../../../compontents/user-identify/user-identify.module';
+import {ActivatePromoModule} from '../../../../compontents/activate-promo/activate-promo.module';
+import {ActivateCertificateModule} from '../../../../compontents/activate-certificate/activate-certificate.module';
+import {HeaderTabModule} from "../../../../compontents/header-tab/header-tab.module";
 
 @NgModule({
     imports: [

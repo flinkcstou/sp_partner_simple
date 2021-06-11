@@ -1,0 +1,30 @@
+:host {
+  .sketch-img {
+    margin-top: 5vw;
+    width: 100vw;
+    height: 40vw;
+  }
+
+  .tab-button {
+    background: #FFFFFF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    padding: 7vw 9vw;
+    display: grid;
+    margin-bottom: 8vw;
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+
+  .tab-button-img {
+    max-height: 7vw;
+    max-width: 10vw;
+  }
+
+  .tab-button-text {
+    justify-self: center;
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: -0.41px;
+    color: #000000;
+  }
+}

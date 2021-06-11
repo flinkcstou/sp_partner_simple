@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +18,7 @@ export class UserServiceController {
                 phone,
                 qr
             }
-        })
+        });
     }
 
     getUserByQr(qr: string): Observable<any> {
@@ -26,15 +26,23 @@ export class UserServiceController {
             params: {
                 qr
             }
-        })
+        });
     }
 
     activateCertificateByQr(qr: string): Observable<any> {
-        return this.httpClient.post<any>(this.fullUrl + '/certificate/activate', null,{
+        return this.httpClient.post<any>(this.fullUrl + '/certificate/activate', null, {
             params: {
                 qr
             }
-        })
+        });
+    }
+
+    getCertificateByQr(qr: string): Observable<any> {
+        return this.httpClient.get<any>(this.fullUrl + '/certificate/qr', {
+            params: {
+                qr
+            }
+        });
     }
 
     // qrPost(qrRequest: any): Observable<any> {
