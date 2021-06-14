@@ -7,7 +7,7 @@ import {UserService} from '../../services/user.service';
 import {Route} from '@angular/router';
 import {NavController} from '@ionic/angular';
 import {ModalService} from '../../services/controllers/modal.service';
-import {SpPartnerHeader} from "../../models/commons/SpPartnerHeader";
+import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 
 @Component({
     selector: 'app-main',
@@ -16,7 +16,6 @@ import {SpPartnerHeader} from "../../models/commons/SpPartnerHeader";
 
 })
 export class MainPage implements OnInit {
-    brand: any;
     spPartnerHeader: SpPartnerHeader = SpPartnerHeader.HOME();
     transactions: any;
     searchFilter: any;
@@ -25,26 +24,26 @@ export class MainPage implements OnInit {
     size: number = 100;
     loadMore: boolean = false;
     pageResponse: any;
+    sortStr: string = 'desk-createdAt';
 
-    constructor(private storageLocalService: StorageLocalService,
-                private orderService: OrderService,
-                private toastService: ToastService,
-                private loadingService: LoadingService,
-                private userService: UserService,
-                private navCtrl: NavController,
-                private modalService: ModalService) {
+    constructor(
+        private orderService: OrderService,
+        private toastService: ToastService,
+        private loadingService: LoadingService,
+        private userService: UserService,
+        private navCtrl: NavController,
+        private modalService: ModalService) {
     }
 
     ngOnInit() {
-        this.brand = this.storageLocalService.getBrand();
-        this.readySearch()
+        this.readySearch();
         this.getTransactions();
     }
 
     async getTransactions() {
         this.page = 0;
         await this.loadingService.present();
-        this.orderService.getOrders(this.page, this.size, null, this.search).toPromise()
+        this.orderService.getOrders(this.page, this.size, this.sortStr, this.search).toPromise()
             .then(resp => {
                 console.log(resp);
                 this.pageResponse = resp;
@@ -58,7 +57,7 @@ export class MainPage implements OnInit {
     readySearch() {
         this.searchFilter = {
             phone: '', qr: '',
-        }
+        };
     }
 
     async searchTransaction() {
@@ -106,18 +105,18 @@ export class MainPage implements OnInit {
 
     loadMorePage() {
         this.loadMore = true;
-        this.page ++;
-        this.orderService.getOrders(this.page, this.size, null, this.search).toPromise()
+        this.page++;
+        this.orderService.getOrders(this.page, this.size, this.sortStr, this.search).toPromise()
             .then(resp => {
                 this.loadMore = false;
                 this.pageResponse = resp;
                 resp.content.forEach(element => {
                     this.transactions.push(element);
-                })
+                });
             }).catch(err => {
             console.error(err);
             this.toastService.present(err, 'danger');
-        })
+        });
 
     }
 }

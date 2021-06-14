@@ -14,6 +14,7 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 import {ErrorInterceptor} from './interceptors/error';
 import {TokenInterceptor} from './interceptors/token';
 import {ComponentControllerModule} from './modules/component-controller.module';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +22,7 @@ import {ComponentControllerModule} from './modules/component-controller.module';
     imports: [BrowserModule,
         IonicModule.forRoot(),
         HttpClientModule,
+        NgxMaskModule.forRoot(),
         ComponentControllerModule.forRoot(),
         AppRoutingModule],
     providers: [

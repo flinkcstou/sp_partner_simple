@@ -1,35 +1,52 @@
-<div class="display-flex-center ion-align-items-center" style="margin-bottom: 13%; margin-top:3%">
-    <img class="logo_img" [src]="logoPath" alt="logo">
-</div>
-<!--<app-content-flex-center>-->
+<app-header-tab [header]="spPartnerHeader"></app-header-tab>
 <ion-content>
-    <ion-row>
-        <ion-list class="list-totals">
-            <ion-item>
-                <ion-label class="display-flex-between">Транзакции сегодня
-                    <span>{{transactionsObject?.dayTotal}}</span>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-label class="display-flex-between">Кол-во транзакций за месяц
-                    <span>{{transactionsObject?.monthTotal}}</span>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-label class="display-flex-between">Общее кол-во транзакций
-                    <span>{{transactionsObject?.total}}</span>
-                </ion-label>
-            </ion-item>
-            <ion-item>
-                <ion-label class="display-flex-between">Количество сертификатов
-                    <span>{{transactionsObject?.certificateCount}}</span>
-                </ion-label>
-            </ion-item>
-        </ion-list>
-        <ion-button (click)="goToFeedback()" style="width: 100%" expand="block">Обратная связь</ion-button>
-    </ion-row>
+    <div class="profile-page-buttons">
+        <div class="profile-button">
+            <img src="assets/icons/services-home.svg" alt="">
+            <div class="button-title">Настройки</div>
+        </div>
+        <div class="profile-button">
+            <img src="assets/icons/services-home.svg" alt="">
+            <div class="button-title">Изменить код-пароль</div>
+        </div>
+        <div class="profile-button">
+            <img src="assets/icons/services-home.svg" alt="">
+            <div class="button-title">Изменить пароль </div>
+        </div>
+        <div class="profile-button logout" (click)="logout()">
+            <img src="assets/icons/services-home.svg" alt="">
+            <div class="button-title">Выйти</div>
+        </div>
+    </div>
+
+
 </ion-content>
+<!--<ion-content>-->
+<!--    <ion-row>-->
+<!--        <ion-list class="list-totals">-->
+<!--            <ion-item>-->
+<!--                <ion-label class="display-flex-between">Транзакции сегодня-->
+<!--                    <span>{{transactionsObject?.dayTotal}}</span>-->
+<!--                </ion-label>-->
+<!--            </ion-item>-->
+<!--            <ion-item>-->
+<!--                <ion-label class="display-flex-between">Кол-во транзакций за месяц-->
+<!--                    <span>{{transactionsObject?.monthTotal}}</span>-->
+<!--                </ion-label>-->
+<!--            </ion-item>-->
+<!--            <ion-item>-->
+<!--                <ion-label class="display-flex-between">Общее кол-во транзакций-->
+<!--                    <span>{{transactionsObject?.total}}</span>-->
+<!--                </ion-label>-->
+<!--            </ion-item>-->
+<!--            <ion-item>-->
+<!--                <ion-label class="display-flex-between">Количество сертификатов-->
+<!--                    <span>{{transactionsObject?.certificateCount}}</span>-->
+<!--                </ion-label>-->
+<!--            </ion-item>-->
+<!--        </ion-list>-->
+<!--        <ion-button (click)="goToFeedback()" style="width: 100%" expand="block">Обратная связь</ion-button>-->
+<!--    </ion-row>-->
+<!--</ion-content>-->
 
-
-<!--</app-content-flex-center>-->
 

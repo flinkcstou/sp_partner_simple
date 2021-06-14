@@ -1,0 +1,70 @@
+:host {
+
+  .user-filter {
+    width: 100vw;
+    padding: 10vw;
+    background: #FFFFFF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 4vw 2vw;
+  }
+
+  .custom-input {
+    background: #E5E5E5;
+    width: 100%;
+    border: none;
+    padding: 1vw 4vw;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 35px;
+  }
+  .filter {
+    grid-row: span 2;
+    align-self: end;
+    justify-self: end;
+  }
+  .filter-buttons {
+    display: grid;
+    grid-gap: 5vw;
+  }
+  .transaction-card-list {
+    padding-top: 54vw;
+  }
+  .transaction {
+    background: #FFFFFF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 3vw 5vw;
+    position: relative;
+    margin-bottom: 5vw;
+  }
+  .transaction-status {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 8px 0 0;
+    padding: 1vw 2vw;
+  }
+  .transaction-status.success {
+    background: #3BB54A;
+    color: white;
+  }
+  .transaction-status.returned {
+    background: #E21B1B;
+    color: white;
+  }
+  .transaction-status.process {
+    background: #FFCA00;
+    color: white;
+  }
+  .info-text {
+    margin: 2vw;
+    font-size: 15px;
+    color: #000000;
+    .descr {
+      color: #8C8C8C !important;
+    }
+  }
+}

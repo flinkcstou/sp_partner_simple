@@ -4,21 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePageRoutingModule } from './profile-routing.module';
+import { LoyaltyPageRoutingModule } from './loyalty-routing.module';
 
-import { ProfilePage } from './profile.page';
-import {ContentFlexCenterModule} from '../../../../compontents/content-flex-center/content-flex-center.module';
+import { LoyaltyPage } from './loyalty.page';
 import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ProfilePageRoutingModule,
-        ContentFlexCenterModule,
+        LoyaltyPageRoutingModule,
         HeaderTabModule,
+        NgxMaskModule
     ],
-  declarations: [ProfilePage]
+  declarations: [LoyaltyPage]
 })
-export class ProfilePageModule {}
+export class LoyaltyPageModule {}

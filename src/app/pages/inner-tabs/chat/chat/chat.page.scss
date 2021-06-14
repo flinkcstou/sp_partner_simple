@@ -1,0 +1,19 @@
+.sketch-img {
+  margin-top: 5vw;
+  width: 100vw;
+  height: 40vw;
+}
+.chat-page-buttons {
+  margin: 10vw 0;
+}
+.chat-button {
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 8vw 8vw;
+  align-items: center;
+  margin-bottom: 5vw;
+  color: #213768;
+  font-size: 18px;
+
+}

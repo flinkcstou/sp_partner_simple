@@ -1,9 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>chat</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header-tab [header]="spPartnerHeader"></app-header-tab>
 <ion-content>
-
+    <img src="assets/cities/{{sketchImg}}" alt="" class="sketch-img">
+    <div class="chat-page-buttons">
+        <div class="chat-button">
+            <img src="assets/icons/faq-icon.svg" alt="">
+            <div class="button-title">Вопросы и ответы</div>
+        </div>
+        <div class="chat-button" (click)="goToChat()">
+            <img src="assets/icons/message-icon.svg" alt="">
+            <div class="button-title">Напишите нам</div>
+        </div>
+    </div>
 </ion-content>

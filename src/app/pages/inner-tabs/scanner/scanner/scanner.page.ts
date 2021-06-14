@@ -19,7 +19,7 @@ export class ScannerPage implements OnInit {
         }, {
             icon: 'certificate.svg',
             text: 'Сертификаты',
-            link: 'certificate',
+            link: 'tabs/scanner-tab/certificates',
         }
     ];
 

@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('../../inner-tabs/home/home/home.module').then(m => m.HomePageModule),
+      },
+      {
+        path: 'loyalty',
+        loadChildren: () => import('../../inner-tabs/home/loyalty/loyalty.module').then(m => m.LoyaltyPageModule),
       }
     ]
   }

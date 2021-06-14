@@ -7,7 +7,8 @@ import {IonicModule} from '@ionic/angular';
 import {CertificatesPageRoutingModule} from './certificates-routing.module';
 
 import {CertificatesPage} from './certificates.page';
-import {ActivateCertificateModule} from '../../compontents/activate-certificate/activate-certificate.module';
+import {ActivateCertificateModule} from '../../../../compontents/activate-certificate/activate-certificate.module';
+import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {ActivateCertificateModule} from '../../compontents/activate-certificate/
         IonicModule,
         CertificatesPageRoutingModule,
         ActivateCertificateModule,
+        HeaderTabModule,
     ],
     declarations: [CertificatesPage],
 })

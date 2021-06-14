@@ -1,3 +1,18 @@
+.profile-page-buttons {
+  margin: 10vw 0;
+}
+.profile-button {
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 8vw 8vw;
+  align-items: center;
+  margin-bottom: 5vw;
+  font-size: 18px;
+}
+.profile-button.logout {
+  margin-top: 17vw;
+}
 ion-item {
   width: 100%;
 }

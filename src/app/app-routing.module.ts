@@ -20,10 +20,6 @@ const routes: Routes = [
   //   path: 'qr',
   //   loadChildren: () => import('./pages/inner-tabs/scanner/qr/qr.module').then(m => m.QrPageModule)
   // },
-  {
-    path: 'certificates',
-    loadChildren: () => import('./pages/certificates/certificates.module').then(m => m.CertificatesPageModule)
-  },
   // {
   //   path: 'profile',
   //   loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
@@ -45,7 +41,6 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./pages/transaction/transaction.module').then( m => m.TransactionPageModule)
   },
-
 
   // {
   //   path: 'main',

@@ -10,8 +10,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('../../inner-tabs/chat/chat/chat.module').then(m => m.ChatPageModule),
-      }
+        loadChildren: () => import('../../inner-tabs/chat/chat/chat.module')
+            .then(m => m.ChatPageModule),
+      },
+      {
+        path: 'chat-view',
+        loadChildren: () => import('../../inner-tabs/chat/chat-view/chat-view.module')
+            .then(m => m.ChatViewPageModule),
+      },
     ]
   }
 ];

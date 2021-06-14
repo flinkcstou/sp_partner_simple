@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpPartnerHeader} from '../../../../models/commons/SpPartnerHeader';
 import {StorageLocalService} from '../../../../services/storage-local.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
         {
             icon: 'loyalty-home.svg',
             text: 'Лояльность',
-            link: 'loyalty',
+            link: 'tabs/home-tab/loyalty',
         }, {
             icon: 'services-home.svg',
             text: 'Услуги',
@@ -30,7 +31,8 @@ export class HomePage implements OnInit {
         }
     ];
 
-    constructor(private storageLocalService: StorageLocalService) {
+    constructor(private storageLocalService: StorageLocalService,
+                private navCtrl: NavController) {
         if (storageLocalService.getCityId() === 3) {
             this.sketchImg = 'shymkent.png';
         }
@@ -40,6 +42,7 @@ export class HomePage implements OnInit {
     }
 
     goToPage(link: string) {
+        this.navCtrl.navigateForward([link]);
         console.log(link);
     }
 
