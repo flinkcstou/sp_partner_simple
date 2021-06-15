@@ -24,7 +24,7 @@ export class QrService {
                 private userService: UserService,
                 private modalService: ModalService,
                 private toastService: ToastService) {
-        this.isApp = (!document.URL.startsWith('http://localhost:4200'));
+        this.isApp = (!document.URL.startsWith('http://localhost:4201'));
     }
 
     qrPost(qrRequest: any) {
@@ -57,17 +57,25 @@ export class QrService {
                 disableSuccessBeep: true,// iOS and Android
             }).then(async (barcodeData) => {
                 if (type === 'certificate') {
-                    await this.activateCertificateByQr(barcodeData.text).toPromise().then(response => {
+                    await this.getCertificateByQr(barcodeData.text).toPromise().then(response => {
                         console.log(response);
-                        this.openCertificateActivateModal(response);
+                        this.openCertificateInfoModal(response);
+                        // this.openCertificateActivateModal(response);
                     }).catch(error => {
                         console.error(error);
                         this.toastService.present(error, 'danger');
                     });
+                    // await this.activateCertificateByQr(barcodeData.text).toPromise().then(response => {
+                    //     console.log(response);
+                    //     this.openCertificateActivateModal(response);
+                    // }).catch(error => {
+                    //     console.error(error);
+                    //     this.toastService.present(error, 'danger');
+                    // });
                 } else {
                     await this.identify(barcodeData.text).toPromise().then(response => {
                         if (type === 'purchase') {
-                            this.openTransactionModal(category, response);
+                            // this.openTransactionModal(category, response);
                         } else if (type === 'promo') {
                             this.openPromoActivateModal(response);
                         }
@@ -81,18 +89,26 @@ export class QrService {
             });
         } else {
             if (type === 'certificate') {
-                this.activateCertificateByQr('90820208').toPromise()
-                    .then(response => {
-                        this.openCertificateActivateModal(response);
-                    }).catch(err => {
-                    this.toastService.present(err, 'danger');
+                this.getCertificateByQr('82993773').toPromise().then(response => {
+                    console.log(response);
+                    this.openCertificateInfoModal(response);
+                    // this.openCertificateActivateModal(response);
+                }).catch(error => {
+                    console.error(error);
+                    this.toastService.present(error, 'danger');
                 });
+                // this.activateCertificateByQr('90820208').toPromise()
+                //     .then(response => {
+                //         this.openCertificateActivateModal(response);
+                //     }).catch(err => {
+                //     this.toastService.present(err, 'danger');
+                // });
             } else {
                 this.identify('19851161')
                     .toPromise()
                     .then(response => {
                         if (type === 'purchase') {
-                            this.openTransactionModal(category, response);
+                            // this.openTransactionModal(category, response);
                         } else if (type === 'promo') {
                             this.openPromoActivateModal(response);
                         }
@@ -104,18 +120,18 @@ export class QrService {
         }
     }
 
-    openTransactionModal(category, response) {
-        const data = {
-            category: category,
-            user: response,
-        };
-        this.modalService.setUserIdentifyOption(data);
-        this.modalService.present().then(response => {
-            console.log(response);
-        }, error => {
-            console.error(error);
-        });
-    }
+    // openTransactionModal(category, response) {
+    //     const data = {
+    //         category: category,
+    //         user: response,
+    //     };
+    //     this.modalService.setUserIdentifyOption(data);
+    //     this.modalService.present().then(response => {
+    //         console.log(response);
+    //     }, error => {
+    //         console.error(error);
+    //     });
+    // }
 
     openPromoActivateModal(response) {
         this.modalService.setUserPromoOption(response);
@@ -128,6 +144,15 @@ export class QrService {
 
     openCertificateActivateModal(response) {
         this.modalService.setUserCertificateOption(response);
+        this.modalService.present().then(resp => {
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+
+    openCertificateInfoModal(response) {
+        this.modalService.setCertificateInfoFromQrOption(response);
         this.modalService.present().then(resp => {
             console.log(resp);
         }).catch(error => {

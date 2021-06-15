@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController, NavController} from '@ionic/angular';
+import {ModalController} from '@ionic/angular';
 import {StorageLocalService} from '../../services/storage-local.service';
-import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 import {environment} from '../../../environments/environment';
 
 @Component({
@@ -12,7 +11,6 @@ import {environment} from '../../../environments/environment';
 export class TransactionInfoComponent implements OnInit {
     @Input() data: any;
     brand: any;
-    spPartnerHeader: SpPartnerHeader = SpPartnerHeader.WITH_TITLE_BACK('ASD');
     userPhotoUrl: string = environment.apiUrl + '/users/api/v1/file/avatar/';
 
     constructor(private modalCtrl: ModalController,

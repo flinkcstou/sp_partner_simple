@@ -7,6 +7,7 @@ import {ActivatePromoModule} from '../compontents/activate-promo/activate-promo.
 import {QrImageModule} from '../compontents/qr-image/qr-image.module';
 import {ActivateCertificateModule} from '../compontents/activate-certificate/activate-certificate.module';
 import {TransactionInfoModule} from '../compontents/transaction-info/transaction-info.module';
+import {CertificateInfoModule} from '../compontents/certificate-info/certificate-info.module';
 
 const MODULES = [
     NetworkStatusModule,
@@ -15,6 +16,7 @@ const MODULES = [
     TransactionInfoModule,
     QrImageModule,
     ActivatePromoModule,
+    CertificateInfoModule,
     ActivateCertificateModule,
 ];
 

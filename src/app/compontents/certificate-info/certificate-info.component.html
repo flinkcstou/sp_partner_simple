@@ -1,0 +1,45 @@
+<ion-content>
+    <div class="page-padding">
+        <div class="header-flex">
+            <img src="../../../assets/icons/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
+            <div class="title">
+                Сертификат {{data.code}}
+            </div>
+        </div>
+    </div>
+    <div class="page-padding">
+        <div class="user-avatar">
+            <img class="user-photo"
+                 src="{{(data.user?.photoUrl) ? userPhotoUrl + data.user?.photoUrl : 'assets/plazun-avatar.png'}}"
+                 alt="">
+        </div>
+        <div class="user-name">
+            {{data.user.name}}
+        </div>
+
+        <div class="certificate-info">
+            <div class="info-text"><span class="descr">Код: </span> {{data.code}}</div>
+            <div *ngIf="data.barcodeUrl" class="info-text"><span class="descr">Бар код: </span> {{data.barcodeUrl}}
+            </div>
+            <div *ngIf="data.zipCode" class="info-text"><span class="descr">Zip код: </span> {{data.zipCode}}</div>
+            <div class="info-text"><span class="descr">Дата: </span> {{data.createdAt }}</div>
+            <div class="info-text"><span class="descr">Сертификат: </span> {{data.certificate.brandName }}</div>
+            <div class="info-text"><span class="descr">Сумма: </span> {{data.certificate.sum }}тг.</div>
+            <div class="status-info">
+                <span class="descr">Статус: </span>
+                <div class="transaction-status {{(data.status === 1 || data.status === 3)? 'success'
+                : (data.status === 0 || data.status === 2)? 'returned'
+                : 'process'}}">
+                    {{(data.status === 1 || data.status === 3) ? 'Новый'
+                    : (data.status === 2) ? 'Просрочен'
+                        : (data.status === 0) ? 'Использован' : ''}}</div>
+            </div>
+        </div>
+        <div class="center-btn" *ngIf="data.status !== 0">
+            <button class="activate-custom-btn" (click)="activateCertificate()">
+                <img src="assets/icons/checmark.svg" alt="">
+                <span>Активироват сертификат</span>
+            </button>
+        </div>
+    </div>
+</ion-content>

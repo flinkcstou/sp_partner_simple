@@ -10,7 +10,9 @@ export class ActivateCertificateComponent implements OnInit {
 
   constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('asd');
+  }
 
   close() {
     this.modalCtrl
