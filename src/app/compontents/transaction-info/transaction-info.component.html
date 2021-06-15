@@ -1,45 +1,81 @@
 <ion-content>
-    <ion-grid>
-        <ion-card>
-            <ion-card-header>
-                <ion-card-subtitle>{{brand.title}}</ion-card-subtitle>
-                <ion-card-title>Детали транзакции {{data.id}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-list>
-                    <ion-item>
-                        <ion-label>Дата оплаты: {{data.createdAt}}</ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Номер заказа: {{data.id}}</ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-avatar slot="start">
-                            <ion-icon size="large" name="person-circle-outline"></ion-icon>
-                        </ion-avatar>
-                        <ion-label>
-                            <h2>{{data.userName}}</h2>
-                            <h3>{{data.userPhone}}</h3>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Оплачено бонусами: {{data.bonus}}</ion-label>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Начислено бонусов: {{data.bonusGained}}</ion-label>
-                    </ion-item>
-                </ion-list>
-            </ion-card-content>
-        </ion-card>
-        <ion-row class="display-flex-center">
-            <h1 class="payed-h1">
-                Оплачено +{{data.sum}} тг
-            </h1>
-        </ion-row>
-        <ion-row class="display-flex-center bottom-buttons">
-            <!--            <ion-button color="danger" (click)="return()">Возврат</ion-button>-->
+    <div class="page-padding">
+        <div class="header-flex">
+            <img src="../../../assets/icons/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
+            <div class="title">
+                Транзакция {{data.id}}
+            </div>
+        </div>
+    </div>
+    <div class="page-padding">
+        <div class="user-avatar">
+            <img class="user-photo"
+                 src="{{(data.userAvatar) ? userPhotoUrl + data.userAvatar : 'assets/plazun-avatar.png'}}"
+                 alt="">
+        </div>
+        <div class="user-name">
+            {{data.userName}}
+        </div>
+        <div class="transaction-info">
+            <div class="info-text"><span class="descr">ID: </span> {{data.id}}</div>
+            <div class="info-text"><span class="descr">Имя пользователя: </span> {{data.userName}}</div>
+            <div class="info-text"><span class="descr">Дата: </span> {{data.createdAt }}</div>
+            <div class="info-text"><span class="descr">Категория: </span> {{data.categoryName }}</div>
+            <div class="status-info">
+                <span class="descr">Статус: </span>
+                <div class="transaction-status {{(data.status === 1)? 'success'
+                : (data.status === 2)? 'returned': 'process'}}">
+                    {{(data.status === 1)? 'Оплачено'
+                    : (data.status === 2)? 'Возвращено': 'В процессе'}}</div>
+            </div>
+            <div class="info-text"><span class="descr">Сумма: </span> {{data.sum }}тг.</div>
+            <div *ngIf="data.type === 9" class="info-text"><span class="descr">Сертификат: </span> {{data.brandName }}</div>
+        </div>
+        <div class="close-button">
             <ion-button (click)="goBack()">Закрыть</ion-button>
+        </div>
+    </div>
+    <!--    <ion-grid>-->
+    <!--        <ion-card>-->
+    <!--            <ion-card-header>-->
+    <!--                <ion-card-subtitle>{{brand.title}}</ion-card-subtitle>-->
+    <!--                <ion-card-title>Детали транзакции {{data.id}}</ion-card-title>-->
+    <!--            </ion-card-header>-->
+    <!--            <ion-card-content>-->
+    <!--                <ion-list>-->
+    <!--                    <ion-item>-->
+    <!--                        <ion-label>Дата оплаты: {{data.createdAt}}</ion-label>-->
+    <!--                    </ion-item>-->
+    <!--                    <ion-item>-->
+    <!--                        <ion-label>Номер заказа: {{data.id}}</ion-label>-->
+    <!--                    </ion-item>-->
+    <!--                    <ion-item>-->
+    <!--                        <ion-avatar slot="start">-->
+    <!--                            <ion-icon size="large" name="person-circle-outline"></ion-icon>-->
+    <!--                        </ion-avatar>-->
+    <!--                        <ion-label>-->
+    <!--                            <h2>{{data.userName}}</h2>-->
+    <!--                            <h3>{{data.userPhone}}</h3>-->
+    <!--                        </ion-label>-->
+    <!--                    </ion-item>-->
+    <!--                    <ion-item>-->
+    <!--                        <ion-label>Оплачено бонусами: {{data.bonus}}</ion-label>-->
+    <!--                    </ion-item>-->
+    <!--                    <ion-item>-->
+    <!--                        <ion-label>Начислено бонусов: {{data.bonusGained}}</ion-label>-->
+    <!--                    </ion-item>-->
+    <!--                </ion-list>-->
+    <!--            </ion-card-content>-->
+    <!--        </ion-card>-->
+    <!--        <ion-row class="display-flex-center">-->
+    <!--            <h1 class="payed-h1">-->
+    <!--                Оплачено +{{data.sum}} тг-->
+    <!--            </h1>-->
+    <!--        </ion-row>-->
+    <!--        <ion-row class="display-flex-center bottom-buttons">-->
+    <!--            &lt;!&ndash;            <ion-button color="danger" (click)="return()">Возврат</ion-button>&ndash;&gt;-->
+    <!--            <ion-button (click)="goBack()">Закрыть</ion-button>-->
 
-        </ion-row>
-    </ion-grid>
+    <!--        </ion-row>-->
+    <!--    </ion-grid>-->
 </ion-content>

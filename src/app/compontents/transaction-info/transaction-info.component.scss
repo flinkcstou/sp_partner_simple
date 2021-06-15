@@ -1,6 +1,73 @@
 ion-grid {
   height: 100%;
 }
+.header-flex {
+  display: flex;
+  .back-btn {
+    margin-right: 3vw;
+  }
+  .title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: -0.32px;
+    color: #000000;
+  }
+}
+.user-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-photo {
+  width: 40vw;
+  height: 40vw;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.user-name {
+  margin: 10vw 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+}
+.info-text {
+  margin: 2vw;
+  font-size: 18px;
+  color: #000000;
+  .descr {
+    color: #8C8C8C !important;
+  }
+}
+.status-info {
+  display: flex;
+  margin: 2vw;
+  font-size: 18px;
+}
+.transaction-status {
+  border-radius: 8px;
+  padding: 1vw 2vw;
+  margin-left: 2vw;
+  font-size: 15px;
+}
+.transaction-status.success {
+  background: rgba(59, 181, 74, 0.3);;
+}
+.transaction-status.returned {
+  background: rgba(226, 27, 27, 0.3);;
+}
+.transaction-status.process {
+  background: rgba(255, 202, 0, 0.3);;
+}
+.close-button {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 15vw;
+  width: 100%;
+}
 
 
 .payed-h1 {

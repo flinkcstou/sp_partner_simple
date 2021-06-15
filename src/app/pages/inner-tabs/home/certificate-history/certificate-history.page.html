@@ -14,7 +14,7 @@
         <div class="filter">
             <div class="filter-buttons">
                 <img src="assets/icons/refresh.svg" alt="" (click)="reloadPage()">
-<!--                <img src="assets/icons/" alt="" (click)="searchOrders()">-->
+                <!--                <img src="assets/icons/" alt="" (click)="searchOrders()">-->
             </div>
         </div>
         <div class="ion-input">
@@ -34,9 +34,9 @@
             <div class="info-text"><span class="descr">ID: </span> {{transaction.id}}</div>
             <div class="info-text"><span class="descr">Имя пользователя: </span> {{transaction.userName}}</div>
             <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdAt }}</div>
-            <div class="info-text"><span class="descr">Категория </span> {{transaction.categoryName }}</div>
             <div class="info-text"><span class="descr">Сумма: </span> {{transaction.sum }}тг.</div>
-            <div class="info-text"><span class="descr">Оплачено Бонусами: </span> {{transaction.bonus }}</div>
+            <div class="info-text"><span class="descr">Сертификат: </span> {{transaction.brandName }}</div>
+            <div class="info-text"><span class="descr">Начислено Бонусов: </span> {{transaction.bonusGained }}</div>
         </div>
     </div>
     <div class="display-flex-center">
@@ -46,5 +46,7 @@
         </ion-button>
         <ion-spinner *ngIf="loadMore " name="lines"></ion-spinner>
     </div>
-
+    <div *ngIf="transactions?.length === 0" class="empty-transactions">
+        Нет транзакций
+    </div>
 </ion-content>

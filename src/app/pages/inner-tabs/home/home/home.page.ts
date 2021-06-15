@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
         }, {
             icon: 'certificate.svg',
             text: 'Сертификаты',
-            link: 'certificate',
+            link: 'tabs/home-tab/certificate-history',
         }
     ];
 

@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {StorageLocalService} from '../../services/storage-local.service';
 import {OrderService} from '../../services/order.service';
 import {ToastService} from '../../services/controllers/toast.service';
+import {SpPartnerHeader} from '../../models/commons/SpPartnerHeader';
 
 @Component({
     selector: 'app-user-identify',
@@ -14,7 +15,7 @@ export class UserIdentifyComponent implements OnInit {
     @Input() data: any;
     logoPath: string = environment.apiUrl + '/partners/api/file/logo/';
     spendBonuses: boolean = false;
-    totals: any = {cash: 0, creditCard: 0, bonuses: 0, sum: ''}
+    totals: any = {cash: 0, creditCard: 0, bonuses: 0, sum: ''};
 
     constructor(private modalCtrl: ModalController,
                 private storageLocalService: StorageLocalService,
@@ -40,7 +41,7 @@ export class UserIdentifyComponent implements OnInit {
                 const bonus = this.totals.sum - this.totals.cash;
                 this.totals.bonuses = bonus.toFixed(2);
             } else if (this.totals.sum < this.data.user.activeBonuses) {
-                this.totals.cash = 0
+                this.totals.cash = 0;
                 this.totals.bonuses = this.totals.sum;
             }
         } else {
@@ -66,7 +67,7 @@ export class UserIdentifyComponent implements OnInit {
             bonus: this.totals.bonuses,
             cash: this.totals.cash,
             creditCard: this.totals.creditCard,
-            orderProducts : [
+            orderProducts: [
                 {
                     amount: 1,
                     categoryId: this.data.category.id,
@@ -76,14 +77,14 @@ export class UserIdentifyComponent implements OnInit {
                 }
             ],
             userId: this.data.user.id,
-        }
+        };
         console.log(orderRequest);
-        this.orderService.saveOrderModule(orderRequest).subscribe( response => {
+        this.orderService.saveOrderModule(orderRequest).subscribe(response => {
             console.log(response);
             this.toastService.present('Оплата произведена успешно!');
             this.modalCtrl
                 .dismiss(response);
-        },error => {
+        }, error => {
             console.error(error);
             this.toastService.present(error, 'danger');
 

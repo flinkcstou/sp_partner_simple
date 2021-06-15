@@ -15,6 +15,11 @@ const routes: Routes = [
       {
         path: 'loyalty',
         loadChildren: () => import('../../inner-tabs/home/loyalty/loyalty.module').then(m => m.LoyaltyPageModule),
+      },
+      {
+        path: 'certificate-history',
+        loadChildren: () => import('../../inner-tabs/home/certificate-history/certificate-history.module')
+            .then(m => m.CertificateHistoryPageModule),
       }
     ]
   }

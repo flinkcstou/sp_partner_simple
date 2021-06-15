@@ -20,11 +20,11 @@ export class CertificatesPage implements OnInit {
 
     activateCertificate() {
         this.qrService.scanner('certificate');
-
     }
 
     activatePromo() {
         this.qrService.scanner('promo');
 
     }
+
 }

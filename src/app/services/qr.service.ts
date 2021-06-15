@@ -88,7 +88,7 @@ export class QrService {
                     this.toastService.present(err, 'danger');
                 });
             } else {
-                this.identify('32361652')
+                this.identify('19851161')
                     .toPromise()
                     .then(response => {
                         if (type === 'purchase') {
