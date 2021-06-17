@@ -8,3 +8,39 @@
 ion-content {
   --ion-background-color: #F1F1F1;
 }
+
+.custom-input {
+  background: #E5E5E5;
+  width: 100%;
+  border: none;
+  padding: 1vw 4vw;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 35px;
+}
+.filter {
+  grid-row: span 2;
+  align-self: end;
+  justify-self: end;
+}
+.filter-buttons {
+  display: grid;
+  grid-gap: 5vw;
+}
+.user-filter {
+  width: 100vw;
+  padding: 10vw;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 4vw 2vw;
+}
+.empty-transactions {
+  text-align: center;
+  font-weight: 600;
+  color: #8C8C8C;
+  padding: 10vw;
+  font-size: 20px;
+}

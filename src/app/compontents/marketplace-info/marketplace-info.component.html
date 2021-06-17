@@ -1,0 +1,25 @@
+<ion-content>
+    <div class="header-flex page-padding">
+        <img src="../../../assets/icons/back-icon.svg" alt="" (click)="goBack()" class="back-btn">
+        <div class="title">
+            Транзакция {{data.id}}
+        </div>
+    </div>
+    <div class="user-header page-padding">
+        <div class="user-info">{{data.userName}}</div>
+        <div class="order_id">ID заказа: <span class="black">{{data.id}}</span></div>
+        <div class="user-info">{{data.time}}</div>
+        <div class="order_id">ID покупки: <span class="black">{{data.id}}</span></div>
+        <div class="price">Сумма: <span class="black">{{data.id}} тг</span></div>
+        <div class="action-buttons">
+            <button class="action-button"><img src="assets/icons/phone-icon.svg" alt=""></button>
+            <button class="action-button"><img src="assets/icons/message-icon.svg" alt=""></button>
+        </div>
+    </div>
+    <div class="detail-text page-padding">Детали заказа</div>
+    <div class="products-card page-padding">
+        <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+
+    </div>
+
+</ion-content>

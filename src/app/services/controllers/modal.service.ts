@@ -9,6 +9,7 @@ import {ActivatePromoComponent} from '../../compontents/activate-promo/activate-
 import {QrImageComponent} from '../../compontents/qr-image/qr-image.component';
 import {ActivateCertificateComponent} from '../../compontents/activate-certificate/activate-certificate.component';
 import {CertificateInfoComponent} from '../../compontents/certificate-info/certificate-info.component';
+import {MarketplaceInfoComponent} from '../../compontents/marketplace-info/marketplace-info.component';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,18 @@ export class ModalService extends IonicControllerAbstract {
     setTransactionInfoOption(data: any) {
         this.extraOption = {
             component: TransactionInfoComponent,
+            // cssClass: 'tabs-modal-component',
+            swipeToClose: true,
+            componentProps: {
+                data
+            }
+        };
+        this.setOption(this.extraOption);
+    }
+
+    setMarketplaceInfoOption(data: any) {
+        this.extraOption = {
+            component: MarketplaceInfoComponent,
             // cssClass: 'tabs-modal-component',
             swipeToClose: true,
             componentProps: {

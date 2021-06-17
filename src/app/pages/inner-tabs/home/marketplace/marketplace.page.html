@@ -1,0 +1,43 @@
+<app-header-tab [header]="spPartnerHeader"></app-header-tab>
+<ion-content>
+  <div slot="fixed" class="user-filter">
+    <div class="ion-input">
+      <input [(ngModel)]="phone"
+             (keyup)="searchOrders()"
+             id="phoneNumberId"
+             prefix="+7 "
+             class="custom-input"
+             type="tel"
+             mask="(000) 000-00-00"
+             placeholder="Номер телефона">
+    </div>
+    <div class="filter">
+      <div class="filter-buttons">
+        <img src="assets/icons/refresh.svg" alt="" (click)="reloadPage()">
+        <!--                <img src="assets/icons/" alt="" (click)="searchOrders()">-->
+      </div>
+    </div>
+    <div class="ion-input">
+      <input type="text" class="custom-input"
+             [(ngModel)]="qrCode"
+             (keyup)="searchOrders()"
+             mask="0000-0000"
+             placeholder="Qr код">
+    </div>
+  </div>
+  <div class="transaction-card-list">
+    <div class="transaction" *ngFor="let transaction of transactions" (click)="goToTransaction(transaction)">
+      <div class="transaction-status {{(transaction.status === 1)? 'success'
+                : (transaction.status === 2)? 'returned': 'process'}}">
+        {{(transaction.status === 1)? 'Оплачено'
+              : (transaction.status === 2)? 'Возвращено': 'В процессе'}}</div>
+      <div class="info-text"><span class="descr">ID: </span> {{transaction.id}}</div>
+      <div class="info-text"><span class="descr">Имя пользователя: </span> {{transaction.userName}}</div>
+      <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdAt }}</div>
+      <div class="info-text"><span class="descr">Сумма: </span> {{transaction.sum }}тг.</div>
+      <div class="info-text"><span class="descr">Сертификат: </span> {{transaction.brandName }}</div>
+      <div class="info-text"><span class="descr">Начислено Бонусов: </span> {{transaction.bonusGained }}</div>
+    </div>
+  </div>
+
+</ion-content>

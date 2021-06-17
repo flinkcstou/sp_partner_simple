@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
         }, {
             icon: 'marketplace-icon.svg',
             text: 'Marketplace',
-            link: 'marketplace',
+            link: 'tabs/home-tab/marketplace',
         }, {
             icon: 'certificate.svg',
             text: 'Сертификаты',
