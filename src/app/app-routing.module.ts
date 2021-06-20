@@ -41,6 +41,10 @@ const routes: Routes = [
     path: 'transaction',
     loadChildren: () => import('./pages/transaction/transaction.module').then( m => m.TransactionPageModule)
   },
+  {
+    path: 'marketplace-info',
+    loadChildren: () => import('./pages/inner-tabs/home/marketplace-info/marketplace-info.module').then( m => m.MarketplaceInfoPageModule)
+  },
 
   // {
   //   path: 'main',

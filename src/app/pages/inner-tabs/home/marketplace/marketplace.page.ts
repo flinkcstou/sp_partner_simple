@@ -4,6 +4,7 @@ import {UserService} from '../../../../services/user.service';
 import {ToastService} from '../../../../services/controllers/toast.service';
 import {MarketplaceService} from '../../../../services/marketplace.service';
 import {ModalService} from '../../../../services/controllers/modal.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-marketplace',
@@ -15,19 +16,13 @@ export class MarketplacePage implements OnInit {
     phone: string = '';
     search: string = '';
     qrCode: string = '';
-    transactions: any[] = [
-        {
-            id: 1,
-            status: 1,
-            userName: 'abyl',
-            time: '21.04.2021 18:00 - 20:00',
-        }
-    ];
+    transactions: any[] = [];
 
     constructor(private userService: UserService,
                 private toastService: ToastService,
                 private marketplaceService: MarketplaceService,
-                private modalService: ModalService) {
+                private navCtrl: NavController
+    ) {
     }
 
     ngOnInit() {
@@ -35,7 +30,12 @@ export class MarketplacePage implements OnInit {
     }
 
     getTransactions() {
-        console.log('getAllTransactions');
+        this.marketplaceService.getAllOrders().toPromise().then(resp => {
+            console.log(resp);
+            this.transactions = resp.purchases;
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     searchOrders() {
@@ -62,11 +62,12 @@ export class MarketplacePage implements OnInit {
 
 
     goToTransaction(transaction: any) {
-        if (this.modalService.isPresent) {
-            this.modalService.dismiss();
-        } else {
-            this.modalService.setMarketplaceInfoOption(transaction);
-            this.modalService.present();
-        }
+        this.navCtrl.navigateForward(['/tabs/home-tab/marketplace/' + transaction.id]);
+        // if (this.modalService.isPresent) {
+        //     this.modalService.dismiss();
+        // } else {
+        //     this.modalService.setMarketplaceInfoOption(transaction);
+        //     this.modalService.present();
+        // }
     }
 }

@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-gap: 2vw;
+    align-items: center;
+  }
+  .product-name {
+    font-size: 14px;
+    margin-bottom: 3vw;
+  }
+  .product-price {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .product-amount {
+    font-weight: bold;
+    font-size: 16px;
+    color: #000000;
+    justify-self: center;
+  }
+  .product-amount.edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+  .photo-img {
+    width: 18vw;
+    object-fit: contain;
+    height: 15vw;
+  }
+  .amount-img {
+    width: 5.5vw;
+    height: 5.5vw;
+    object-fit: contain;
+  }
+}

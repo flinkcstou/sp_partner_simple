@@ -44,3 +44,30 @@ ion-content {
   padding: 10vw;
   font-size: 20px;
 }
+.custom-sp-button {
+  background: #FFCA00;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #000000;
+  padding: 3vw 5vw;
+}
+
+.custom-action-btn-icon {
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #000000;
+  padding: 1vw 3vw;
+  display: flex;
+  align-items: center;
+  & img {
+    margin-right: 1vw;
+    width: 5vw;
+    height: 5vw;
+    object-fit: contain;
+  }
+}

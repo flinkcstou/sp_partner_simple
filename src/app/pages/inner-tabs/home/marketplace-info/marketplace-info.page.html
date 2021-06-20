@@ -1,0 +1,55 @@
+<app-header-tab [header]="spPartnerHeader"></app-header-tab>
+<ion-content>
+    <div class="user-header page-padding">
+        <div *ngIf="order?.deliveryMethod === 'delivery'" class="user-info">
+            {{order?.recipient?.name + ' ' + order?.recipient?.surname }}
+        </div>
+        <div *ngIf="order?.deliveryMethod === 'pickup'" class="user-info">
+            {{order?.userResponse?.name + ' ' + order?.userResponse?.surname}}
+        </div>
+        <div class="order_id">ID заказа: <span class="black">{{order?.orderId}}</span></div>
+        <div class="user-info">{{order?.delivery_time}}</div>
+        <div class="order_id">ID покупки: <span class="black">{{order?.id}}</span></div>
+        <div class="price">Сумма: <span class="black">{{order?.id}} тг</span></div>
+        <div class="action-buttons">
+            <button class="action-button"><img src="assets/icons/phone-icon.svg" (click)="callUser()" alt=""></button>
+            <button class="action-button"><img src="assets/icons/message-icon.svg" alt=""></button>
+        </div>
+    </div>
+    <div class="detail-text page-padding">Детали заказа</div>
+    <div class="products-card page-padding">
+        <app-product-card class="product-component" *ngFor="let product of products"
+                          [editProduct]="editProducts"
+                          [product]="product"></app-product-card>
+        <div class="edit-products">
+            <button *ngIf="!editProducts && order?.orderStatus === 0" class="custom-sp-button with-icon" (click)="editProductsAmount()">
+                <img src="assets/icons/pen-icon.svg" alt="">
+                Изменить
+            </button>
+        </div>
+    </div>
+    <div class="action-buttons">
+        <button *ngIf="!editProducts && order?.orderStatus === 0"
+                class="custom-action-btn-icon" (click)="acceptOrder()">
+            <img src="assets/icons/accept-order.svg" alt="">
+            Принять
+        </button>
+        <button *ngIf="(!editProducts && order?.orderStatus === 0) ||
+         (!editProducts && order?.orderStatus === 3)"
+                class="custom-action-btn-icon" (click)="finishOrder()">
+            <img src="assets/icons/finish-order.svg" alt="">
+            Завершить
+        </button>
+    </div>
+    <div class="cancel-btn" *ngIf="!editProducts && order?.orderStatus === 0">
+        <button class="custom-action-btn-icon" (click)="cancelOrder()">
+            <img src="assets/icons/cancel-order.svg" alt="">
+            Отменить
+        </button>
+    </div>
+    <div class="save-btn-div" *ngIf="editProducts">
+        <button class="custom-sp-button" (click)="saveProducts()">
+            Сохранить
+        </button>
+    </div>
+</ion-content>

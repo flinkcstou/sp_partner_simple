@@ -37,4 +37,42 @@
       color: #8C8C8C !important;
     }
   }
+  .order-status {
+    display: flex;
+    align-items: center;
+    .descr {
+      margin-right: 2vw;
+    }
+  }
+  .order-status-badge {
+    border-radius: 8px;
+    padding: 0.1vw 2vw;
+  }
+  .order-status-badge.process {
+    background: #DBE6FF;
+  }
+  .order-status-badge.finished {
+    background: rgba(73, 215, 42, 0.3);;
+  }
+  .order-status-badge.delivering {
+    background: #49D72A4C;
+  }
+  .order-status-badge.canceled {
+    background: rgba(226, 27, 27, 0.3);;
+  }
+  .order-status-badge.incative {
+    background: rgba(255, 202, 0, 0.3);;
+  }
+  .with-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .order-type {
+    background: #FFCA00;
+    border-radius: 8px;
+    padding: 0.5vw 2vw;
+  }
+  .order-type.pickup {
+  }
 }

@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
 import {UserServiceController} from '../controllers/user.service.controller';
 import {Observable} from 'rxjs';
+import {MarketplaceServiceController} from '../controllers/marketplace.service.controller';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarketplaceService {
 
-  constructor(private userServiceController: UserServiceController) {
+  constructor(private marketplaceServiceController: MarketplaceServiceController) {
 
   }
 
-  getUserByQrOrPhone(phone: string, qr: string) {
-    return this.userServiceController.getUserByQrAndPhone(phone, qr);
+  getAllOrders() {
+    return this.marketplaceServiceController.getAllOrders();
   }
 
-  getUserByQr(qr: string) {
-    return this.userServiceController.getUserByQr(qr);
+  getOrderById(id: number) {
+    return this.marketplaceServiceController.getOrderById(id);
   }
 
-  activateCertificateByQr(qr: string) {
-    return this.userServiceController.activateCertificateByQr(qr);
+  changeProductsAmount(object: any) {
+    return this.marketplaceServiceController.changeProductsAmount(object);
   }
 
-  getCertificateByQr(qr: string) {
-    return this.userServiceController.getCertificateByQr(qr);
+  acceptOrder(object: any) {
+    return this.marketplaceServiceController.acceptOrder(object);
+  }
+
+  cancellOrder(object: any) {
+    return this.marketplaceServiceController.cancellOrder(object);
+  }
+
+  finishOrder(object: any) {
+    return this.marketplaceServiceController.finishOrder(object);
   }
 }

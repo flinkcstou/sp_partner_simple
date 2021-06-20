@@ -24,7 +24,7 @@ export class QrService {
                 private userService: UserService,
                 private modalService: ModalService,
                 private toastService: ToastService) {
-        this.isApp = (!document.URL.startsWith('http://localhost:4201'));
+        this.isApp = (!document.URL.startsWith('http://localhost:4200'));
     }
 
     qrPost(qrRequest: any) {

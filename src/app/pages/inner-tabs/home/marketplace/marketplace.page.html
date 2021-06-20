@@ -1,43 +1,103 @@
 <app-header-tab [header]="spPartnerHeader"></app-header-tab>
 <ion-content>
-  <div slot="fixed" class="user-filter">
-    <div class="ion-input">
-      <input [(ngModel)]="phone"
-             (keyup)="searchOrders()"
-             id="phoneNumberId"
-             prefix="+7 "
-             class="custom-input"
-             type="tel"
-             mask="(000) 000-00-00"
-             placeholder="Номер телефона">
+    <div slot="fixed" class="user-filter">
+        <div class="ion-input">
+            <input [(ngModel)]="phone"
+                   (keyup)="searchOrders()"
+                   id="phoneNumberId"
+                   prefix="+7 "
+                   class="custom-input"
+                   type="tel"
+                   mask="(000) 000-00-00"
+                   placeholder="Номер телефона">
+        </div>
+        <div class="filter">
+            <div class="filter-buttons">
+                <img src="assets/icons/refresh.svg" alt="" (click)="reloadPage()">
+                <!--                <img src="assets/icons/" alt="" (click)="searchOrders()">-->
+            </div>
+        </div>
+        <div class="ion-input">
+            <input type="text" class="custom-input"
+                   [(ngModel)]="qrCode"
+                   (keyup)="searchOrders()"
+                   mask="0000-0000"
+                   placeholder="Qr код">
+        </div>
     </div>
-    <div class="filter">
-      <div class="filter-buttons">
-        <img src="assets/icons/refresh.svg" alt="" (click)="reloadPage()">
-        <!--                <img src="assets/icons/" alt="" (click)="searchOrders()">-->
-      </div>
+    <div class="transaction-card-list">
+        <div class="transaction" *ngFor="let transaction of transactions" (click)="goToTransaction(transaction)">
+            <div class="transaction-status {{(transaction.paymentStatus === 1)? 'success'
+                : (transaction.paymentStatus === 2)? 'returned': 'process'}}">
+                {{(transaction.paymentStatus === 1) ? 'Оплачено'
+                : (transaction.paymentStatus === 2) ? 'Возвращено' : 'Не оплачено'}}</div>
+            <div class="info-text"><span class="descr">ID: </span> {{transaction.id}}</div>
+            <div *ngIf="transaction.deliveryMethod === 'delivery'">
+                <div class="info-text"><span class="descr">Имя пользователя: </span> {{transaction.recipient?.name + ' '
+                + transaction.recipient?.surname}}</div>
+                <div class="info-text"><span class="descr">Телефон: </span> +{{transaction.recipient?.phoneNumber}}
+                </div>
+                <div class="info-text"><span class="descr">Время доставки: </span> {{transaction.delivery_time }}</div>
+                <div class="info-text"><span class="descr">Адрес: </span>
+                    {{transaction.recipient?.street + ' ' + transaction.recipient?.numOfBuilding + ', ' +
+                    transaction.recipient?.floorDoor}}
+                </div>
+                <div class="info-text order-status"><span class="descr">Статус: </span>
+                    <div class="order-status-badge {{transaction.orderStatus === 0 ? 'incative'
+                    : transaction.orderStatus === 1 ? 'finished'
+                        : transaction.orderStatus === 2 ? 'canceled'
+                        : transaction.orderStatus === 3 ? 'process'
+                            : transaction.orderStatus === 4 ? 'delivering'
+                            : ''
+                        }}">
+                        {{transaction.orderStatus === 0 ? 'Неактивный' : transaction.orderStatus === 1 ? 'Завершен'
+                        : transaction.orderStatus === 2 ? 'Отменен' : transaction.orderStatus === 3 ? 'В процессе'
+                            : transaction.orderStatus === 4 ? 'Доставляется' : 'Неизвестный статус'
+                        }}
+                    </div>
+
+                </div>
+                <div class="info-text with-type">
+                    <div><span class="descr">Сумма: </span> {{transaction.sum | number: '1.0' }}тг.</div>
+                    <div class="order-type">
+                        <img src="assets/icons/delivery.svg" alt="">
+                        Доставка
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="transaction.deliveryMethod === 'pickup'">
+                <div class="info-text"><span
+                        class="descr">Имя пользователя: </span> {{transaction.userResponse?.name + ' '
+                + transaction.userResponse?.surname}}</div>
+                <div class="info-text"><span class="descr">
+                    Телефон: </span> +{{transaction.userResponse?.phone}}
+                </div>
+                <div class="info-text"><span class="descr">Время доставки: </span> {{transaction.delivery_time }}</div>
+                <div class="info-text order-status"><span class="descr">Статус: </span>
+                    <div class="order-status-badge {{transaction.orderStatus === 0 ? 'incative'
+                    : transaction.orderStatus === 1 ? 'finished'
+                        : transaction.orderStatus === 2 ? 'canceled'
+                        : transaction.orderStatus === 3 ? 'process'
+                            : transaction.orderStatus === 4 ? 'delivering'
+                            : ''
+                        }}">
+                        {{transaction.orderStatus === 0 ? 'Неактивный' : transaction.orderStatus === 1 ? 'Завершен'
+                        : transaction.orderStatus === 2 ? 'Отменен' : transaction.orderStatus === 3 ? 'В процессе'
+                            : transaction.orderStatus === 4 ? 'Доставляется' : 'Неизвестный статус'
+                        }}
+                    </div>
+                </div>
+                <div class="info-text with-type">
+                    <div><span class="descr">Сумма: </span> {{transaction.sum | number: '1.0'}}тг.</div>
+                    <div class="order-type pickup">
+                        Самовывоз
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="ion-input">
-      <input type="text" class="custom-input"
-             [(ngModel)]="qrCode"
-             (keyup)="searchOrders()"
-             mask="0000-0000"
-             placeholder="Qr код">
+    <div *ngIf="transactions?.length === 0" class="empty-transactions">
+        Нет транзакций
     </div>
-  </div>
-  <div class="transaction-card-list">
-    <div class="transaction" *ngFor="let transaction of transactions" (click)="goToTransaction(transaction)">
-      <div class="transaction-status {{(transaction.status === 1)? 'success'
-                : (transaction.status === 2)? 'returned': 'process'}}">
-        {{(transaction.status === 1)? 'Оплачено'
-              : (transaction.status === 2)? 'Возвращено': 'В процессе'}}</div>
-      <div class="info-text"><span class="descr">ID: </span> {{transaction.id}}</div>
-      <div class="info-text"><span class="descr">Имя пользователя: </span> {{transaction.userName}}</div>
-      <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdAt }}</div>
-      <div class="info-text"><span class="descr">Сумма: </span> {{transaction.sum }}тг.</div>
-      <div class="info-text"><span class="descr">Сертификат: </span> {{transaction.brandName }}</div>
-      <div class="info-text"><span class="descr">Начислено Бонусов: </span> {{transaction.bonusGained }}</div>
-    </div>
-  </div>
 
 </ion-content>

@@ -1,3 +1,15 @@
-<p>
-  product-card works!
-</p>
+<div class="product-grid">
+    <img src="{{imgUrl + product?.orderedProduct?.photo_1}}" class="photo-img" alt="">
+    <div class="product-decr">
+        <div class="product-name">{{product.orderedProduct.name}}</div>
+        <div class="product-price">{{product.orderedProduct.unitPrice | number: '1.0' }}тг.</div>
+    </div>
+    <div *ngIf="!editProduct" class="product-amount">
+        {{product.orderedProduct.productCount}}
+    </div>
+    <div *ngIf="editProduct" class="product-amount edit">
+        <img class="amount-img" src="assets/icons/minus-amount.svg" (click)="minusAmount()" alt="">
+        {{product.orderedProduct.productCount}}
+        <img class="amount-img" src="assets/icons/plus-amount.svg" (click)="plusAmount()" alt="">
+    </div>
+</div>

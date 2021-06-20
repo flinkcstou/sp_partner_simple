@@ -22,6 +22,11 @@ const routes: Routes = [
             .then(m => m.MarketplacePageModule),
       },
       {
+        path: 'marketplace/:id',
+        loadChildren: () => import('../../inner-tabs/home/marketplace-info/marketplace-info.module')
+            .then(m => m.MarketplaceInfoPageModule),
+      },
+      {
         path: 'certificate-history',
         loadChildren: () => import('../../inner-tabs/home/certificate-history/certificate-history.module')
             .then(m => m.CertificateHistoryPageModule),
