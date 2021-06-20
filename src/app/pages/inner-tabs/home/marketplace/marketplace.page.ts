@@ -45,7 +45,7 @@ export class MarketplacePage implements OnInit {
                 .then(response => {
                     console.log(response);
                     this.search += ',userId:' + response.id;
-                    // this.getTransactions();
+                    this.getTransactions();
                 }).catch(async error => {
                 console.log(error);
                 await this.toastService.present(error ? error : 'Ошибка!', 'danger');

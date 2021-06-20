@@ -8,15 +8,17 @@ import { MarketplacePageRoutingModule } from './marketplace-routing.module';
 
 import { MarketplacePage } from './marketplace.page';
 import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MarketplacePageRoutingModule,
-    HeaderTabModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        MarketplacePageRoutingModule,
+        HeaderTabModule,
+        NgxMaskModule
+    ],
   declarations: [MarketplacePage]
 })
 export class MarketplacePageModule {}
