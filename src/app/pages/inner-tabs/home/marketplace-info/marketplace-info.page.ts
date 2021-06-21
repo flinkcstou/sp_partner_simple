@@ -14,6 +14,7 @@ export class MarketplaceInfoPage implements OnInit {
     $url: Subscription;
     spPartnerHeader: SpPartnerHeader = SpPartnerHeader.WITH_TITLE_BACK('Marketplace');
     order: any;
+    orderId: number;
     products: any[];
     editProducts: boolean = false;
 
@@ -30,15 +31,18 @@ export class MarketplaceInfoPage implements OnInit {
     getMarketplaceOrderInfo() {
         this.$url = this.route.params.subscribe(data => {
             if (data.id) {
-                this.marketplaceService.getOrderById(data.id).toPromise().then(resp => {
-                    this.order = resp;
-                    console.log(resp);
-                    this.order.orderStatus = 0;
-                    this.products = resp.products;
-                }).catch(err => {
-                    console.log(err);
-                });
+                this.orderId = data.id;
+                this.getOrderInfoById();
             }
+        });
+    }
+    getOrderInfoById() {
+        this.marketplaceService.getOrderById(this.orderId).toPromise().then(resp => {
+            this.order = resp;
+            this.order.orderStatus = 0;
+            this.products = resp.products;
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -68,6 +72,7 @@ export class MarketplaceInfoPage implements OnInit {
         this.marketplaceService.changeProductsAmount(changeProductsRequest).toPromise().then(resp => {
             console.log(resp);
             this.toastService.present('Количество продуктов изменено успешно');
+            this.getOrderInfoById();
         }).catch(err => {
             console.error(err);
             this.toastService.present('Ошибка при изменении количества', 'danger');
@@ -95,6 +100,7 @@ export class MarketplaceInfoPage implements OnInit {
         this.marketplaceService.acceptOrder(purchaseInfo).toPromise().then(resp => {
             console.log(resp);
             this.toastService.present('Заказ успешно принят');
+            this.getOrderInfoById();
         }).catch(err => {
             console.log(err);
             this.toastService.present('Ошибка при принятии', 'danger');
@@ -110,6 +116,7 @@ export class MarketplaceInfoPage implements OnInit {
         this.marketplaceService.finishOrder(purchaseInfo).toPromise().then(resp => {
             console.log(resp);
             this.toastService.present('Заказ успешно завершен');
+            this.getOrderInfoById();
         }).catch(err => {
             console.log(err);
             this.toastService.present('Ошибка при завершении', 'danger');
@@ -125,6 +132,7 @@ export class MarketplaceInfoPage implements OnInit {
         this.marketplaceService.cancellOrder(purchaseInfo).toPromise().then(resp => {
             console.log(resp);
             this.toastService.present('Заказ успешно отклонен');
+            this.getOrderInfoById();
         }).catch(err => {
             console.log(err);
             this.toastService.present('Ошибка при отклонении', 'danger');
