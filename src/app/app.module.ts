@@ -15,7 +15,7 @@ import {ErrorInterceptor} from './interceptors/error';
 import {TokenInterceptor} from './interceptors/token';
 import {ComponentControllerModule} from './modules/component-controller.module';
 import {NgxMaskModule} from 'ngx-mask';
-import {CallNumber} from '@ionic-native/call-number';
+import {CallNumber} from '@ionic-native/call-number/ngx';
 
 @NgModule({
     declarations: [AppComponent],
