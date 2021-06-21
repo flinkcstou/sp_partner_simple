@@ -39,7 +39,6 @@ export class MarketplaceInfoPage implements OnInit {
     getOrderInfoById() {
         this.marketplaceService.getOrderById(this.orderId).toPromise().then(resp => {
             this.order = resp;
-            this.order.orderStatus = 0;
             this.products = resp.products;
         }).catch(err => {
             console.log(err);
