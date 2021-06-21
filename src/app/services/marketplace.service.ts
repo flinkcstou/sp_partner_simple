@@ -12,8 +12,8 @@ export class MarketplaceService {
 
   }
 
-  getAllOrders() {
-    return this.marketplaceServiceController.getAllOrders();
+  getAllOrders(userId?: number) {
+    return this.marketplaceServiceController.getAllOrders(userId);
   }
 
   getOrderById(id: number) {

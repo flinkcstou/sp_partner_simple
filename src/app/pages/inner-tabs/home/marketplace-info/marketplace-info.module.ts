@@ -17,7 +17,7 @@ import {ProductCardModule} from '../../../../compontents/product-card/product-ca
         IonicModule,
         MarketplaceInfoPageRoutingModule,
         HeaderTabModule,
-        ProductCardModule
+        ProductCardModule,
     ],
   declarations: [MarketplaceInfoPage]
 })

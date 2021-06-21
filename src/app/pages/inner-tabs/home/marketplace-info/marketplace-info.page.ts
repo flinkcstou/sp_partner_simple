@@ -4,11 +4,13 @@ import {ActivatedRoute} from '@angular/router';
 import {SpPartnerHeader} from '../../../../models/commons/SpPartnerHeader';
 import {MarketplaceService} from '../../../../services/marketplace.service';
 import {ToastService} from '../../../../services/controllers/toast.service';
+import {CallNumber} from '@ionic-native/call-number/ngx';
 
 @Component({
     selector: 'app-marketplace-info',
     templateUrl: './marketplace-info.page.html',
     styleUrls: ['./marketplace-info.page.scss'],
+    providers : [CallNumber]
 })
 export class MarketplaceInfoPage implements OnInit {
     $url: Subscription;
@@ -20,7 +22,8 @@ export class MarketplaceInfoPage implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private marketplaceService: MarketplaceService,
-                private toastService: ToastService
+                private toastService: ToastService,
+                private callNumber: CallNumber
     ) {
     }
 
@@ -39,6 +42,7 @@ export class MarketplaceInfoPage implements OnInit {
     getOrderInfoById() {
         this.marketplaceService.getOrderById(this.orderId).toPromise().then(resp => {
             this.order = resp;
+            console.log(resp);
             this.products = resp.products;
         }).catch(err => {
             console.log(err);
@@ -50,6 +54,7 @@ export class MarketplaceInfoPage implements OnInit {
     }
 
     saveProducts() {
+        console.log(this.products);
         this.editProducts = false;
         const productsList = [];
         this.products.forEach(element => {
@@ -57,7 +62,7 @@ export class MarketplaceInfoPage implements OnInit {
                 brandId: element.orderedProduct.brand.brandId,
                 price: element.orderedProduct.unitPrice,
                 productCount: element.orderedProduct.productCount,
-                productId: element.orderedProduct.id,
+                productId: element.orderedProduct.productId,
                 userId: element.orderedProduct.userId
             };
             productsList.push(productObject);
@@ -80,13 +85,27 @@ export class MarketplaceInfoPage implements OnInit {
 
 
     callUser() {
+        let phoneNumber = '';
         if (this.order?.deliveryMethod === 'delivery') {
             console.log(this.order.recipient);
-            console.log('+' + this.order.recipient.phoneNumber);
-
+            console.log('+' + this.order.recipient?.phoneNumber);
+            if (this.order.recipient === null) {
+                this.toastService.present('Нет номера пользователя!');
+            } else {
+                phoneNumber = '+' + this.order.recipient?.phoneNumber;
+            }
         } else if (this.order?.deliveryMethod === 'pickup') {
             console.log(this.order.userResponse);
             console.log('+' + this.order.userResponse.phone);
+            if (this.order.userResponse?.phone != null) {
+                phoneNumber = '+' + this.order.userResponse?.phone;
+            }
+        }
+        if (phoneNumber !== '') {
+            this.callNumber.callNumber(phoneNumber, true)
+                .then(resp => {
+                    console.log(resp)
+                }).catch(err => console.log(err));
         }
     }
 

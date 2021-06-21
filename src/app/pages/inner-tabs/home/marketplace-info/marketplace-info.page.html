@@ -1,16 +1,22 @@
 <app-header-tab [header]="spPartnerHeader"></app-header-tab>
 <ion-content>
-    <div class="user-header page-padding">
+    <div class="user-header">
         <div *ngIf="order?.deliveryMethod === 'delivery'" class="user-info">
-            {{order?.recipient?.name + ' ' + order?.recipient?.surname }}
+            <div class="user-name-span">{{order?.recipient?.name + ' ' + order?.recipient?.surname }}</div>
+            <div>
+                +{{order?.recipient?.phoneNumber}}
+            </div>
         </div>
         <div *ngIf="order?.deliveryMethod === 'pickup'" class="user-info">
-            {{order?.userResponse?.name + ' ' + order?.userResponse?.surname}}
+            <div class="user-name-span">{{order?.userResponse?.name + ' ' + order?.userResponse?.surname}}</div>
+            <div>
+                +{{order?.userResponse?.phone}}
+            </div>
         </div>
         <div class="order_id">ID заказа: <span class="black">{{order?.orderId}}</span></div>
         <div class="user-info">{{order?.delivery_time}}</div>
         <div class="order_id">ID покупки: <span class="black">{{order?.id}}</span></div>
-        <div class="price">Сумма: <span class="black">{{order?.id}} тг</span></div>
+        <div class="price">Сумма: <span class="black">{{order?.sum | number: '1.0' }} тг</span></div>
         <div class="action-buttons">
             <button class="action-button"><img src="assets/icons/phone-icon.svg" (click)="callUser()" alt=""></button>
             <button class="action-button"><img src="assets/icons/message-icon.svg" alt=""></button>

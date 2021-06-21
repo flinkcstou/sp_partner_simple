@@ -8,15 +8,17 @@ import { CertificateHistoryPageRoutingModule } from './certificate-history-routi
 
 import { CertificateHistoryPage } from './certificate-history.page';
 import {HeaderTabModule} from '../../../../compontents/header-tab/header-tab.module';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CertificateHistoryPageRoutingModule,
-    HeaderTabModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CertificateHistoryPageRoutingModule,
+        HeaderTabModule,
+        NgxMaskModule,
+    ],
   declarations: [CertificateHistoryPage]
 })
 export class CertificateHistoryPageModule {}

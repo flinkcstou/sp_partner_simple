@@ -12,7 +12,12 @@ export class MarketplaceServiceController {
     constructor(private httpClient: HttpClient) {
     }
 
-    getAllOrders(): Observable<any> {
+    getAllOrders(userId?: number): Observable<any> {
+        if (userId != null) {
+            return this.httpClient.get<any>(this.fullUrl
+                + '/kitchen/purchases?pageNumber=1&pageSize=90000&userId='
+                + userId);
+        }
         return this.httpClient.get<any>(this.fullUrl + '/kitchen/purchases?pageNumber=1&pageSize=90000');
     }
 
@@ -29,11 +34,11 @@ export class MarketplaceServiceController {
     }
 
     cancellOrder(object: any): Observable<any> {
-        return this.httpClient.post<any>(this.fullUrl + '/kitchen/purchase/accept', object);
+        return this.httpClient.post<any>(this.fullUrl + '/kitchen/purchase/cancel', object);
     }
 
     finishOrder(object: any): Observable<any> {
-        return this.httpClient.post<any>(this.fullUrl + '/kitchen/purchase/accept', object);
+        return this.httpClient.post<any>(this.fullUrl + '/kitchen/purchase/finish', object);
     }
 
 }

@@ -5,6 +5,7 @@ import {ToastService} from '../../../../services/controllers/toast.service';
 import {MarketplaceService} from '../../../../services/marketplace.service';
 import {ModalService} from '../../../../services/controllers/modal.service';
 import {NavController} from '@ionic/angular';
+import {LoadingService} from '../../../../services/loading.service';
 
 @Component({
     selector: 'app-marketplace',
@@ -14,14 +15,15 @@ import {NavController} from '@ionic/angular';
 export class MarketplacePage implements OnInit {
     spPartnerHeader: SpPartnerHeader = SpPartnerHeader.WITH_TITLE_BACK('Marketplace');
     phone: string = '';
-    search: string = '';
+    userId: number = null;
     qrCode: string = '';
     transactions: any[] = [];
 
     constructor(private userService: UserService,
                 private toastService: ToastService,
                 private marketplaceService: MarketplaceService,
-                private navCtrl: NavController
+                private navCtrl: NavController,
+                private loadingService: LoadingService,
     ) {
     }
 
@@ -29,13 +31,14 @@ export class MarketplacePage implements OnInit {
         this.getTransactions();
     }
 
-    getTransactions() {
-        this.marketplaceService.getAllOrders().toPromise().then(resp => {
+    async getTransactions() {
+        await this.loadingService.present();
+        this.marketplaceService.getAllOrders(this.userId).toPromise().then(resp => {
             console.log(resp);
             this.transactions = resp.purchases;
         }).catch(err => {
             console.log(err);
-        });
+        }).finally(async () => await this.loadingService.dismiss());
     }
 
     searchOrders() {
@@ -44,7 +47,7 @@ export class MarketplacePage implements OnInit {
             this.userService.getUserByQrOrPhone(phoneSearchStr, this.qrCode).toPromise()
                 .then(response => {
                     console.log(response);
-                    this.search += ',userId:' + response.id;
+                    this.userId = response.id;
                     this.getTransactions();
                 }).catch(async error => {
                 console.log(error);
@@ -54,10 +57,10 @@ export class MarketplacePage implements OnInit {
     }
 
     reloadPage() {
-        this.search = '';
+        this.userId = null;
         this.phone = '';
         this.qrCode = '';
-        // this.getTransactions();
+        this.getTransactions();
     }
 
 
