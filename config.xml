@@ -46,7 +46,18 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+        <preference name="WKWebViewOnly" value="true" />
         <preference name="UseSwiftLanguageVersion" value="4.2" />
+        <preference name="iosPersistentFileLocation" value="Library" />
+        <preference name="iosPersistentFileLocation" value="Compatibility" />
+        <allow-navigation href="*" />
+        <allow-intent href="maps:*" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <resource-file src="src-out/sounds/blackberry.caf" />
+        <resource-file src="src-out/sounds/crystal.caf" />
+        <resource-file src="src-out/sounds/msn.caf" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
         <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />

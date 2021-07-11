@@ -20,6 +20,7 @@ export class FirebaseService implements OnDestroy {
 
  async start() {
   if (environment.desktop) {
+   localStorage.setItem('push_token', 'test-test-tst');
    return;
   }
   await this.setPermissionIos();
