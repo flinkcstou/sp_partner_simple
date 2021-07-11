@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>411351678451-gc8chqpgqqismif2llrfrs2q45megm51.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.411351678451-gc8chqpgqqismif2llrfrs2q45megm51</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBpeu0_Zh5pvz36sCie417GrS1-fltaot8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>411351678451</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kz.smartplaza.partner</string>
+	<key>PROJECT_ID</key>
+	<string>smartplaza-partner</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smartplaza-partner.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:411351678451:ios:ea9d79ee1d3535b1d62686</string>
+</dict>
+</plist>
