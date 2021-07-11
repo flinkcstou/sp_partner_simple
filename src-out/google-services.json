@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "411351678451",
+    "project_id": "smartplaza-partner",
+    "storage_bucket": "smartplaza-partner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411351678451:android:e3d60ea70e6e1c7dd62686",
+        "android_client_info": {
+          "package_name": "kz.smartplaza.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411351678451-higuoo2akpugr09kveu9aqgpbh0ge5dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBUWCLowLxGdpQKqN77WL0ZQSVlJiHatc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411351678451-higuoo2akpugr09kveu9aqgpbh0ge5dq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
