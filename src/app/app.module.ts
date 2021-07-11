@@ -16,35 +16,37 @@ import {TokenInterceptor} from './interceptors/token';
 import {ComponentControllerModule} from './modules/component-controller.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {CallNumber} from '@ionic-native/call-number/ngx';
+import {FirebaseX} from '@ionic-native/firebase-x/ngx';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [BrowserModule,
-        IonicModule.forRoot(),
-        HttpClientModule,
-        NgxMaskModule.forRoot(),
-        ComponentControllerModule.forRoot(),
-        AppRoutingModule],
-    providers: [
-        StatusBar,
-        CallNumber,
-        SplashScreen,
-        QRScanner,
-        BarcodeScanner,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptor,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true,
-        },
-    ],
-    bootstrap: [AppComponent],
+ declarations: [AppComponent],
+ entryComponents: [],
+ imports: [BrowserModule,
+  IonicModule.forRoot(),
+  HttpClientModule,
+  NgxMaskModule.forRoot(),
+  ComponentControllerModule.forRoot(),
+  AppRoutingModule],
+ providers: [
+  StatusBar,
+  CallNumber,
+  SplashScreen,
+  QRScanner,
+  BarcodeScanner,
+  FirebaseX,
+  {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+  {
+   provide: HTTP_INTERCEPTORS,
+   useClass: ErrorInterceptor,
+   multi: true,
+  },
+  {
+   provide: HTTP_INTERCEPTORS,
+   useClass: TokenInterceptor,
+   multi: true,
+  },
+ ],
+ bootstrap: [AppComponent],
 })
 export class AppModule {
 }
