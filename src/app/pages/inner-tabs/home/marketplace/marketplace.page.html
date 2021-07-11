@@ -37,6 +37,7 @@
                 + transaction.recipient?.surname}}</div>
                 <div class="info-text"><span class="descr">Телефон: </span> +{{transaction.recipient?.phoneNumber}}
                 </div>
+                <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdDate | date:'dd.MM.yyyy H:mm:ss' }}</div>
                 <div class="info-text"><span class="descr">Время доставки: </span> {{transaction.delivery_time }}</div>
                 <div class="info-text"><span class="descr">Адрес: </span>
                     {{transaction.recipient?.street + ' ' + transaction.recipient?.numOfBuilding + ', ' +
@@ -65,13 +66,14 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="transaction.deliveryMethod === 'pickup'">
+            <div *ngIf="transaction.deliveryMethod === 'pickUp'">
                 <div class="info-text"><span
                         class="descr">Имя пользователя: </span> {{transaction.userResponse?.name + ' '
                 + transaction.userResponse?.surname}}</div>
                 <div class="info-text"><span class="descr">
                     Телефон: </span> +{{transaction.userResponse?.phone}}
                 </div>
+                <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdDate | date:'dd.MM.yyyy H:mm:ss' }}</div>
                 <div class="info-text"><span class="descr">Время доставки: </span> {{transaction.delivery_time }}</div>
                 <div class="info-text order-status"><span class="descr">Статус: </span>
                     <div class="order-status-badge {{transaction.orderStatus === 0 ? 'incative'
@@ -94,6 +96,37 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="transaction.deliveryMethod === 'deliveryTrc'">
+                <div class="info-text"><span
+                        class="descr">Имя пользователя: </span> {{transaction.userResponse?.name + ' '
+                + transaction.userResponse?.surname}}</div>
+                <div class="info-text"><span class="descr">
+                    Телефон: </span> +{{transaction.userResponse?.phone}}
+                </div>
+                <div class="info-text"><span class="descr">Дата: </span> {{transaction.createdDate | date:'dd.MM.yyyy H:mm:ss'}}</div>
+                <div class="info-text"><span class="descr">Время доставки: </span> {{transaction.delivery_time }}</div>
+                <div class="info-text order-status"><span class="descr">Статус: </span>
+                    <div class="order-status-badge {{transaction.orderStatus === 0 ? 'incative'
+                    : transaction.orderStatus === 1 ? 'finished'
+                        : transaction.orderStatus === 2 ? 'canceled'
+                        : transaction.orderStatus === 3 ? 'process'
+                            : transaction.orderStatus === 4 ? 'delivering'
+                            : ''
+                        }}">
+                        {{transaction.orderStatus === 0 ? 'Неактивный' : transaction.orderStatus === 1 ? 'Завершен'
+                        : transaction.orderStatus === 2 ? 'Отменен' : transaction.orderStatus === 3 ? 'В процессе'
+                            : transaction.orderStatus === 4 ? 'Доставляется' : 'Неизвестный статус'
+                        }}
+                    </div>
+                </div>
+                <div class="info-text with-type">
+                    <div><span class="descr">Сумма: </span> {{transaction.sum | number: '1.0'}}тг.</div>
+                    <div class="order-type pickup">
+                        Доставка по ТРЦ
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div *ngIf="transactions?.length === 0" class="empty-transactions">
