@@ -39,7 +39,11 @@ export class StorageLocalService {
     }
 
     removeAll() {
-        localStorage.clear();
+        localStorage.removeItem(StorageLocalKeyEnum.API_TOKEN);
+        localStorage.removeItem(StorageLocalKeyEnum.ROLE);
+        localStorage.removeItem(StorageLocalKeyEnum.BRAND);
+        localStorage.removeItem(StorageLocalKeyEnum.CITY_ID);
+        // localStorage.clear();
         this.cache.clear();
     }
 

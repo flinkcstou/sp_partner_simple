@@ -18,6 +18,8 @@ export class AuthService {
     }
 
     login(authRequest: AuthRequest) {
+        authRequest.deviceToken = this.storageLocalService.getPushToken();
+        console.log(authRequest);
         return this.authController.login(authRequest);
     }
     logout() {

@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {FirebaseX} from '@ionic-native/firebase-x/ngx';
 import {PlatformService} from './roots/platform.service';
 import {environment} from '../../environments/environment';
+import {StorageLocalService} from './storage-local.service';
 
 @Injectable({
  providedIn: 'root',
@@ -12,7 +13,8 @@ export class FirebaseService implements OnDestroy {
  // https://ionicframework.com/docs/native/firebase-x
 
  constructor(private firebaseX: FirebaseX,
-             private platformService: PlatformService) {
+             private platformService: PlatformService,
+             private storageLocalService: StorageLocalService) {
  }
 
  firebaseSubscription: Subscription;
@@ -20,7 +22,7 @@ export class FirebaseService implements OnDestroy {
 
  async start() {
   if (environment.desktop) {
-   localStorage.setItem('push_token', 'test-test-tst');
+   this.storageLocalService.setPushToken('test-test-tst');
    return;
   }
   await this.setPermissionIos();
@@ -31,7 +33,8 @@ export class FirebaseService implements OnDestroy {
  async getToken() {
   this.firebaseX.getToken().then(token => {
    console.error('firebase pushtoken: ', token);
-   localStorage.setItem('push_token', token);
+   this.storageLocalService.setPushToken(token);
+   // localStorage.setItem('push_token', token);
   });
  }
 

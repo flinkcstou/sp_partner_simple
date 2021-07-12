@@ -38,9 +38,6 @@ export class LoginPage implements OnInit {
                 this.storageLocalService.setBrand(resp.brand);
                 this.storageLocalService.setCityId(resp.brand.cities[0].id);
                 this.navCtrl.navigateForward(['/tabs/home-tab']);
-                setTimeout(() => {
-                    window.location.reload();
-                }, 200);
             }).catch(async error => {
                 console.log(error);
                 await this.toastService.present('Логин или пароль введены не верно!', 'danger');
