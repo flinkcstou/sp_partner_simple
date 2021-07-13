@@ -88,8 +88,8 @@
       "cordova-plugin-market": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-firebasex": {
-        "ANDROID_FIREBASE_CONFIG_FILEPATH": "src-out/firebase-integration/google-services.json",
-        "IOS_FIREBASE_CONFIG_FILEPATH": "src-out/firebase-integration/GoogleService-Info.plist",
+        "ANDROID_FIREBASE_CONFIG_FILEPATH": "src-out/google-services.json",
+        "IOS_FIREBASE_CONFIG_FILEPATH": "src-out/GoogleService-Info.plist",
         "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
         "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
         "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
